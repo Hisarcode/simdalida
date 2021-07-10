@@ -14,13 +14,14 @@ class CreateInnovationReportsTable extends Migration
     public function up()
     {
         Schema::create('innovation_reports', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('id_innovation_proposal')->constrained('innovation_proposals');
+            $table->bigIncrements('id');
+            $table->integer('users_id');
+            $table->string('name');
             $table->text('innovation_sk_file');
-            $table->enum('innovation_step', ['inisiatif', 'ujiCoba', 'penerapan']);
+            $table->foreignId('id_innovation_step')->constrained('innovation_steps');
             $table->foreignId('id_innovation_initiator')->constrained('innovation_initiators');
             $table->enum('innovation_type', ['digital', 'nonDigital']);
-            $table->foreignId('id_innovation_format')->constrained('innovation_formats');
+            $table->enum('innovation_formats', ['kelolaPemerintah', 'pelayananPublik', 'bentukLainnya']);
             $table->dateTime('time_innovation_implement');
             $table->text('problem');
             $table->text('solution');
@@ -36,7 +37,7 @@ class CreateInnovationReportsTable extends Migration
             $table->text('benefit_level_file');
             $table->string('achievement_result_level');
             $table->text('achievement_result_level_file');
-            $table->string('achievement_result_problem');
+            $table->text('achievement_result_problem');
             $table->text('innovation_strategy');
             $table->text('video_innovation');
             $table->timestamps();
