@@ -16,23 +16,31 @@
             <span>Dashboard</span></a>
     </li>
 
+    @if (Auth::user()->roles == 'SUPERADMIN')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('user.index') }}">
+                <i class="fas fa-fw fa-hotel"></i>
+                <span>Manajemen User/Admin</span></a>
+        </li>
+    @endif
+
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('innovation-proposal.index') }}">
             <i class="fas fa-fw fa-hotel"></i>
-            <span>Paket Travel</span></a>
+            <span>Proposal Inovasi</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-images"></i>
-            <span>Gallery Travel</span></a>
+        <a class="nav-link" href="{{ route('innovation-report.index') }}">
+            <i class="fas fa-fw fa-sign"></i>
+            <span>Laporan Inovasi</span></a>
     </li>
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Transaksi</span></a>
-    </li>
+    </li> --}}
 
 
     <!-- Divider -->

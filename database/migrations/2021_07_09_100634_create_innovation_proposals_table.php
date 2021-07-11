@@ -17,8 +17,8 @@ class CreateInnovationProposalsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('users_id');
             $table->string('name');
-            $table->foreignId('id_innovation_step')->constrained('innovation_steps');
-            $table->foreignId('id_innovation_initiator')->constrained('innovation_initiators');
+            $table->string('innovation_step');
+            $table->string('innovation_initiator');
             $table->enum('innovation_type', ['digital', 'nonDigital']);
             $table->enum('innovation_formats', ['kelolaPemerintah', 'pelayananPublik', 'bentukLainnya']);
             $table->enum('is_covid', ['covid', 'nonCovid']);

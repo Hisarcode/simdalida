@@ -25,6 +25,10 @@ Route::prefix('admin')
             ->name('dashboard');
 
         Route::resource('user', '\App\Http\Controllers\Admin\UserController')->middleware((['auth', 'superadmin']));
+
+        Route::resource('innovation-proposal', '\App\Http\Controllers\Admin\InnovationProposalController');
+
+        Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
     });
 
 Auth::routes();

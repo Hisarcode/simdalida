@@ -83,7 +83,7 @@ class UserController extends Controller
         $user->username = $request->get('username');
         $user->roles = $request->get('roles');
         $user->save();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('status', 'Updated successfully!');
     }
 
     /**
@@ -97,6 +97,6 @@ class UserController extends Controller
         $item = User::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('status', 'Deleted successfully!');
     }
 }
