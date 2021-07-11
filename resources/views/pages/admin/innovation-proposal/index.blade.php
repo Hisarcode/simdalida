@@ -68,6 +68,9 @@
                                 <a href="{{ route('innovation-proposal.edit', $proposal->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
+                                <a href="{{ route('innovation-proposal.show', $proposal->id) }}" class="btn btn-info">
+                                    <i class="fa fa-eye"></i>
+                                </a>
                                 <form action="{{ route('innovation-proposal.destroy', $proposal->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')

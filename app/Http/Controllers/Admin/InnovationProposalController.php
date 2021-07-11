@@ -103,7 +103,8 @@ class InnovationProposalController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = InnovationProposal::find($id);
+        return view('pages.admin.innovation-proposal.show', ['item' => $item]);
     }
 
     /**
