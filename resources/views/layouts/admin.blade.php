@@ -28,7 +28,7 @@
             <div id="content">
 
                 @include('includes.admin.navbar')
-
+                @include('sweetalert::alert')
                 @yield('content')
 
 

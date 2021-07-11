@@ -9,13 +9,16 @@
         <h1 class="h3 mb-0 text-gray-800">Management User</h1>
         <i>.</i>
     </div>
-
-
-
-    <div class="row">
+  
+        <div class="card shadow mb-4">
         <div class="card-body">
+            @if(session('status'))
+            <div class="alert alert-success alert-dismissable">
+                {{session('status')}}
+            </div>
+        @endif
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -29,9 +32,13 @@
                     </thead>
                     {{-- test --}}
                     <tbody>
+                        <?php
+                        $i = 1;
+
+                        ?>
                         @forelse ($items as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $i++ }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
@@ -41,7 +48,7 @@
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
@@ -62,6 +69,7 @@
             </div>
         </div>
     </div>
+    
 
 
 

@@ -38,7 +38,7 @@
                 <input {{$item->roles == "ADMIN" ? "checked" : ""}} 
                 value="ADMIN" 
                 type="radio" 
-                class="form-control" 
+                
                 id="admin" 
                 name="roles">
                 <label for="admin">Admin</label>
@@ -46,7 +46,7 @@
                 <input {{$item->roles == "USER" ? "checked" : ""}} 
                 value="USER" 
                 type="radio" 
-                class="form-control"
+                
                 id="user" 
                 name="roles"> 
                 <label for="user">User</label>               
