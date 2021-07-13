@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\ComplainInboxController;
 use App\Http\Controllers\ComplainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -34,6 +35,7 @@ Route::prefix('admin')
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
 
+        Route::put('/complain-inbox/updateIsImprovement/{id}', [ComplainInboxController::class, 'updateIsImprovement'])->name("complain-inbox.updateIsImprovement");
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
     });
 
