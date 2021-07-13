@@ -32,4 +32,21 @@ class ComplainInboxController extends Controller
         $item = Complain::find($id);
         return view('pages.admin.complain-inbox.show', ['item' => $item]);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateIsImprovement($id)
+    {
+
+
+        $complain = Complain::find($id);
+        $complain->is_improvement = 'sudah_ditindaklanjuti';
+        $complain->save();
+
+        return redirect()->route('complain-inbox.index')->with('status', 'Status Pengaduan Berhasil Diperbarui');
+    }
 }

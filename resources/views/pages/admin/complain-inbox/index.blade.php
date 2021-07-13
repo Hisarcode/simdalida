@@ -13,7 +13,7 @@
     <div class="card shadow mb-4"> 
         <div class="card-body">
             @if(session('status'))
-                <div class="alert alert-success alert-dismissable">
+                <div class="mt-3 alert alert-success alert-dismissable">
                     {{session('status')}}
                 </div>
             @endif
@@ -25,6 +25,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Subject Aduan</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,14 +40,31 @@
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>
+                                @if ($complain->is_improvement == "sudah_ditindaklanjuti")
+                                    Sudah Ditindaklanjuti
+                                @elseif($complain->is_improvement == "belum_ditindaklanjuti")
+                                    Belum Ditindaklanjuti
+                                @endif
+                            </td>
+                            <td>
                                 <a href="{{ route('complain-inbox.show', $complain->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
-                                </a>   
+                                </a>
+                                @if ( $complain->is_improvement == 'belum_ditindaklanjuti')
+                                    <form action="{{ route('complain-inbox.updateIsImprovement', $complain->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                        @csrf
+                                        @method('put')
+                                        <button class="btn btn-warning">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </form>
+                                                                          
+                                @endif   
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4" class="text-center">
+                            <td colspan="5" class="text-center">
                                 Data Kosong
                             </td>
                         </tr>
