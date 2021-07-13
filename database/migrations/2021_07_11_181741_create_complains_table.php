@@ -18,6 +18,7 @@ class CreateComplainsTable extends Migration
             $table->string('name');
             $table->string('subject');
             $table->text('description');
+            $table->string('is_improvement');
             $table->timestamps();
         });
     }
