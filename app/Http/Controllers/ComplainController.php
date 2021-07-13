@@ -39,6 +39,7 @@ class ComplainController extends Controller
         $complain->name = $request->get('name');
         $complain->subject = $request->get('subject');
         $complain->description = $request->get('description');
+        $complain->is_improvement = "belum_ditindaklajuti";
 
         $complain->save();
 

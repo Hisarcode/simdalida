@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Complain extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'subject', 'description'];
+    protected $fillable = ['name', 'subject', 'description', 'is_improvement'];
 }
