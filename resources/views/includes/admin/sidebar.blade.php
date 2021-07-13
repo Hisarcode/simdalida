@@ -36,6 +36,14 @@
             <span>Laporan Inovasi</span></a>
     </li>
 
+    @if (Auth::user()->roles == 'SUPERADMIN')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('complain-inbox.index') }}">
+            <i class="fas fa-fw fa-envelope-open-text"></i>
+            <span>Daftar Pengaduan</span></a>
+    </li>
+    @endif
+
     {{-- <li class="nav-item">
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-dollar-sign"></i>
