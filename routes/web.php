@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ComplainController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfographicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +33,16 @@ Route::prefix('admin')
         Route::resource('innovation-proposal', '\App\Http\Controllers\Admin\InnovationProposalController');
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
+
+        Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
     });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('complain', ComplainController::class)->only([
+    'index', 'store'
+]);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
