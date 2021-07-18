@@ -78,7 +78,7 @@
 
                 <div class="form-group">
                     <label for="time_innovation_implement">Waktu Inovasi Daerah Diterapkan</label>
-                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
+                    <input type="datetime" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
                 </div>
 
                 <div class="form-group">

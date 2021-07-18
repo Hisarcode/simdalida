@@ -17,7 +17,7 @@ class DashboardController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
             $report = InnovationReport::orderBy('id', 'DESC')->count();
-            $is_improvement = Complain::where('is_improvement', 'sudah')->count();
+            $is_improvement = Complain::where('is_improvement', 'belum')->count();
         } else if (Auth::user()->roles == 'ADMIN') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('users_id', Auth::user()->id)->count();

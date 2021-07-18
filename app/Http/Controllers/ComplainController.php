@@ -39,7 +39,11 @@ class ComplainController extends Controller
         $complain->name = $request->get('name');
         $complain->subject = $request->get('subject');
         $complain->description = $request->get('description');
-        $complain->is_improvement = "belum_ditindaklajuti";
+        $complain->is_improvement = "belum";
+        $sekarang = \Carbon\Carbon::now('Asia/Jakarta');
+        $tambah = (new \Carbon\Carbon($sekarang))->addDays('3');
+        $complain->end_time = $tambah;
+
 
         $complain->save();
 
