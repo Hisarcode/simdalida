@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Complain;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ComplainInboxController extends Controller
@@ -16,7 +17,8 @@ class ComplainInboxController extends Controller
     public function index()
     {
         $complains = Complain::orderBy('id', 'DESC')->get();
-        return view('pages.admin.complain-inbox.index', ['complains' => $complains]);
+
+        return view('pages.admin.complain-inbox.index', compact('complains'));
     }
 
 
@@ -39,14 +41,29 @@ class ComplainInboxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateIsImprovement($id)
+
+    public function edit($id)
     {
+        $item = Complain::findOrFail($id);
 
+        return view('pages.admin.complain-inbox.edit', [
+            'item' => $item
+        ]);
+    }
 
-        $complain = Complain::find($id);
-        $complain->is_improvement = 'sudah_ditindaklanjuti';
+    public function update(Request $request, $id)
+    {
+        $complain = Complain::findOrFail($id);
+        $complain->is_improvement = $request->get('is_improvement');
         $complain->save();
-
         return redirect()->route('complain-inbox.index')->with('status', 'Status Pengaduan Berhasil Diperbarui');
+    }
+
+    public function destroy($id)
+    {
+        $item = Complain::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('complain-inbox.index')->with('status', 'Deleted successfully!');
     }
 }

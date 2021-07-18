@@ -18,7 +18,7 @@
                                 <div class="logo">
                                     <!-- Image Logo -->
                                     <div class="img-logo">
-                                        <a href="index.html">
+                                        <a href="{{ route('home') }}">
                                             <img src="{{ url('front/img/logo-sgu.png') }}" width="45" alt="#">
                                         </a>
                                     </div>
@@ -38,6 +38,17 @@
                                                         <li><a href="{{ route('infographic') }}">Infografis</a></li>
                                                         <li><a href="{{ route('about') }}">Tentang Kami</a></li>
                                                         <li><a href="{{ route('complain.index') }}">Pengaduan</a></li>
+                                                        @guest
+                                                        <li><a href="/login">Login/Register</a></li>
+                                                        @endguest
+                                                        @auth
+                                                            <li><form  action="{{ url('logout') }}" method="POST">
+                                                                @csrf
+                                                                <a><button type="submit">
+                                                                    Keluar
+                                                                </button></a>
+                                                            </form></li>
+                                                        @endauth
                                                     </ul>
                                                     <!--/ End Naviagiton -->
                                                 </div>

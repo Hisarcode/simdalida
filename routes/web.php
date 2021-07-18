@@ -18,10 +18,6 @@ use App\Http\Controllers\InfographicController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware(['auth', 'admin'])
@@ -35,7 +31,6 @@ Route::prefix('admin')
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
 
-        Route::put('/complain-inbox/updateIsImprovement/{id}', [ComplainInboxController::class, 'updateIsImprovement'])->name("complain-inbox.updateIsImprovement");
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
     });
 
@@ -45,6 +40,6 @@ Route::resource('complain', ComplainController::class)->only([
     'index', 'store'
 ]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
 Route::get('/about', [AboutController::class, 'index'])->name('about');

@@ -132,7 +132,8 @@ class InnovationReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = InnovationReport::find($id);
+        return view('pages.admin.innovation-report.show', ['item' => $item]);
     }
 
     /**
