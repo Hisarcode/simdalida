@@ -17,11 +17,11 @@
     </li>
 
     @if (Auth::user()->roles == 'SUPERADMIN')
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('user.index') }}">
-                <i class="fas fa-fw fa-hotel"></i>
-                <span>Manajemen User/Admin</span></a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('user.index') }}">
+            <i class="fas fa-fw fa-hotel"></i>
+            <span>Manajemen User/Admin</span></a>
+    </li>
     @endif
 
     <li class="nav-item">
@@ -41,6 +41,22 @@
         <a class="nav-link" href="{{ route('complain-inbox.index') }}">
             <i class="fas fa-fw fa-envelope-open-text"></i>
             <span>Daftar Pengaduan</span></a>
+    </li>
+    @endif
+
+    @if (Auth::user()->roles == 'SUPERADMIN')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('about.index') }}">
+            <i class="fas fa-fw fa-info-circle"></i>
+            <span>Manajemen About</span></a>
+    </li>
+    @endif
+
+    @if (Auth::user()->roles == 'SUPERADMIN')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('carousel.index') }}">
+            <i class="fas fa-fw fa-camera"></i>
+            <span>Manajemen Carousel</span></a>
     </li>
     @endif
 
