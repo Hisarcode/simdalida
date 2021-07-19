@@ -35,6 +35,10 @@ Route::prefix('admin')
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
+
+        Route::resource('about', '\App\Http\Controllers\Admin\AboutController');
+
+        Route::resource('carousel', '\App\Http\Controllers\Admin\CarouselController');
     });
 
 Auth::routes();
