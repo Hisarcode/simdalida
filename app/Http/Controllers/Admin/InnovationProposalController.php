@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
+use App\Models\InnovationReport;
 use Illuminate\Support\Facades\Auth;
 
 class InnovationProposalController extends Controller
@@ -202,5 +203,31 @@ class InnovationProposalController extends Controller
         $item->delete();
 
         return redirect()->route('innovation-proposal.index');
+    }
+
+    public function actionedit(Request $request, $id)
+    {
+        // $item = InnovationProposal::findOrFail($id);
+
+        // return view('pages.admin.innovation-proposal.editStatus', [
+        //     'item' => $item
+        // ]);
+        $proposal = InnovationProposal::findOrFail($id);
+        $proposal->status = 'SUDAH';
+        $proposal->update();
+        return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
+    }
+
+    public function actioneditt(Request $request, $id)
+    {
+        // $item = InnovationProposal::findOrFail($id);
+
+        // return view('pages.admin.innovation-proposal.editStatus', [
+        //     'item' => $item
+        // ]);
+        $proposal = InnovationProposal::findOrFail($id);
+        $proposal->status = 'BELUM';
+        $proposal->update();
+        return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
     }
 }

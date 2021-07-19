@@ -260,8 +260,7 @@ class InnovationReportController extends Controller
 
         $report->save();
 
-        return redirect()->route('innovation-report.index');
-        with('status', 'Data successfully updated');
+        return redirect()->route('innovation-report.index')->with('status', 'Data successfully updated');
     }
 
     /**
