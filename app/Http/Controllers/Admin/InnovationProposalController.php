@@ -202,7 +202,7 @@ class InnovationProposalController extends Controller
         $item = InnovationProposal::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('innovation-proposal.index');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Deleted successfully!');
     }
 
     public function actionedit(Request $request, $id)

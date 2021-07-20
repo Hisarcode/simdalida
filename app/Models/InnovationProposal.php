@@ -18,6 +18,16 @@ class InnovationProposal extends Model
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
+    public function innovation_profiles()
+    {
+        return $this->hasOne(InnovationProfile::class, 'innovation_proposals_id', 'id');
+    }
+
+    public function complains()
+    {
+        return $this->hasMany(Complain::class, 'purpose_innovation', 'id');
+    }
+
     public function setStepAttribute($value)
     {
         $this->attributes['innovation_step'] = json_encode($value);

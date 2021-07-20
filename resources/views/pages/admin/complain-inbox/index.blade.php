@@ -25,6 +25,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Tujuan Pengaduan Inovasi</th>
                             <th>Nama</th>
                             <th>Subject Aduan</th>
                             <th>Status</th>
@@ -39,9 +40,10 @@
                         ?>
                         @forelse ($complains as $complain)
                         <tr>
-                            <?php 
-                                 $tambah = (new \Carbon\Carbon($complain->created_at))->addDays('3'); ?>
+                            @if ($complain->innovation_complain->users_id == Auth::user()->id)
                             <td>{{ $i++ }}</td>
+                            <td>{{ $complain->innovation_complain->name }}
+                            </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>
@@ -58,7 +60,7 @@
                                 @endif
 
                             </td>
-                            <td>
+                            <td> 
                                 <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
@@ -76,6 +78,48 @@
                                                                           
                                 @endif   
                             </td>
+                            @elseif (Auth::user()->roles === 'SUPERADMIN')
+                            <td>{{ $i++ }}</td>
+                            <td>{{ $complain->innovation_complain->name }}
+                           
+                            </td>
+                            <td>{{ $complain->name }}</td>
+                            <td>{{ $complain->subject }}</td>
+                            <td>
+                                @if ($complain->is_improvement == "sudah")
+                                <i class="fa fa-check" aria-hidden="true"></i> Sudah Ditindaklanjuti
+                                @elseif($complain->is_improvement == "belum")
+                                    Belum Ditindaklanjuti <br> sisa waktu : 
+                                    <div data-countdown="{{ $complain->end_time }}" style="display: inline">
+                                        <li style="display: inline" data-days="00">00</li>
+                                        <li style="display: inline" data-hours="00">00</li>
+                                        <li style="display: inline" data-minuts="00">00</li>
+                                        <li style="display: inline" data-seconds="00">00</li>
+                                    </div>
+                                @endif
+
+                            </td>
+                            <td> 
+                                <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <a href="{{ route('complain-inbox.show', $complain->id) }}" class="btn btn-info">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                @if ( $complain->is_improvement == 'sudah')
+                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                                                                          
+                                @endif   
+                            </td>
+
+                            @endif
+  
                         </tr>
                         @empty
                         <tr>

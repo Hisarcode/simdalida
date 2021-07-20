@@ -32,6 +32,8 @@ Route::prefix('admin')
         Route::get('/actionedit/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actionedit');
         Route::get('/actioneditt/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actioneditt');
 
+        Route::resource('innovation-profile', '\App\Http\Controllers\Admin\InnovationProfileController');
+
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
@@ -44,8 +46,9 @@ Route::prefix('admin')
 Auth::routes();
 
 Route::resource('complain', ComplainController::class)->only([
-    'index', 'store'
+    'index', 'create', 'store',
 ]);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');

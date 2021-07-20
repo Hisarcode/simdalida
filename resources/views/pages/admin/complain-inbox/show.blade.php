@@ -27,6 +27,10 @@
                     <td>{{ $item->name }}</td>
                 </tr>
                 <tr>
+                    <th>Tujuan Pengaduan Inovasi</th>
+                    <td>{{ $item->innovation_complain->name }}</td>
+                </tr>
+                <tr>
                     <th>Subject Aduan</th>
                     <td>{{ $item->subject }}</td>
                 </tr> 

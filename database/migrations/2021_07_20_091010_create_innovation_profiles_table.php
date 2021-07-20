@@ -16,8 +16,7 @@ class CreateInnovationProfilesTable extends Migration
         Schema::create('innovation_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('users_id');
-            $table->integer('innovation_proposals_id');
-            $table->string('name');
+            $table->integer('innovation_proposals_id')->unique();
             $table->text('description');
             $table->string('triwulan1')->nullable();
             $table->string('triwulan2')->nullable();
