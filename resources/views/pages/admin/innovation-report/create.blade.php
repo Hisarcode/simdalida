@@ -24,13 +24,22 @@
             <form action="{{ route('innovation-report.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
-
                 <div class="form-group">
-                    <label for="name">Nama Inovasi Daerah</label>
+                    <label for="innovation_profiles_id">Nama Inovasi</label>
+                    <select name="innovation_profiles_id" required class="form-control">
+                        <option value="">Pilih Nama Inovasi Berdasarkan profil</option>
+                        @foreach ($innovation as $proposal)
+                        <option value="{{ $proposal->id }}">
+                            {{ $proposal->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    {{-- <label for="name">Nama Inovasi Daerah</label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inovasi" value="{{ old('name') }}" required autocomplete="off">
-                    
+                     --}}
                     <label for="innovation_sk_file"> Upload SK Bupati:  <input type="file" name="innovation_sk_file" placeholder="SK bupati" ></label>  
-                    
                 </div>
 
                 <div class="form-group">
@@ -78,7 +87,7 @@
 
                 <div class="form-group">
                     <label for="time_innovation_implement">Waktu Inovasi Daerah Diterapkan</label>
-                    <input type="datetime" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
+                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
                 </div>
 
                 <div class="form-group">

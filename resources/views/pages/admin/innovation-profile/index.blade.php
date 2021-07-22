@@ -47,7 +47,8 @@
                         @forelse ($profile as $profile)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $profile->innovation_proposal->name }}</td>
+                            <td>{{ $profile->name }}
+                            </td>
                             <td> {{ $profile->description }}</td>  
                                 <td>
                                 @foreach (json_decode($profile->innovation_proposal->innovation_initiator) as $initiator)

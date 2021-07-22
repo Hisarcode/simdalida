@@ -20,7 +20,7 @@ class InnovationProfileController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $profile = InnovationProfile::with(['innovation_proposal'])->orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $profile = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->get();
+            $profile = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-profile.index', ['profile' => $profile]);
     }
@@ -53,8 +53,10 @@ class InnovationProfileController extends Controller
         ])->validate();
 
         $profile = new InnovationProfile;
-        //  ubah time ke zona indo
+        $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
+
         $profile->users_id = $request->get('users_id');
+        $profile->name = $ambil;
         $profile->description = $request->get('description');
         $profile->innovation_proposals_id = $request->get('innovation_proposals_id');
 
@@ -106,17 +108,14 @@ class InnovationProfileController extends Controller
         \Validator::make($request->all(), [
             "users_id" => "required",
             "description" => "required",
-            "innovation_proposals_id" => "required",
+
         ])->validate();
 
         $profile->users_id = $request->get('users_id');
-        $profile->innovation_proposals_id = $request->get('innovation_proposals_id');
         $profile->description = $request->get('description');
-
         $profile->save();
 
-        return redirect()->route('innovation-profile.index');
-        with('status', 'Data successfully updated');
+        return redirect()->route('innovation-profile.index')->with('status', 'Data successfully updated');
     }
 
     /**

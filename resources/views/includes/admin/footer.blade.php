@@ -2,7 +2,9 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Hanif 2020</span>
+            <?php 
+                $tahun = \Carbon\Carbon::now('Asia/Jakarta')->format('Y'); ?>
+            <span>Copyright &copy; Simdalida {{ $tahun }} </span>
         </div>
     </div>
 </footer>

@@ -66,7 +66,7 @@
                             @if (Auth::user()->roles == 'SUPERADMIN') 
                             <td>{{ $report->user->username }}</td>
                             @else
-                            <td>{{ $report->time_innovation_implement }}</td>    
+                            <td>{{ \Carbon\Carbon::parse($report->time_innovation_implement)->format('d M-Y') }}</td>    
                             @endif
                             <td>
                                 @if (Auth::user()->roles === 'ADMIN')

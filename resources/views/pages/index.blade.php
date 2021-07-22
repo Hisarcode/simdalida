@@ -5,71 +5,25 @@
     <section class="hero-slider style1">
         <div class="home-slider">
             <!-- Single Slider -->
-            <div class="single-slider" style="background-image:url('https://via.placeholder.com/1700x800.png')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-8 col-12">
-                            <div class="welcome-text">
-                                <div class="hero-text">
-
-                                    <h1>Inovasi-Inovasi Daerah Kabupaten Sanggau</h1>
-                                    <div class="p-text">
-                                        <p>Bagian ini merupakan bagian konten utama yang akan memuat
-                                            carousel-carousel dari gambar inovasi yang ingin ditampilkan</p>
-                                    </div>
-                                    <div class="button">
-                                        <a href="contact.html" class="bizwheel-btn theme-1 effect">Lihat Lainnya</a>
-                                    </div>
+        @foreach ($carousel as $item)
+        <div class="single-slider" style="background-image:url('https://via.placeholder.com/1700x800.png')">
+            {{-- {{Storage::url($item->carousel_image) }} --}}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8 col-12">
+                        <div class="welcome-text">
+                            <div class="hero-text">
+                                <h1>{{ $item->title }}</h1>
+                                <div class="p-text">
+                                    <p>{{ $item->description }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/ End Single Slider -->
-            <!-- Single Slider -->
-            <div class="single-slider" style="background-image:url('https://via.placeholder.com/1700x800.png')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-8 col-12">
-                            <div class="welcome-text">
-                                <div class="hero-text">
-                                    <h1>Inovasi-Inovasi Daerah Kabupaten Sanggau</h1>
-                                    <div class="p-text">
-                                        <p>Bagian ini merupakan bagian konten utama yang akan memuat
-                                            carousel-carousel dari gambar inovasi yang ingin ditampilkan</p>
-                                    </div>
-                                    <div class="button">
-                                        <a href="blog.html" class="bizwheel-btn theme-1 effect">Lihat Lainnya</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ End Single Slider -->
-            <!-- Single Slider -->
-            <div class="single-slider" style="background-image:url('https://via.placeholder.com/1700x800.png')">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-7 col-md-8 col-12">
-                            <div class="welcome-text">
-                                <div class="hero-text">
-                                    <h1>Inovasi-Inovasi Daerah Kabupaten Sanggau</h1>
-                                    <div class="p-text">
-                                        <p>Bagian ini merupakan bagian konten utama yang akan memuat
-                                            carousel-carousel dari gambar inovasi yang ingin ditampilkan</p>
-                                    </div>
-                                    <div class="button">
-                                        <a href="team.html" class="bizwheel-btn theme-2 effect">Lihat Lainnya</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        @endforeach
             <!--/ End Single Slider -->
         </div>
     </section>

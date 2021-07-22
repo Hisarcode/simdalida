@@ -23,9 +23,9 @@ class CreateInnovationProposalsTable extends Migration
             $table->enum('innovation_formats', ['kelolaPemerintah', 'pelayananPublik', 'bentukLainnya']);
             $table->enum('is_covid', ['covid', 'nonCovid']);
             $table->text('innovation_concern');
-            $table->dateTime('start_innovation_trial');
-            $table->dateTime('end_innovation_trial');
-            $table->dateTime('time_innovation_implement');
+            $table->date('start_innovation_trial');
+            $table->date('end_innovation_trial');
+            $table->date('time_innovation_implement');
             $table->text('innovation_design');
             $table->text('innovation_goal');
             $table->text('innovation_benefit');

@@ -80,7 +80,7 @@
                             @endif</td>    
                             @endif
                             <td>
-                               @if (Auth::user()->roles === 'ADMIN')
+                               @if (Auth::user()->roles === 'ADMIN' && $proposal->status == 'BELUM')
                                <a href="{{ route('innovation-proposal.edit', $proposal->id) }}" class="btn btn-info">
                                 <i class="fa fa-pencil-alt"></i>
                             </a>

@@ -7,6 +7,7 @@ use App\Models\Complain;
 use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
 use App\Models\InnovationReport;
+use App\Models\InnovationProfile;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller

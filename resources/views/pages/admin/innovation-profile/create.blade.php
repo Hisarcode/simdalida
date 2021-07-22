@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Inovasi Daerah</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tambah Profil Inovasi Daerah</h1>
     </div>
 
     @if ($errors->any())
@@ -27,8 +27,8 @@
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
 
                 <div class="form-group">
-                    <p>*profil inovasi bersifat unik (tidak boleh ada 2 atau lebih profil inovasi yang memiliki nama sama)</p>
-                    <label for="innovation_proposals_id">Nama Inovasi</label>
+                    <p>*<b>profil inovasi bersifat unik</b> (setiap 1 proposal hanya boleh memiliki 1 profil saja, tidak boleh lebih. atau akan muncul error)</p>
+                    <label for="innovation_proposals_id"><strong>Nama Inovasi</strong></label>
                     <select name="innovation_proposals_id" required class="form-control">
                         <option value="">Pilih Nama Inovasi Berdasarkan Proposal</option>
                         @foreach ($innovation_proposals as $proposal)
@@ -40,8 +40,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="description">Deskripsi Profil Inovasi</label>
-                    <input type="text" class="form-control" name="description" placeholder="Isikan deskripsi profile inovasi" value="{{ old('description') }}" required autocomplete="off">
+                    <label for="description"><strong>Deskripsi Profil Inovasi</strong></label>
+                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Isikan deskripsi inovasi daerah" required
+                    autocomplete="off">{{ old('description') }}</textarea>
                 </div>
 
     

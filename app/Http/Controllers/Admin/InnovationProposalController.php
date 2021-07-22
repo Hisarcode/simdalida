@@ -20,7 +20,7 @@ class InnovationProposalController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $proposal = InnovationProposal::orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $proposal = InnovationProposal::where('users_id', Auth::user()->id)->get();
+            $proposal = InnovationProposal::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-proposal.index', ['proposal' => $proposal]);
     }
@@ -187,8 +187,7 @@ class InnovationProposalController extends Controller
         }
         $proposal->save();
 
-        return redirect()->route('innovation-proposal.index');
-        with('status', 'Data successfully updated');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Data successfully updated');
     }
 
     /**
@@ -200,6 +199,8 @@ class InnovationProposalController extends Controller
     public function destroy($id)
     {
         $item = InnovationProposal::findOrFail($id);
+        \Storage::delete('public/' . $item->budget_file); //utk hapus file di storage agar tidk penuh
+        \Storage::delete('public/' . $item->profil_bisnis_file); //utk hapus file di storage agar tidk penuh
         $item->delete();
 
         return redirect()->route('innovation-proposal.index')->with('status', 'Deleted successfully!');
@@ -207,11 +208,6 @@ class InnovationProposalController extends Controller
 
     public function actionedit(Request $request, $id)
     {
-        // $item = InnovationProposal::findOrFail($id);
-
-        // return view('pages.admin.innovation-proposal.editStatus', [
-        //     'item' => $item
-        // ]);
         $proposal = InnovationProposal::findOrFail($id);
         $proposal->status = 'SUDAH';
         $proposal->update();
@@ -220,11 +216,6 @@ class InnovationProposalController extends Controller
 
     public function actioneditt(Request $request, $id)
     {
-        // $item = InnovationProposal::findOrFail($id);
-
-        // return view('pages.admin.innovation-proposal.editStatus', [
-        //     'item' => $item
-        // ]);
         $proposal = InnovationProposal::findOrFail($id);
         $proposal->status = 'BELUM';
         $proposal->update();

@@ -9,7 +9,7 @@ class InnovationProfile extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['users_id', 'innovation_proposals_id', 'description'];
+    protected $fillable = ['users_id', 'innovation_proposals_id', 'description', 'name'];
 
     protected $hidden = [];
 
@@ -21,5 +21,10 @@ class InnovationProfile extends Model
     public function innovation_proposal()
     {
         return $this->belongsTo(InnovationProposal::class, 'innovation_proposals_id', 'id');
+    }
+
+    public function innovation_report()
+    {
+        return $this->hasMany(InnovationReport::class, 'innovation_profiles_id', 'id');
     }
 }
