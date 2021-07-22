@@ -17,15 +17,13 @@
                     {{session('status')}}
                 </div>
             @endif
-
-        
-            
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
+                            <th>Nama Inovasi yang diadukan</th>
+                            <th>Nama Pengirim</th>
                             <th>Subject Aduan</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -35,20 +33,22 @@
                     <tbody>
                         <?php
                         $i = 1;
-                       
+                        $j = 1;
                         ?>
                         @forelse ($complains as $complain)
+                        @if (Auth::user()->roles === 'SUPERADMIN')
                         <tr>
-                            <?php 
-                                 $tambah = (new \Carbon\Carbon($complain->created_at))->addDays('3'); ?>
                             <td>{{ $i++ }}</td>
+                            <td><b>{{ $complain->innovation_complain->name }}</b>
+                                <br>Pemilik Inovasi : {{ $complain->innovation_complain->user->username }}
+                            </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>
                                 @if ($complain->is_improvement == "sudah")
-                                <i class="fa fa-check" aria-hidden="true"></i> Sudah Ditindaklanjuti
+                                <i class="fa fa-check" aria-hidden="true"></i> <b>Sudah Ditindaklanjuti</b>
                                 @elseif($complain->is_improvement == "belum")
-                                    Belum Ditindaklanjuti <br> sisa waktu : 
+                                    <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
                                     <div data-countdown="{{ $complain->end_time }}" style="display: inline">
                                         <li style="display: inline" data-days="00">00</li>
                                         <li style="display: inline" data-hours="00">00</li>
@@ -58,7 +58,7 @@
                                 @endif
 
                             </td>
-                            <td>
+                            <td> 
                                 <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
@@ -76,7 +76,51 @@
                                                                           
                                 @endif   
                             </td>
+                            </tr>
+                            @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
+                            <tr>
+                            <td>{{ $j++ }}</td>
+                            <?php 
+                            $total = $j;
+                            ?>
+                            <td>{{ $complain->innovation_complain->name }}
+                                
+                            </td>
+                            <td>{{ $complain->name }}</td>
+                            <td>{{ $complain->subject }}</td>
+                            <td>
+                                @if ($complain->is_improvement == "sudah")
+                                <i class="fa fa-check" aria-hidden="true"></i><b> Sudah Ditindaklanjuti</b>
+                                @elseif($complain->is_improvement == "belum")
+                                    <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
+                                    <div data-countdown="{{ $complain->end_time }}" style="display: inline">
+                                        <li style="display: inline" data-days="00">00</li>
+                                        <li style="display: inline" data-hours="00">00</li>
+                                        <li style="display: inline" data-minuts="00">00</li>
+                                        <li style="display: inline" data-seconds="00">00</li>
+                                    </div>
+                                @endif
+
+                            </td>
+                            <td> 
+                                <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <a href="{{ route('complain-inbox.show', $complain->id) }}" class="btn btn-info">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                @if ( $complain->is_improvement == 'sudah')
+                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>                                  
+                                @endif   
+                            </td>
                         </tr>
+                        @endif
                         @empty
                         <tr>
                             <td colspan="5" class="text-center">

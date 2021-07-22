@@ -53,6 +53,19 @@
                                         </div>
 
                                         <div class="col-12">
+                                            <div class="form-group" style="color: black">
+                                                <select name="purpose_innovation" required class="form-control" style="color: black">
+                                                    <option value="">Pilih Tujuan Pengaduan Inovasi</option>
+                                                    @foreach ($innovation as $in)
+                                                    <option value="{{ $in->id }}">
+                                                     {{ $in->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <div class="icon"><i class="fa fa-envelope"></i></div>
                                                 <input type="text" name="subject" placeholder="Subjek Aduan">

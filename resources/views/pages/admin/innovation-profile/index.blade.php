@@ -6,14 +6,14 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Laporan Inovasi</h1>
+        <h1 class="h3 mb-0 text-gray-800">Profil Inovasi</h1>
         @if (Auth::user()->roles === 'ADMIN')
-        <a href="{{ route('innovation-report.create') }}" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Laporan Inovasi
+        <a href="{{ route('innovation-profile.create') }}" class="btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah profile Inovasi
         </a>
-            @else
+        @else
             .
-            @endif
+        @endif
     </div>
 
 
@@ -31,15 +31,11 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Inovasi</th>
-                            <th>Tahapan Inovasi</th>
+                            <th>Deskripsi</th>
                             <th>Inisiator</th>
                             <th>Jenis</th>
                             <th>Bentuk Inovasi</th>
-                            @if (Auth::user()->roles == 'SUPERADMIN')
                             <th>Pemilik Inovasi</th>
-                            @else
-                            <th>Waktu Pelaksanaan</th>
-                            @endif
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -48,36 +44,31 @@
                         <?php
                         $i = 1;
                         ?>
-                        @forelse ($report as $report)
+                        @forelse ($profile as $profile)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $report->name }}</td>
-                            <td> @foreach (json_decode($report->innovation_step) as $step)
-                                &middot; {{$step}} <br>
-                            @endforeach
-                            </td>  
+                            <td>{{ $profile->name }}
+                            </td>
+                            <td> {{ $profile->description }}</td>  
                                 <td>
-                                @foreach (json_decode($report->innovation_initiator) as $initiator)
+                                @foreach (json_decode($profile->innovation_proposal->innovation_initiator) as $initiator)
                                 &middot; {{$initiator}} <br>
                             @endforeach
                                 </td>    
-                            <td>{{ $report->innovation_type }}</td>
-                            <td>{{ $report->innovation_formats }}</td>
-                            @if (Auth::user()->roles == 'SUPERADMIN') 
-                            <td>{{ $report->user->username }}</td>
-                            @else
-                            <td>{{ \Carbon\Carbon::parse($report->time_innovation_implement)->format('d M-Y') }}</td>    
-                            @endif
+                            <td>{{ $profile->innovation_proposal->innovation_type }}</td>
+                            <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
+                            <td>{{ $profile->user->username }} <br>
+                            </td>
                             <td>
-                                @if (Auth::user()->roles === 'ADMIN')
-                                <a href="{{ route('innovation-report.edit', $report->id) }}" class="btn btn-info">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </a>
-                                @endif
-                                <a href="{{ route('innovation-report.show', $report->id) }}" class="btn btn-info">
+                               @if (Auth::user()->roles === 'ADMIN')
+                               <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                               @endif
+                                <a href="{{ route('innovation-profile.show', $profile->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <form action="{{ route('innovation-report.destroy', $report->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('innovation-profile.destroy', $profile->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">

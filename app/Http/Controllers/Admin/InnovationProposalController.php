@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
+use App\Models\InnovationReport;
 use Illuminate\Support\Facades\Auth;
 
 class InnovationProposalController extends Controller
@@ -19,7 +20,7 @@ class InnovationProposalController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $proposal = InnovationProposal::orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $proposal = InnovationProposal::where('users_id', Auth::user()->id)->get();
+            $proposal = InnovationProposal::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-proposal.index', ['proposal' => $proposal]);
     }
@@ -186,8 +187,7 @@ class InnovationProposalController extends Controller
         }
         $proposal->save();
 
-        return redirect()->route('innovation-proposal.index');
-        with('status', 'Data successfully updated');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Data successfully updated');
     }
 
     /**
@@ -199,8 +199,26 @@ class InnovationProposalController extends Controller
     public function destroy($id)
     {
         $item = InnovationProposal::findOrFail($id);
+        \Storage::delete('public/' . $item->budget_file); //utk hapus file di storage agar tidk penuh
+        \Storage::delete('public/' . $item->profil_bisnis_file); //utk hapus file di storage agar tidk penuh
         $item->delete();
 
-        return redirect()->route('innovation-proposal.index');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Deleted successfully!');
+    }
+
+    public function actionedit(Request $request, $id)
+    {
+        $proposal = InnovationProposal::findOrFail($id);
+        $proposal->status = 'SUDAH';
+        $proposal->update();
+        return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
+    }
+
+    public function actioneditt(Request $request, $id)
+    {
+        $proposal = InnovationProposal::findOrFail($id);
+        $proposal->status = 'BELUM';
+        $proposal->update();
+        return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationReport;
+use App\Models\InnovationProfile;
 use Illuminate\Support\Facades\Auth;
 
 class InnovationReportController extends Controller
@@ -19,8 +20,9 @@ class InnovationReportController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $report = InnovationReport::orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $report = InnovationReport::where('users_id', Auth::user()->id)->get();
+            $report = InnovationReport::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
+
         return view('pages.admin.innovation-report.index', ['report' => $report]);
     }
 
@@ -31,7 +33,10 @@ class InnovationReportController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.innovation-report.create');
+        $innovation = InnovationProfile::where('users_id', Auth::user()->id)->get();
+        return view('pages.admin.innovation-report.create', [
+            'innovation' => $innovation
+        ]);
     }
 
     /**
@@ -44,7 +49,6 @@ class InnovationReportController extends Controller
     {
         $validation = \Validator::make($request->all(), [
             "users_id" => "required",
-            "name" => "required",
             "innovation_step" => "required",
             "innovation_initiator" => "required",
             "innovation_type" => "required",
@@ -64,9 +68,10 @@ class InnovationReportController extends Controller
         ])->validate();
 
         $report = new InnovationReport();
-        //  ubah time ke zona indo
+        $ambil = InnovationProfile::where('id', $request->get('innovation_profiles_id'))->first()->name;
         $report->users_id = $request->get('users_id');
-        $report->name = $request->get('name');
+        $report->name = $ambil;
+        $report->innovation_profiles_id = $request->get('innovation_profiles_id');
         $report->innovation_step = json_encode($request->innovation_step);
         $report->innovation_initiator = json_encode($request->innovation_initiator);
         $report->innovation_type = $request->get('innovation_type');
@@ -260,8 +265,7 @@ class InnovationReportController extends Controller
 
         $report->save();
 
-        return redirect()->route('innovation-report.index');
-        with('status', 'Data successfully updated');
+        return redirect()->route('innovation-report.index')->with('status', 'Data successfully updated');
     }
 
     /**
@@ -273,8 +277,15 @@ class InnovationReportController extends Controller
     public function destroy($id)
     {
         $item = InnovationReport::findOrFail($id);
+        \Storage::delete('public/' . $item->innovation_sk_file); //utk hapus file di storage agar tidk penuh
+        \Storage::delete('public/' . $item->complain_innovation_file);
+        \Storage::delete('public/' . $item->complain_improvement_file);
+        \Storage::delete('public/' . $item->achievement_goal_level_file);
+        \Storage::delete('public/' . $item->benefit_level_file);
+        \Storage::delete('public/' . $item->achievement_result_level_file);
+        \Storage::delete('public/' . $item->video_innovation);
         $item->delete();
 
-        return redirect()->route('innovation-report.index');
+        return redirect()->route('innovation-report.index')->with('status', 'Data successfully deleted');
     }
 }

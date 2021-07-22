@@ -26,12 +26,12 @@
                 @csrf
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
                 <div class="form-group">
-                    <label for="name">nama Inovasi</label>
+                    <label for="name"><strong>Nama Inovasi</strong></label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inonasi" value="{{ $item->name }}">
                 </div>
 
                 <div class="form-group">
-                    <label><strong>Tahapan Inovasi :</strong></label><br>
+                    <label><strong>Tahapan Inovasi</strong></label><br>
                    
                     <label for="Tahap Inisiatif"> <input 
                         type="checkbox"
@@ -64,7 +64,7 @@
                 </div>  
 
                 <div class="form-group">
-                    <label><strong>Inisiator Inovasi :</strong></label><br>
+                    <label><strong>Inisiator Inovasi </strong></label><br>
                    
                     <label for="Kepala Daerah"> <input 
                         type="checkbox"
@@ -112,7 +112,7 @@
                 </div>  
 
                 <div class="form-group">
-                    <label for="innovation_type">Jenis Inovasi Daerah</label>
+                    <label for="innovation_type"><strong>Jenis Inovasi Daerah</strong></label>
                     <br>
                     <label>
                         <input {{$item->innovation_type == "digital" ? "checked" : ""}} value="digital" type="radio" id="innovation_type" name="innovation_type"> Digital
@@ -123,21 +123,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_formats">Bentuk Inovasi Daerah</label>
+                    <label for="innovation_formats"><strong>Bentuk Inovasi Daerah</strong></label>
                     <br>
                     <label>
                         <input {{$item->innovation_formats == "kelolaPemerintah" ? "checked" : ""}} value="kelolaPemerintah" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Tata Kelola Pemerintah Daerah
                     </label>
+                    <br>
                     <label>
                         <input {{$item->innovation_formats == "pelayananPublik" ? "checked" : ""}} value="pelayananPublik" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Pelayanan Publik
                     </label>
+                    <br>
                     <label>
                         <input {{$item->innovation_formats == "bentukLainnya" ? "checked" : ""}} value="bentukLainnya" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
                     </label>
                 </div>
 
                 <div class="form-group">
-                    <label for="is_covid">COVID 19 atau Non COVID 19</label>
+                    <label for="is_covid"><strong>COVID 19 atau Non COVID 19</strong></label>
                     <br>
                     <label>
                         <input {{$item->is_covid == "covid" ? "checked" : ""}} value="covid" type="radio" id="is_covid" name="is_covid"> Covid 19
@@ -148,52 +150,54 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_concern">Urusan Inovasi Daerah</label>
-                    <br>
-                    <textarea name="innovation_concern" id="innovation_concern" {{$errors->first('innovation_concern') ? "is-invalid" : ""}}">{{old('innovation_concern') ? old('innovation_concern') : $item->innovation_concern}}</textarea>
+                    <label for="innovation_concern"><strong>Urusan Inovasi Daerah</strong></label>
+                    <textarea type="text" name="innovation_concern" id="innovation_concern" class="form-control"
+                    placeholder="Input Urusan Inovasi">{{ $item->innovation_concern }}</textarea>
                     <div class="invalid-feedback">
                       {{$errors->first('innovation_concern')}}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="start_innovation_trial">Waktu Uji Coba Inovasi</label>
+                    <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi</strong></label>
                     <input type="date" class="form-control" name="start_innovation_trial" placeholder="start_innovation_trial" value="{{ $item->start_innovation_trial }}"> sampai tanggal
                     <input type="date" class="form-control" name="end_innovation_trial" placeholder="end_innovation_trial" value="{{ $item->end_innovation_trial }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="time_innovation_implement">Waktu Inovasi Daerah Diterapkan</label>
+                    <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan</strong></label>
                     <input type="date" class="form-control" name="time_innovation_implement" placeholder="time_innovation_implement" value="{{ $item->time_innovation_implement }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_design">Rancang Bangun Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="innovation_design" placeholder="Rancang Bangun Inovasi Daerah" value="{{ $item->innovation_design }}">
+                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah</strong></label>
+                    <textarea type="text" name="innovation_design" id="innovation_design" class="form-control"
+                    placeholder="Rancang Bangun Inovasi">{{ $item->innovation_design }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_goal">Tujuan Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="innovation_goal" placeholder="Tujuan Inovasi Daerah" value="{{ $item->innovation_goal }}">
+                    <label for="innovation_goal"><strong>Tujuan Inovasi Daerah</strong></label>
+                    <textarea type="text" name="innovation_goal" id="innovation_goal" class="form-control"
+                    placeholder="Tujuan Inovasi">{{ $item->innovation_goal }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_benefit">Manfaat Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="innovation_benefit" placeholder="Manfaat Inovasi Daerah" value="{{ $item->innovation_benefit }}">
+                    <label for="innovation_benefit"><strong>Manfaat Inovasi Daerah</strong></label>
+                    <textarea type="text" name="innovation_benefit" id="innovation_benefit" class="form-control"
+                    placeholder="Manfaat Inovasi">{{ $item->innovation_benefit }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_result">Hasil Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="innovation_result" placeholder="Hasil Inovasi Daerah" value="{{ $item->innovation_result }}">
+                    <label for="innovation_result"><strong>Hasil Inovasi Daerah</strong></label>
+                    <textarea type="text" name="innovation_result" id="innovation_result" class="form-control"
+                    placeholder="Hasil Inovasi">{{ $item->innovation_result }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="budget">Anggaran Inovasi Daerah, jika ada</label>
+                    <label for="budget"><strong>Anggaran Inovasi Daerah, jika ada</strong></label>
                     <input type="text" class="form-control" name="budget" placeholder="Hasil Inovasi Daerah" value="{{ $item->budget }}">
-                </div>
-              
-                <div class="form-group">
-                    <label for="budget_file">file anggaran</label>
+
+                    <label for="budget_file">file anggaran:</label>
                     <br>
                     @if($item->budget_file)
                         <iframe src="{{  Storage::url($item->budget_file)  }}"
@@ -207,16 +211,15 @@
                       Tidak ada file
                     @endif
                     <br>
-                    <input id="budget_file" name="budget_file" type="file" class="form-control">
+                    <input id="budget_file" name="budget_file" type="file">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file anggaran</small>
                 </div>
+              
 
                 <div class="form-group">
-                    <label for="profil_bisnis"> Lampiran Profil Bisnis, jika ada</label>
+                    <label for="profil_bisnis"> <strong>Lampiran Profil Bisnis, jika ada</strong></label>
                     <input type="text" class="form-control" name="profil_bisnis" placeholder="Lampiran Profil Bisnis" value="{{ $item->profil_bisnis }}">
-                </div>
-
-                <div class="form-group">
+                
                     <label for="profil_bisnis_file">Lampiran Profil Bisnis</label>
                     <br>
                     @if($item->profil_bisnis_file)
@@ -231,9 +234,11 @@
                       Tidak ada file
                     @endif
                     <br>
-                    <input id="profil_bisnis_file" name="profil_bisnis_file" type="file" class="form-control">
+                    <input id="profil_bisnis_file" name="profil_bisnis_file" type="file">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah lampiran profil bisnis</small>
                 </div>
+
+               
 
                 <button type="submit" class="btn btn-primary btn-block">
                     Ubah Data

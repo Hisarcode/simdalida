@@ -153,8 +153,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="time_innovation_impelement">Waktu Pelaksanaan Inovasi Daerah</label>
-                    <input type="date" class="form-control" name="time_innovation_impelement" placeholder="time_innovation_impelement" value="{{ $item->time_innovation_impelement }}">
+                    <label for="time_innovation_implement">Waktu Pelaksanaan Inovasi Daerah</label>
+                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="" value="{{ $item->time_innovation_implement }}">
                 </div>
 
                 <div class="form-group">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Complain;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComplainInboxController extends Controller
 {
@@ -17,6 +18,12 @@ class ComplainInboxController extends Controller
     public function index()
     {
         $complains = Complain::orderBy('id', 'DESC')->get();
+
+        if (Auth::user()->roles == 'SUPERADMIN') {
+            $complains = Complain::with(['innovation_complain'])->orderBy('id', 'DESC')->get();
+        } else if (Auth::user()->roles == 'ADMIN') {
+            $complains = Complain::with(['innovation_complain'])->orderBy('id', 'DESC')->get();
+        }
 
         return view('pages.admin.complain-inbox.index', compact('complains'));
     }
