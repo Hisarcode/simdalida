@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Detail profile {{ $item->innovation_proposal->name }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">Detail Profile Inovasi</h1>
     </div>
 
     @if ($errors->any())
@@ -20,10 +20,13 @@
     @endif
 
     <div class="card shadow">
+        <div class="card-header">
+            <h6 class="my-auto font-weight-bold">{{ $item->innovation_proposal->name }}</h6>
+        </div>
         <div class="card-body">
             <table class="table table-bordered">
                 <tr>
-                    <th>Nama Inovasi</th>
+                    <th width="40%">Nama Inovasi</th>
                     <td>{{ $item->innovation_proposal->name }}</td>
                 </tr>
                 <tr>
@@ -34,13 +37,13 @@
                     <th>Tahapan Inovasi</th>
                     <td>@foreach (json_decode($item->innovation_proposal->innovation_step) as $step)
                         &middot; {{$step}} <br>
-                    @endforeach</td>
+                        @endforeach</td>
                 </tr>
                 <tr>
                     <th>Inisiator Inovasi</th>
-                    <td>  @foreach (json_decode($item->innovation_proposal->innovation_initiator) as $initiator)
+                    <td> @foreach (json_decode($item->innovation_proposal->innovation_initiator) as $initiator)
                         &middot; {{$initiator}} <br>
-                    @endforeach</td>
+                        @endforeach</td>
                 </tr>
                 <tr>
                     <th>Jenis Inovasi</th>
@@ -60,7 +63,8 @@
                 </tr>
                 <tr>
                     <th>Waktu Inovasi Daerah Diterapkan</th>
-                    <td>{{ \Carbon\Carbon::parse($item->innovation_proposal->time_innovation_implement)->format('d, M-Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->innovation_proposal->time_innovation_implement)->format('d, M-Y') }}
+                    </td>
                 </tr>
                 <tr>
                     <th>Rancang Bangun Inovasi Daerah <br> dan pokok perubahan yg akan dilakukan</th>

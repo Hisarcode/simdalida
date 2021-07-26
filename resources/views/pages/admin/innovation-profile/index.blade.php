@@ -12,17 +12,17 @@
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah profile Inovasi
         </a>
         @else
-            .
+        .
         @endif
     </div>
 
 
-    <div class="card shadow mb-4"> 
+    <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-                <div class="alert alert-success alert-dismissable">
-                    {{session('status')}}
-                </div>
+            <div class="alert alert-success alert-dismissable">
+                {{session('status')}}
+            </div>
             @endif
 
             <div class="table-responsive">
@@ -39,7 +39,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         <?php
                         $i = 1;
@@ -49,26 +49,28 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $profile->name }}
                             </td>
-                            <td> {{ $profile->description }}</td>  
-                                <td>
-                                @foreach (json_decode($profile->innovation_proposal->innovation_initiator) as $initiator)
+                            <td> {{ $profile->description }}</td>
+                            <td>
+                                @foreach (json_decode($profile->innovation_proposal->innovation_initiator) as
+                                $initiator)
                                 &middot; {{$initiator}} <br>
-                            @endforeach
-                                </td>    
+                                @endforeach
+                            </td>
                             <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
                             <td>{{ $profile->user->username }} <br>
                             </td>
                             <td>
-                               @if (Auth::user()->roles === 'ADMIN')
-                               <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">
-                                <i class="fa fa-pencil-alt"></i>
-                            </a>
-                               @endif
+                                @if (Auth::user()->roles === 'ADMIN')
+                                <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                @endif
                                 <a href="{{ route('innovation-profile.show', $profile->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <form action="{{ route('innovation-profile.destroy', $profile->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('innovation-profile.destroy', $profile->id) }}" method="POST"
+                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">

@@ -22,7 +22,8 @@ class InnovationProfileController extends Controller
         } else if (Auth::user()->roles == 'ADMIN') {
             $profile = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
-        return view('pages.admin.innovation-profile.index', ['profile' => $profile]);
+        return view('pages.admin.innovation-profile.index')
+            ->with('profile', $profile);
     }
 
     /**
@@ -46,11 +47,20 @@ class InnovationProfileController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
-            "users_id" => "required",
-            "description" => "required",
-            "innovation_proposals_id" => "required",
-        ])->validate();
+        $validation = \Validator::make(
+            $request->all(),
+            [
+                "users_id" => "required",
+                "description" => "required",
+                "innovation_proposals_id" => [
+                    "required",
+                    "unique:innovation_profiles,innovation_proposals_id"
+                ],
+            ],
+            [
+                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah ada silahkan gunakan edit data untuk merubah data Inovasi tersebut"
+            ]
+        )->validate();
 
         $profile = new InnovationProfile;
         $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
