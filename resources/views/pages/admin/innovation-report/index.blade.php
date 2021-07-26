@@ -11,18 +11,18 @@
         <a href="{{ route('innovation-report.create') }}" class="btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Laporan Inovasi
         </a>
-            @else
-            .
-            @endif
+        @else
+        .
+        @endif
     </div>
 
 
-    <div class="card shadow mb-4"> 
+    <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-                <div class="alert alert-success alert-dismissable">
-                    {{session('status')}}
-                </div>
+            <div class="alert alert-success alert-dismissable">
+                {{session('status')}}
+            </div>
             @endif
 
             <div class="table-responsive">
@@ -33,8 +33,7 @@
                             <th>Nama Inovasi</th>
                             <th>Tahapan Inovasi</th>
                             <th>Inisiator</th>
-                            <th>Jenis</th>
-                            <th>Bentuk Inovasi</th>
+                            <th>Triwulan</th>
                             @if (Auth::user()->roles == 'SUPERADMIN')
                             <th>Pemilik Inovasi</th>
                             @else
@@ -43,7 +42,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         <?php
                         $i = 1;
@@ -54,19 +53,18 @@
                             <td>{{ $report->name }}</td>
                             <td> @foreach (json_decode($report->innovation_step) as $step)
                                 &middot; {{$step}} <br>
-                            @endforeach
-                            </td>  
-                                <td>
+                                @endforeach
+                            </td>
+                            <td>
                                 @foreach (json_decode($report->innovation_initiator) as $initiator)
                                 &middot; {{$initiator}} <br>
-                            @endforeach
-                                </td>    
-                            <td>{{ $report->innovation_type }}</td>
-                            <td>{{ $report->innovation_formats }}</td>
-                            @if (Auth::user()->roles == 'SUPERADMIN') 
+                                @endforeach
+                            </td>
+                            <td>{{ $report->quartal }}</td>
+                            @if (Auth::user()->roles == 'SUPERADMIN')
                             <td>{{ $report->user->username }}</td>
                             @else
-                            <td>{{ \Carbon\Carbon::parse($report->time_innovation_implement)->format('d M-Y') }}</td>    
+                            <td>{{ \Carbon\Carbon::parse($report->time_innovation_implement)->format('d M-Y') }}</td>
                             @endif
                             <td>
                                 @if (Auth::user()->roles === 'ADMIN')
@@ -77,7 +75,8 @@
                                 <a href="{{ route('innovation-report.show', $report->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <form action="{{ route('innovation-report.destroy', $report->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('innovation-report.destroy', $report->id) }}" method="POST"
+                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InnovationReport;
 use App\Models\InnovationProfile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class InnovationReportController extends Controller
 {
@@ -20,7 +21,10 @@ class InnovationReportController extends Controller
         if (Auth::user()->roles == 'SUPERADMIN') {
             $report = InnovationReport::orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $report = InnovationReport::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+            $report = InnovationReport::where('users_id', Auth::user()->id)
+                ->orderBy('innovation_profiles_id', 'DESC')
+                ->orderBy('quartal', 'DESC')
+                ->get();
         }
 
         return view('pages.admin.innovation-report.index', ['report' => $report]);
@@ -65,6 +69,17 @@ class InnovationReportController extends Controller
             "achievement_result_level" => "required",
             "achievement_result_problem" => "required",
             "innovation_strategy" => "required",
+            'quartal' => [
+                'required',
+                Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                    return $query->where('report_year', $request->get('report_year'))
+                        ->where('innovation_profiles_id', $request->get('innovation_profiles_id'))
+                        ->where('quartal', $request->get('quartal'));
+                }),
+            ],
+            [
+                "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+            ]
         ])->validate();
 
         $report = new InnovationReport();
@@ -123,6 +138,9 @@ class InnovationReportController extends Controller
             $video = $request->file('video_innovation')->store('laporan/videoInovasi', 'public');
             $report->video_innovation = $video;
         }
+
+        $report->report_year = $request->get('report_year');
+        $report->quartal = $request->get('quartal');
 
         $report->save();
 
@@ -186,6 +204,7 @@ class InnovationReportController extends Controller
             "achievement_result_level" => "required",
             "achievement_result_problem" => "required",
             "innovation_strategy" => "required",
+            "quartal" => "required",
         ])->validate();
 
         $report->users_id = $request->get('users_id');
@@ -262,7 +281,8 @@ class InnovationReportController extends Controller
             $video = $request->file('video_innovation')->store('laporan/videoInovasi', 'public');
             $report->video_innovation = $video;
         }
-
+        $report->report_year = $request->get('report_year');
+        $report->quartal = $request->get('quartal');
         $report->save();
 
         return redirect()->route('innovation-report.index')->with('status', 'Data successfully updated');
