@@ -34,6 +34,7 @@
                         <?php
                         $i = 1;
                         $j = 1;
+                        $total_belum =0;
                         ?>
                         @forelse ($complains as $complain)
                         @if (Auth::user()->roles === 'SUPERADMIN')
@@ -80,9 +81,6 @@
                             @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
                             <tr>
                             <td>{{ $j++ }}</td>
-                            <?php 
-                            $total = $j;
-                            ?>
                             <td>{{ $complain->innovation_complain->name }}
                                 
                             </td>
@@ -99,7 +97,7 @@
                                         <li style="display: inline" data-minuts="00">00</li>
                                         <li style="display: inline" data-seconds="00">00</li>
                                     </div>
-                                @endif
+                                @endif                      
 
                             </td>
                             <td> 

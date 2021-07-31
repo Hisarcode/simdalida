@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <th>Deskripsi Inovasi</th>
-                    <td>{{ $item->description }}</td>
+                    <td>{!! $item->description !!}</td>
                 </tr>
                 <tr>
                     <th>Tahapan Inovasi</th>

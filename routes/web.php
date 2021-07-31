@@ -45,6 +45,8 @@ Route::prefix('admin')
 
 Auth::routes();
 
+Route::post('Ckeditor/upload', '\App\Http\Controllers\CkeditorController@upload')->name('ckeditor.upload');
+
 Route::resource('complain', ComplainController::class)->only([
     'index', 'create', 'store',
 ]);

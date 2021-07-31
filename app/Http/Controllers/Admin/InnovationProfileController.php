@@ -70,6 +70,11 @@ class InnovationProfileController extends Controller
         $profile->description = $request->get('description');
         $profile->innovation_proposals_id = $request->get('innovation_proposals_id');
 
+        if ($request->file("image")) {
+            $image = $request->file('image')->store('profile', 'public');
+            $profile->image = $image;
+        };
+
         $profile->save();
 
         return redirect()->route('innovation-profile.index')->with('status', 'Created successfully!');
@@ -123,6 +128,14 @@ class InnovationProfileController extends Controller
 
         $profile->users_id = $request->get('users_id');
         $profile->description = $request->get('description');
+
+        if ($request->file('image')) {
+            if ($profile->image && file_exists(storage_path('app/public/' . $profile->image))) {
+                \Storage::delete('public' . $profile->image);
+            }
+            $image = $request->file('image')->store('profile', 'public');
+            $profile->image = $image;
+        }
         $profile->save();
 
         return redirect()->route('innovation-profile.index')->with('status', 'Data successfully updated');

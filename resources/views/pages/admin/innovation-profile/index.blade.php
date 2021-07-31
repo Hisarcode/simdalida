@@ -32,8 +32,8 @@
                             <th>No</th>
                             <th>Nama Inovasi</th>
                             <th>Deskripsi</th>
-                            <th>Inisiator</th>
-                            <th>Jenis</th>
+                            <th>Gambar</th>
+                            <th>tipe</th>
                             <th>Bentuk Inovasi</th>
                             <th>Pemilik Inovasi</th>
                             <th>Action</th>
@@ -49,12 +49,10 @@
                             <td>{{ $i++ }}</td>
                             <td>{{ $profile->name }}
                             </td>
-                            <td> {{ $profile->description }}</td>
+                            <td> {{Str::limit($profile->description, 20)}}</td>
                             <td>
-                                @foreach (json_decode($profile->innovation_proposal->innovation_initiator) as
-                                $initiator)
-                                &middot; {{$initiator}} <br>
-                                @endforeach
+                                <img src="{{ Storage::url($profile->image) }}" alt="{{ $profile->name }}"
+                                width="200px" class="img-thumbnail">
                             </td>
                             <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
