@@ -41,10 +41,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="image">Upload Gambar Inovasi: </label>
+                    <input class="form-control-file" type="file" name="image" id="image"
+                        placeholder="Gambar">
+                </div>
+
+                <div class="form-group">
                     <label for="description"><strong>Deskripsi Profil Inovasi</strong></label>
-                    <textarea type="text" name="description" id="description" class="form-control"
-                        placeholder="Isikan deskripsi inovasi daerah" required
-                        autocomplete="off">{{ old('description') }}</textarea>
+                        <div class="form-group">
+                            {{-- <textarea name="description" id="description" cols="30" rows="10"></textarea> --}}
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder="Isikan deskripsi inovasi daerah" required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                        </div>
                 </div>
 
 
@@ -60,3 +69,15 @@
 <!-- /.container-fluid -->
 
 @endsection
+
+{{-- @push('addon-script')
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description', {
+        filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+</script>
+
+
+@endpush --}}

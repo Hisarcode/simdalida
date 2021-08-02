@@ -22,96 +22,27 @@
                         <div class="col-12">
                             <div class="portfolio-main">
                                 <div id="portfolio-item" class="portfolio-item-active">
+                                    @foreach ($infographic as $item)
                                     <div class="cbp-item business animation">
                                         <!-- Single Portfolio -->
                                         <div class="single-portfolio">
                                             <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
+                                               @if ($item->image)
+                                               <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}">
+                                               @else
+                                               <img src="front/img/logo-sgu.png" alt="{{ $item->name }}" style="height: 280px">
+                                               @endif
+                                                <a class="more" href="{{ route('infographic-detail', $item->id) }}"><i
                                                         class="fa fa-long-arrow-right"></i></a>
                                             </div>
                                             <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Business, Aniamtion</p>
+                                                <h4><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->name }}</a></h4>
+                                                <p>{{ $item->user->name }}</p>
                                             </div>
                                         </div>
                                         <!--/ End Single Portfolio -->
                                     </div>
-                                    <div class="cbp-item seo consulting">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Seo, Consulting</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
-                                    </div>
-                                    <div class="cbp-item marketing seo">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Marketing, SEO</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
-                                    </div>
-                                    <div class="cbp-item animation branding">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Animation, Branding</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
-                                    </div>
-                                    <div class="cbp-item branding consulting">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Branding, Consulting</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
-                                    </div>
-                                    <div class="cbp-item business marketing">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                                <img src="https://via.placeholder.com/600x415" alt="#">
-                                                <a class="more" href="portfolio-single.html"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="portfolio-single.html">Creative Marketing</a></h4>
-                                                <p>Business</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

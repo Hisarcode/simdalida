@@ -69,6 +69,7 @@ class InnovationReportController extends Controller
             "achievement_result_level" => "required",
             "achievement_result_problem" => "required",
             "innovation_strategy" => "required",
+            "video_innovation" => "required",
             'quartal' => [
                 'required',
                 Rule::unique('innovation_reports')->where(function ($query) use ($request) {
@@ -103,6 +104,7 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
+        $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             $sk = $request->file('innovation_sk_file')->store('laporan/SKinovasi', 'public');
@@ -132,11 +134,6 @@ class InnovationReportController extends Controller
         if ($request->file('achievement_result_level_file')) {
             $arlf = $request->file('achievement_result_level_file')->store('laporan/capaianHasilInovasi', 'public');
             $report->achievement_result_level_file = $arlf;
-        }
-
-        if ($request->file('video_innovation')) {
-            $video = $request->file('video_innovation')->store('laporan/videoInovasi', 'public');
-            $report->video_innovation = $video;
         }
 
         $report->report_year = $request->get('report_year');
@@ -204,6 +201,7 @@ class InnovationReportController extends Controller
             "achievement_result_level" => "required",
             "achievement_result_problem" => "required",
             "innovation_strategy" => "required",
+            "video_innovation" => "required",
             "quartal" => "required",
         ])->validate();
 
@@ -225,6 +223,7 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
+        $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             if ($report->innovation_sk_file && file_exists(storage_path('app/public/' . $report->innovation_sk_file))) {
@@ -274,13 +273,6 @@ class InnovationReportController extends Controller
             $report->achievement_result_level_file = $arlf;
         }
 
-        if ($request->file('video_innovation')) {
-            if ($report->video_innovation && file_exists(storage_path('app/public/' . $report->video_innovation))) {
-                \Storage::delete('public/' . $report->video_innovation);
-            }
-            $video = $request->file('video_innovation')->store('laporan/videoInovasi', 'public');
-            $report->video_innovation = $video;
-        }
         $report->report_year = $request->get('report_year');
         $report->quartal = $request->get('quartal');
         $report->save();
@@ -303,7 +295,6 @@ class InnovationReportController extends Controller
         \Storage::delete('public/' . $item->achievement_goal_level_file);
         \Storage::delete('public/' . $item->benefit_level_file);
         \Storage::delete('public/' . $item->achievement_result_level_file);
-        \Storage::delete('public/' . $item->video_innovation);
         $item->delete();
 
         return redirect()->route('innovation-report.index')->with('status', 'Data successfully deleted');

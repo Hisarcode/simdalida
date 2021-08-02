@@ -30,6 +30,11 @@
                     <td>{{ $item->innovation_proposal->name }}</td>
                 </tr>
                 <tr>
+                    <th>Gambar</th>
+                    <td><img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}"
+                        width="200px" class="img-thumbnail"></td>
+                </tr>
+                <tr>
                     <th>Deskripsi Inovasi</th>
                     <td>{!! $item->description !!}</td>
                 </tr>
@@ -83,6 +88,7 @@
                     <td>{{ $item->innovation_proposal->innovation_result}}</td>
                 </tr>
             </table>
+            <a href="{{ route('infographic-content.index') }}" class="btn btn-primary">Kembali </a>
         </div>
     </div>
 </div>

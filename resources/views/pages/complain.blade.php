@@ -19,10 +19,6 @@
 
                     <div class="row">
                         <div class="col-lg-7 col-md-7 col-12">
-                            <div class="button">
-                                <a href="#" class="bizwheel-btn theme-1">Hubungi melalui Whatsapp<i
-                                        class="fa fa-whatsapp"></i></a>
-                            </div>
 
                             @if ($errors->any())
                             <div class="alert alert-danger">

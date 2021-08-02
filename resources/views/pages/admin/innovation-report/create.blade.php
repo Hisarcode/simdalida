@@ -47,12 +47,8 @@
                 </div>
 
                 <div class="form-group">
-                    {{-- <label for="name">Nama Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="name" placeholder="Nama Inovasi" value="{{ old('name') }}"
-                    required autocomplete="off">
-                    --}}
                     <label for="innovation_sk_file"> Upload SK Bupati: <input type="file" name="innovation_sk_file"
-                            placeholder="SK bupati"></label>
+                     placeholder="SK bupati" required></label>
                 </div>
 
                 <div class="form-group">
@@ -117,22 +113,20 @@
 
                 <div class="form-group">
                     <label for="problem">Permasalahan/kendala yg dihadapi</label>
-                    <input type="text" class="form-control" name="problem" placeholder="Isikan masalah yg dihadapi"
-                        value="{{ old('problem') }}" required autocomplete="off">
+                        <textarea type="text" name="problem" id="problem" class="form-control" placeholder="Isikan masalah yang dihadapi" required
+                        autocomplete="off">{{ old('problem') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="solution">Solusi terhadap Permasalahan/kendala yg dihadapi</label>
-                    <input type="text" class="form-control" name="solution"
-                        placeholder="Isikan solusi dari permasalahan" value="{{ old('solution') }}" required
-                        autocomplete="off">
+                        <textarea type="text" name="solution" id="solution" class="form-control" placeholder="Isikan solusi masalah yang dihadapi" required
+                        autocomplete="off">{{ old('solution') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="improvement">Tindaklanjut terhadap permasalahan</label>
-                    <input type="text" class="form-control" name="improvement"
-                        placeholder="Isikan Tindaklanjut terhadap permasalahan" value="{{ old('improvement') }}"
-                        required autocomplete="off">
+                        <textarea type="text" name="improvement" id="improvement" class="form-control" placeholder="Isikan tindaklanjut dari masalah yang dihadapi" required
+                        autocomplete="off">{{ old('improvement') }}</textarea>
                 </div>
 
 
@@ -168,9 +162,8 @@
 
                 <div class="form-group">
                     <label for="achievement_goal_problem">Kendala Pencapaian tujuan inovasi daerah</label>
-                    <input type="text" class="form-control" name="achievement_goal_problem"
-                        placeholder="Isikan Kendala Pencapaian tujuan inovasi daerah"
-                        value="{{ old('achievement_goal_problem') }}" required autocomplete="off">
+                        <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem" class="form-control" placeholder="Isikan kendala pencapaian tujuan inovasi daerah" required
+                        autocomplete="off">{{ old('achievement_goal_problem') }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -195,22 +188,21 @@
 
                 <div class="form-group">
                     <label for="achievement_result_problem">Kendala Pencapaian hasil inovasi daerah</label>
-                    <input type="text" class="form-control" name="achievement_result_problem"
-                        placeholder="Isikan Kendala Pencapaian hasil inovasi daerah"
-                        value="{{ old('achievement_result_problem') }}" required autocomplete="off">
+                        <textarea type="text" name="achievement_result_problem" id="achievement_result_problem" class="form-control" placeholder="Isikan kendala pencapaian hasil inovasi daerah" required
+                        autocomplete="off">{{ old('achievement_result_problem') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="innovation_strategy">Strategi Pelaksanaan Inovasi</label>
-                    <input type="text" class="form-control" name="innovation_strategy"
-                        placeholder="Isikan Strategi Pelaksanaan Inovasi value=" {{ old('innovation_strategy') }}"
-                        required autocomplete="off">
+                        <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control" placeholder="Isikan strategi pelaksanaan inovasi" required
+                        autocomplete="off">{{ old('innovation_strategy') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="video_innovation">Video Inovasi Daerah</label>
-                    <input type="file" class="form-control" name="video_innovation" placeholder="video_innovation"
-                        class="form-control">
+                        <input type="text" class="form-control" name="video_innovation"
+                        placeholder="Masukkan link youtube dari video inovasi"
+                        value="{{ old('video_innovation') }}" required autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">

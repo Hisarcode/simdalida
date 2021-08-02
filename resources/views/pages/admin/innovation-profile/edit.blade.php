@@ -30,11 +30,27 @@
                 @csrf
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
 
+                <label for=" image"> Upload Gambar Inovasi:  </label> 
+                @if($item->image)
+                    <iframe src="{{  Storage::url($item->image)  }}"
+                        frameBorder="0"
+                        scrolling="auto"
+                        height="100%"
+                        width="100%"
+                        class="my-3"
+                    ></iframe>     
+                @else 
+                    Tidak ada file
+                @endif
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="image" id="image" placeholder="Gambar Carousel" >
+                    <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
+                </div>
+
                 <div class="form-group">
                     <label for="description"><strong>Deskripsi Profil Inovasi</strong></label>
-
                     <textarea type="text" name="description" id="description" class="form-control"
-                        placeholder="Deskripsi Profil Inovasi">{{ $item->description }}</textarea>
+                    placeholder="Input deskripsi Profil">{{ $item->description }}</textarea>
                 </div>
 
 
@@ -49,3 +65,14 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
+{{-- @push('addon-script')
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description', {
+        filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+</script>
+
+
+@endpush --}}

@@ -39,7 +39,7 @@
                         <div class="icon"><i class="fa fa-book"></i></div>
                         <div class="conter-content">
                             <div class="counter-head">
-                                <h3><b class="number">1005</b><span>+</span></h3>
+                                <h3><b class="number">{{ $proposal }}</b><span>+</span></h3>
                             </div>
                             <p>Inovasi Masuk</p>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="icon"><i class="fa fa-users"></i></div>
                         <div class="conter-content">
                             <div class="counter-head">
-                                <h3><b class="number">400</b><span>+</span></h3>
+                                <h3><b class="number">7</b><span>+</span></h3>
                             </div>
                             <p>Inovasi Terealisasi</p>
                         </div>
@@ -65,9 +65,9 @@
                         <div class="icon"><i class="fa fa-life-ring"></i></div>
                         <div class="conter-content">
                             <div class="counter-head">
-                                <h3><b class="number">400</b><span>+</span></h3>
+                                <h3><b class="number">{{ $user }}</b><span>+</span></h3>
                             </div>
-                            <p>Inovasi Masuk</p>
+                            <p>Perangkat Daerah</p>
                         </div>
                     </div>
                     <!--/ End Single Counterup -->
@@ -131,96 +131,27 @@
                 <div class="col-12">
                     <div class="portfolio-main">
                         <div id="portfolio-item" class="portfolio-item-active">
+                            @foreach ($infographic as $profile)
                             <div class="cbp-item">
                                 <!-- Single Portfolio -->
                                 <div class="single-portfolio">
                                     <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
+                                       @if ($profile->image)
+                                       <img src="{{ Storage::url($profile->image) }}" alt="{{ $profile->name }}">
+                                       @else
+                                            <img src="front/img/logo-sgu.png" alt="{{ $profile->name }}" style="height: 280px">
+                                       @endif
+                                        <a class="more" href="{{ route('infographic-detail', $profile->id) }}"><i
                                                 class="fa fa-long-arrow-right"></i></a>
                                     </div>
                                     <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
+                                        <h4><a href="{{ route('infographic-detail', $profile->id) }}">{{ $profile->name }}</a></h4>
+                                        <p>{{ $profile->user->name }}</p>
                                     </div>
                                 </div>
                                 <!--/ End Single Portfolio -->
                             </div>
-                            <div class="cbp-item">
-                                <!-- Single Portfolio -->
-                                <div class="single-portfolio">
-                                    <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
-                                                class="fa fa-long-arrow-right"></i></a>
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
-                                    </div>
-                                </div>
-                                <!--/ End Single Portfolio -->
-                            </div>
-                            <div class="cbp-item">
-                                <!-- Single Portfolio -->
-                                <div class="single-portfolio">
-                                    <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
-                                                class="fa fa-long-arrow-right"></i></a>
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
-                                    </div>
-                                </div>
-                                <!--/ End Single Portfolio -->
-                            </div>
-                            <div class="cbp-item">
-                                <!-- Single Portfolio -->
-                                <div class="single-portfolio">
-                                    <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
-                                                class="fa fa-long-arrow-right"></i></a>
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
-                                    </div>
-                                </div>
-                                <!--/ End Single Portfolio -->
-                            </div>
-                            <div class="cbp-item">
-                                <!-- Single Portfolio -->
-                                <div class="single-portfolio">
-                                    <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
-                                                class="fa fa-long-arrow-right"></i></a>
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
-                                    </div>
-                                </div>
-                                <!--/ End Single Portfolio -->
-                            </div>
-                            <div class="cbp-item">
-                                <!-- Single Portfolio -->
-                                <div class="single-portfolio">
-                                    <div class="portfolio-head overlay">
-                                        <img src="https://via.placeholder.com/600x415" alt="#">
-                                        <a class="more" href="portfolio-single.html"><i
-                                                class="fa fa-long-arrow-right"></i></a>
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <h4><a href="portfolio-single.html">Lorem Ipsum</a></h4>
-                                        <p>Title</p>
-                                    </div>
-                                </div>
-                                <!--/ End Single Portfolio -->
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -6,14 +6,8 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Profil Inovasi</h1>
-        @if (Auth::user()->roles === 'ADMIN')
-        <a href="{{ route('innovation-profile.create') }}" class="btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah profile Inovasi
-        </a>
-        @else
+        <h1 class="h3 mb-0 text-gray-800">Manajemen Infografis</h1>
         .
-        @endif
     </div>
 
 
@@ -33,9 +27,9 @@
                             <th>Nama Inovasi</th>
                             <th>Deskripsi</th>
                             <th>Gambar</th>
-                            <th>tipe</th>
                             <th>Bentuk Inovasi</th>
                             <th>Pemilik Inovasi</th>
+                            <th>Tampilkan di Publik?</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,7 +38,7 @@
                         <?php
                         $i = 1;
                         ?>
-                        @forelse ($profile as $profile)
+                        @forelse ($infographic as $profile)
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $profile->name }}
@@ -54,27 +48,18 @@
                                 <img src="{{ Storage::url($profile->image) }}" alt="{{ $profile->name }}"
                                 width="200px" class="img-thumbnail">
                             </td>
-                            <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
-                            <td>{{ $profile->user->username }} <br>
-                            </td>
+                            <td>{{ $profile->user->username }}</td>
                             <td>
-                                @if (Auth::user()->roles === 'ADMIN')
-                                <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">
-                                    <i class="fa fa-pencil-alt"></i>
-                                </a>
-                                @endif
-                                <a href="{{ route('innovation-profile.show', $profile->id) }}" class="btn btn-info">
+                                @if ($profile->is_published == 'NO')
+                                <a href="editinfographic/{{ $profile->id }}"><input type="submit" name="is_published" value="NO" class="btn btn-warning btn-sm"></a>
+                            @else
+                            <a href="editinfographicc/{{ $profile->id }}"><input type="submit" name="is_published" value="YES" class="btn btn-success btn-sm"></a>
+                            @endif</td>
+                            <td>
+                                <a href="{{ route('infographic-content.show', $profile->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <form action="{{ route('innovation-profile.destroy', $profile->id) }}" method="POST"
-                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                         @empty

@@ -167,12 +167,10 @@
                 <tr>
                     <th>Video inovasi daerah</th>
                     <td>   @if($item->video_innovation)
-                        <iframe src="{{  Storage::url($item->video_innovation)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        {{-- <iframe width="420" height="345" src="{{ $item->video_innovation }}">
+                        </iframe> --}}
+                        <a href="{{ $item->video_innovation }}"  target="_blank" type="button" class="btn btn-success col-xs-5 row-md-5 px-2 col-lg-10 col-lg-offset-1 my-2 text-center">
+                            <span  class="fas fa-video mr-3"></span>Buka Video</a>
                           <br>
                         @else 
                           Tidak ada file

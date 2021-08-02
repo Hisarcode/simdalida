@@ -10,6 +10,7 @@ use App\Models\InnovationReport;
 use App\Models\InnovationProfile;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Foreach_;
 
 class DashboardController extends Controller
 {
@@ -40,13 +41,37 @@ class DashboardController extends Controller
 
         if (Auth::user()->roles == 'SUPERADMIN') {
             $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
+            $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
             $current_triwulan = "";
             $notifications = "";
+            $sum = "";
         } else if (Auth::user()->roles == 'ADMIN') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('users_id', Auth::user()->id)->count();
+            $blm_acc = '';
+
+            //buat notifikasi jmlah pengaduan brdasarkan perngaduan yg masuk ke masing2 operator
+            $complain = Complain::with(['innovation_complain'])->orderBy('id', 'DESC')->get();
+            $i = 1;
+            $total_belum = 0;
+            foreach ($complain as $complain1) {
+                if ($complain1->innovation_complain->users_id == Auth::user()->id) {
+                    if ($complain1->is_improvement == "belum") {
+                        $total_belum = $total_belum + 1;
+                    }
+                }
+            }
+
+            // $totalakhir = $total - 1;
+            // $sum = $totalakhir;
+            $sum = $total_belum;
+
+
+
+
+            //buat laporan triwulan
             $is_improvement = '';
             $current_triwulan = $this->get_current_triwulan();
 
@@ -92,6 +117,8 @@ class DashboardController extends Controller
             'is_improvement' => $is_improvement,
             'notifications' => $notifications,
             'current_triwulan' => $current_triwulan,
+            'sum' => $sum, //total dari jmlah pengaduan brdasarakan masing2 operator
+            'blm_acc' => $blm_acc
         ]);
     }
 }

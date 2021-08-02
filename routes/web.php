@@ -38,9 +38,13 @@ Route::prefix('admin')
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
 
-        Route::resource('about', '\App\Http\Controllers\Admin\AboutController');
+        Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'superadmin']));
 
-        Route::resource('carousel', '\App\Http\Controllers\Admin\CarouselController');
+        Route::resource('carousel', '\App\Http\Controllers\Admin\CarouselController')->middleware((['auth', 'superadmin']));
+
+        Route::resource('infographic-content', '\App\Http\Controllers\Admin\InfographicController')->middleware((['auth', 'superadmin']));
+        Route::get('/editinfographic/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographic');
+        Route::get('/editinfographicc/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographicc');
     });
 
 Auth::routes();
@@ -52,4 +56,5 @@ Route::resource('complain', ComplainController::class)->only([
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
+Route::get('/infographic/{id}', [InfographicController::class, 'show'])->name('infographic-detail');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
