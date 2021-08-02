@@ -26,6 +26,9 @@
                             <i class="fas fa-hotel fa-2x text-gray-300"></i>
                         </div>
                     </div>
+                    @if (Auth::user()->roles == 'SUPERADMIN')
+                    <p>Menunggu Acc : {{ $blm_acc }}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -108,7 +111,7 @@
 
 
                         @forelse ($notifications as $notification)
-                        <div class="card mb-4 py-0 my-0 border-bottom-danger">
+                        <div class="card mb-4 py-0 my-0 border-bottom-warning">
                             <div class="card-body p-1 m-1">
                                 <h6 class="font-weight-bold">{{ $notification->name }}</h6>
                                 <p>{{ $notification->message  }}</p>

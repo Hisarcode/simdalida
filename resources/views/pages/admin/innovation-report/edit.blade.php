@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="name">Nama Inovasi</label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inonasi"
-                        value="{{ $item->name }}">
+                        value="{{ $item->name }}" readonly>
 
                     <label for="innovation_sk_file">Upload SK Bupati</label>
                     <br>
@@ -159,20 +159,20 @@
 
                 <div class="form-group">
                     <label for="problem">Permasalahan/kendala yang dihadapi dalam pelaksanaan inovasi daerah</label>
-                    <input type="text" class="form-control" name="problem"
-                        placeholder="Permasalahan pelaksanaan inovasi daerah" value="{{ $item->problem }}">
+                        <textarea type="text" name="problem" id="problem" class="form-control"
+                        placeholder="Permasalahan Pelaksanaan inovasi daerah">{{ $item->problem }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="solution">Solusi yang dilakukan terhadap permasalahan/kendala</label>
-                    <input type="text" class="form-control" name="solution" placeholder="Solusi terhadap permasalahan"
-                        value="{{ $item->solution }}">
+                        <textarea type="text" name="solution" id="solution" class="form-control"
+                        placeholder="Solusi terhadap permasalahan">{{ $item->solution }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="improvement">Tindaklanjut terhadap permasalahan/kendala sebelumnya</label>
-                    <input type="text" class="form-control" name="improvement" placeholder=""
-                        value="{{ $item->improvement }}">
+                        <textarea type="text" name="improvement" id="improvement" class="form-control"
+                        placeholder="Tindaklanjut terdahap permasalahan/kendala">{{ $item->improvement }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -234,8 +234,7 @@
 
                 <div class="form-group">
                     <label for="achievement_goal_problem">Kendala pencapaian tujuan inovasi daerah</label>
-                    <input type="text" class="form-control" name="achievement_goal_problem" placeholder=""
-                        value="{{ $item->achievement_goal_problem }}">
+                        <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem" class="form-control">{{ $item->achievement_goal_problem }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -277,14 +276,14 @@
 
                 <div class="form-group">
                     <label for="achievement_result_problem">Kendala Pencapaian Hasil Inovasi Daerah</label>
-                    <input type="text" class="form-control" name="achievement_result_problem" placeholder=""
-                        value="{{ $item->achievement_result_problem }}">
+                        <textarea type="text" name="achievement_result_problem" id="achievement_result_problem" class="form-control"
+                        placeholder="">{{ $item->achievement_result_problem }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="innovation_strategy">Strategi Pelaksanaan Inovasi</label>
-                    <input type="text" class="form-control" name="innovation_strategy" placeholder=""
-                        value="{{ $item->innovation_strategy }}">
+                        <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
+                        placeholder="">{{ $item->innovation_strategy }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -298,8 +297,8 @@
                     Tidak ada file
                     @endif
                     <br>
-                    <input id="video_innovation" name="video_innovation" type="file" class="form-control"
-                        class="form-control">
+                    <input type="text" class="form-control" name="video_innovation"
+                    placeholder="" value="{{ $item->video_innovation }}">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah video inovasi</small>
                 </div>
 

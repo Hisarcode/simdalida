@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Complain;
 use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
+use App\Models\About;
 
 class ComplainController extends Controller
 {
@@ -16,9 +17,11 @@ class ComplainController extends Controller
     public function index()
     {
         $innovation = InnovationProposal::where('status', 'SUDAH')->get();
+        $about = About::orderBy('id', 'DESC')->get();
         return view('pages.complain', [
             'title_page' => 'Pengaduan',
-            'innovation' => $innovation
+            'innovation' => $innovation,
+            'about' => $about
         ]);
     }
 

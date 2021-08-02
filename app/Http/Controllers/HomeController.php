@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carousel;
+use App\Models\InnovationProfile;
+use App\Models\InnovationProposal;
+use App\Models\User;
+use App\Models\About;
 
 class HomeController extends Controller
 {
@@ -21,10 +25,18 @@ class HomeController extends Controller
     public function index()
     {
         $carousel = Carousel::orderBy('id', 'DESC')->get();
+        $infographic = InnovationProfile::with(['innovation_proposal'])->where('is_published', 'YES')->orderBy('id', 'DESC')->get();
+        $proposal = InnovationProposal::orderBy('id', 'DESC')->where('status', 'SUDAH')->count();
+        $user = User::orderBy('id', 'DESC')->where('roles', 'ADMIN')->count();
+        $about = About::orderBy('id', 'DESC')->get();
 
         return view('pages.index', [
             'title_page' => 'Home',
-            'carousel' => $carousel
+            'carousel' => $carousel,
+            'infographic' => $infographic,
+            'proposal' => $proposal,
+            'user' => $user,
+            'about' => $about
         ]);
     }
 }

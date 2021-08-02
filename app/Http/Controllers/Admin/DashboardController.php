@@ -41,6 +41,7 @@ class DashboardController extends Controller
 
         if (Auth::user()->roles == 'SUPERADMIN') {
             $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
+            $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
             $current_triwulan = "";
@@ -49,6 +50,7 @@ class DashboardController extends Controller
         } else if (Auth::user()->roles == 'ADMIN') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('users_id', Auth::user()->id)->count();
+            $blm_acc = '';
 
             //buat notifikasi jmlah pengaduan brdasarkan perngaduan yg masuk ke masing2 operator
             $complain = Complain::with(['innovation_complain'])->orderBy('id', 'DESC')->get();
@@ -115,7 +117,8 @@ class DashboardController extends Controller
             'is_improvement' => $is_improvement,
             'notifications' => $notifications,
             'current_triwulan' => $current_triwulan,
-            'sum' => $sum //total dari jmlah pengaduan brdasarakan masing2 operator
+            'sum' => $sum, //total dari jmlah pengaduan brdasarakan masing2 operator
+            'blm_acc' => $blm_acc
         ]);
     }
 }

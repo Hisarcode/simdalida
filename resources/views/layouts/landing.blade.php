@@ -35,7 +35,7 @@
 
         @yield('content')
 
-        @include('includes.frontend.footer')
+        @include('includes.frontend.footer', ['$coba' => '$test'])
 
     </div>
 
