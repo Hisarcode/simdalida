@@ -34,20 +34,29 @@
                                                 <div class="menu-home-menu-container">
                                                     <!-- Naviagiton -->
                                                     <ul id="nav" class="nav main-menu menu navbar-nav">
-                                                        <li><a href="{{ route('home') }}">Home</a></li>
-                                                        <li><a href="{{ route('infographic') }}">Infografis</a></li>
-                                                        <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                                                        <li><a href="{{ route('complain.index') }}">Pengaduan</a></li>
+                                                        <li class="{{ request()->is('/') ?'active' : '' }}">
+                                                            <a href="{{ route('home') }}">Home</a>
+                                                        </li>
+                                                        <li class="{{ request()->is('infographic') ?'active' : '' }}">
+                                                            <a href="{{ route('infographic') }}">Infografis</a>
+                                                        </li>
+                                                        <li class="{{ request()->is('about') ?'active' : '' }}">
+                                                            <a href="{{ route('about') }}">Tentang Kami</a>
+                                                        </li>
+                                                        <li class="{{ request()->is('complain') ?'active' : '' }}">
+                                                            <a href="{{ route('complain.index') }}">Pengaduan</a></li>
                                                         @guest
                                                         <li><a href="/login">Login/Register</a></li>
                                                         @endguest
                                                         @auth
-                                                            <li><form  action="{{ url('logout') }}" method="POST">
+                                                        <li>
+                                                            <form action="{{ url('logout') }}" method="POST">
                                                                 @csrf
                                                                 <a><button type="submit">
-                                                                    Keluar
-                                                                </button></a>
-                                                            </form></li>
+                                                                        Keluar
+                                                                    </button></a>
+                                                            </form>
+                                                        </li>
                                                         @endauth
                                                     </ul>
                                                     <!--/ End Naviagiton -->
@@ -68,8 +77,7 @@
                                         <!-- Search Form -->
                                         <div class="search-top">
                                             <form action="#" class="search-form" method="get">
-                                                <input type="text" name="s" value=""
-                                                    placeholder="Search here" />
+                                                <input type="text" name="s" value="" placeholder="Search here" />
                                                 <button type="submit" id="searchsubmit"><i
                                                         class="fa fa-search"></i></button>
                                             </form>
