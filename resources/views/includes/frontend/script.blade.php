@@ -29,3 +29,10 @@
 <script src="{{ url('front/js/magnific-popup.min.js') }}"></script>
 <!-- Active JS -->
 <script src="{{ url('front/js/active.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url('backend/js/demo/datatables-demo.js') }}"></script>
