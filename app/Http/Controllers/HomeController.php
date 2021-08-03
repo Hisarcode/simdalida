@@ -8,6 +8,7 @@ use App\Models\InnovationProfile;
 use App\Models\InnovationProposal;
 use App\Models\User;
 use App\Models\About;
+use App\Models\InnovationReport;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,7 @@ class HomeController extends Controller
         return view('pages.index', [
             'title_page' => 'Home',
             'carousel' => $carousel,
-            'infographic' => $infographic,
+            'profile' => $infographic,
             'proposal' => $proposal,
             'user' => $user,
             'about' => $about
