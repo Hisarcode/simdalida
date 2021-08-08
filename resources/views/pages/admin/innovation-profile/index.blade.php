@@ -30,12 +30,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Inovasi</th>
-                            <th>Deskripsi</th>
-                            <th>Gambar</th>
-                            <th>tipe</th>
+                            <th>Perangkat Daerah</th>
+                            <th>Nama Inovasi Daerah</th>
                             <th>Bentuk Inovasi</th>
-                            <th>Pemilik Inovasi</th>
+                            <th>Tipe inovasi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,17 +45,10 @@
                         @forelse ($profile as $profile)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $profile->name }}
-                            </td>
-                            <td> {{Str::limit($profile->description, 20)}}</td>
-                            <td>
-                                <img src="{{ Storage::url($profile->image) }}" alt="{{ $profile->name }}"
-                                width="200px" class="img-thumbnail">
-                            </td>
-                            <td>{{ $profile->innovation_proposal->innovation_type }}</td>
+                            <td>{{ $profile->user->name }}</td>
+                            <td>{{ $profile->name }}</td>
                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
-                            <td>{{ $profile->user->username }} <br>
-                            </td>
+                            <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                             <td>
                                 @if (Auth::user()->roles === 'ADMIN')
                                 <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">

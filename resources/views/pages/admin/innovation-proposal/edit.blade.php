@@ -24,7 +24,7 @@
             <form action="{{ route('innovation-proposal.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
+                {{-- <input type="hidden" name="users_id" value="{{Auth::user()->id}}"> --}}
                 <div class="form-group">
                     <label for="name"><strong>Nama Inovasi</strong></label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inonasi" value="{{ $item->name }}">
@@ -195,7 +195,7 @@
 
                 <div class="form-group">
                     <label for="budget"><strong>Anggaran Inovasi Daerah, jika ada</strong></label>
-                    <input type="text" class="form-control" name="budget" placeholder="Hasil Inovasi Daerah" value="{{ $item->budget }}">
+                    <input type="text" class="form-control" name="budget" placeholder="Anggaran Inovasi Daerah" value="{{ $item->budget }}">
 
                     <label for="budget_file">file anggaran:</label>
                     <br>

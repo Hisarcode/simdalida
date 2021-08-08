@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'username', 'nik',
+        'username', 'nik', 'inisiator_id', 'password_proposal'
 
     ];
 
@@ -42,4 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function inisiator()
+    {
+        return $this->belongsTo(Inisiator::class, 'inisiator_id', 'id');
+    }
 }

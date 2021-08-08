@@ -64,7 +64,7 @@
                             <td>{{ $proposal->innovation_type }}</td>
                             <td>{{ $proposal->innovation_formats }}</td>
                             @if (Auth::user()->roles == 'SUPERADMIN') 
-                            <td>{{ $proposal->user->username }} <br>
+                            <td>{{ $proposal->user->name }} <br>
                             Status: @if ($proposal->status == 'BELUM')
                                 <a href="actionedit/{{ $proposal->id }}"><input type="submit" name="status" value="Blm ACC" class="btn btn-warning btn-sm"></a>
                             @else
@@ -85,6 +85,9 @@
                                 <i class="fa fa-pencil-alt"></i>
                             </a>
                                @endif
+                               <a href="{{ route('innovation-proposal.edit', $proposal->id) }}" class="btn btn-info">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
                                 <a href="{{ route('innovation-proposal.show', $proposal->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>

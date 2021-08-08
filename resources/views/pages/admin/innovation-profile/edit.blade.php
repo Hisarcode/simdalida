@@ -28,7 +28,7 @@
                 enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
+          
 
                 <label for=" image"> Upload Gambar Inovasi:  </label> 
                 @if($item->image)

@@ -18,9 +18,11 @@ class InnovationProposalController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $proposal = InnovationProposal::orderBy('id', 'DESC')->get();
-        } else if (Auth::user()->roles == 'ADMIN') {
+            $proposal = InnovationProposal::orderBy('users_id', 'DESC')->orderby('id', 'DESC')->get();
+        } else if (Auth::user()->roles == 'OPERATOR') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        } else if (Auth::user()->roles == 'ADMIN') {
+            $proposal = InnovationProposal::orderBy('users_id', 'DESC')->orderby('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-proposal.index', ['proposal' => $proposal]);
     }

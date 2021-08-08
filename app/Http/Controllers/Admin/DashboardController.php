@@ -48,6 +48,14 @@ class DashboardController extends Controller
             $notifications = "";
             $sum = "";
         } else if (Auth::user()->roles == 'ADMIN') {
+            $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
+            $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
+            $report = InnovationReport::orderBy('id', 'DESC')->count();
+            $is_improvement = Complain::where('is_improvement', 'belum')->count();
+            $current_triwulan = "";
+            $notifications = "";
+            $sum = "";
+        } else if (Auth::user()->roles == 'OPERATOR') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('users_id', Auth::user()->id)->count();
             $blm_acc = '';

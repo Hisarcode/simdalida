@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsPublishedToInnovationProfilesTable extends Migration
+class AddStatusToInnovationReports extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsPublishedToInnovationProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('innovation_profiles', function (Blueprint $table) {
-            $table->string('is_published')->default('NO');
+        Schema::table('innovation_reports', function (Blueprint $table) {
+            $table->enum('status', ['KIRIM', 'DRAFT']);
         });
     }
 
@@ -25,8 +25,8 @@ class AddIsPublishedToInnovationProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('innovation_profiles', function (Blueprint $table) {
-            $table->dropColumn('is_published');
+        Schema::table('innovation_reports', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

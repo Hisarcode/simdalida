@@ -37,18 +37,19 @@
                                                         <li class="{{ request()->is('/') ?'active' : '' }}">
                                                             <a href="{{ route('home') }}">Home</a>
                                                         </li>
-                                                        <li class="{{ request()->is('infographic') ?'active' : '' }}">
+                                                        <li class="{{ request()->is('infographic') || request()->is('infographic-detail') ?'active' : '' }}">
                                                             <a href="{{ route('infographic') }}">Infografis</a>
-                                                        </li>
-                                                        <li class="{{ request()->is('about') ?'active' : '' }}">
-                                                            <a href="{{ route('about') }}">Tentang Kami</a>
                                                         </li>
                                                         <li class="{{ request()->is('complain') ?'active' : '' }}">
                                                             <a href="{{ route('complain.index') }}">Pengaduan</a></li>
+                                                        <li class="{{ request()->is('about') ?'active' : '' }}">
+                                                            <a href="{{ route('about') }}">Tentang Kami</a>
+                                                        </li>
                                                         @guest
                                                         <li><a href="/login">Login/Register</a></li>
                                                         @endguest
                                                         @auth
+                                                        <li><a href="/admin">Admin</a></li>
                                                         <li>
                                                             <form action="{{ url('logout') }}" method="POST">
                                                                 @csrf

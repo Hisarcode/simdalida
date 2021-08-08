@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InnovationProfile;
 use App\Models\InnovationProposal;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class InnovationProfileController extends Controller
 {
@@ -18,8 +19,10 @@ class InnovationProfileController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $profile = InnovationProfile::with(['innovation_proposal'])->orderBy('id', 'DESC')->get();
+            $profile = InnovationProfile::with(['innovation_proposal'])->orderBy('users_id', 'ASC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
+            $profile = InnovationProfile::with(['innovation_proposal'])->orderBy('users_id', 'ASC')->get();
+        } else if (Auth::user()->roles == 'OPERATOR') {
             $profile = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-profile.index')
@@ -121,12 +124,10 @@ class InnovationProfileController extends Controller
         $profile = InnovationProfile::findOrFail($id);
 
         \Validator::make($request->all(), [
-            "users_id" => "required",
             "description" => "required",
 
         ])->validate();
 
-        $profile->users_id = $request->get('users_id');
         $profile->description = $request->get('description');
 
         if ($request->file('image')) {

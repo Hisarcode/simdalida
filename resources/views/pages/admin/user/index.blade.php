@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Management User</h1>
+        <h1 class="h3 mb-0 text-gray-800">Management User/Admin</h1>
         <i>.</i>
     </div>
   
@@ -21,8 +21,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Nama</th>
+                            <th>Total Inovasi</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -39,12 +40,20 @@
                         @forelse ($items as $item)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->name }}
+                                <?php 
+                                    $total = $proposal->where('users_id', $item->id)->count();
+                                    ?>
+                            </td>
+                            <td> <b>{{ $total }}</b></td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->roles }}</td>
                             <td>{{ $item->nik }}</td>
                             <td>
+                                @if ($item->name == 'SuperAdmin')
+                                    .
+                                @else
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
@@ -55,6 +64,7 @@
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @empty
