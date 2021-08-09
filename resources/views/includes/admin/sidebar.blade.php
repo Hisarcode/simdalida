@@ -16,7 +16,7 @@
             <span>Dashboard</span></a>
     </li>
 
-    @if (Auth::user()->roles == 'SUPERADMIN')
+    @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li class="nav-item {{ request()->is('admin/user') ?'active' : '' }}">
         <a class="nav-link" href="{{ route('user.index') }}">
             <i class="fas fa-fw fa-hotel"></i>
@@ -48,7 +48,7 @@
             <span>Daftar Pengaduan</span></a>
     </li>
 
-    @if (Auth::user()->roles == 'SUPERADMIN')
+    @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li
         class="nav-item {{ request()->is('admin/carousel') || request()->is('admin/infographic-content') || request()->is('admin/about') || request()->is('admin/video') ?'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
