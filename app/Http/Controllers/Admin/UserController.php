@@ -19,6 +19,11 @@ class UserController extends Controller
     public function index()
     {
         $items = User::orderBy('id', 'DESC')->get();
+        if (Auth::user()->roles == 'SUPERADMIN') {
+            $items = User::with(['inisiator'])->orderBy('id', 'DESC')->get();
+        } else if (Auth::user()->roles == 'ADMIN') {
+            $items = User::with(['inisiator'])->where('roles', 'OPERATOR')->orderBy('id', 'DESC')->get();
+        }
         $proposal = InnovationProposal::where('status', 'SUDAH')->get();
 
         return view('pages.admin.user.index', [
@@ -34,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.user.create');
     }
 
     /**
@@ -45,7 +50,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = \Validator::make($request->all(), [
+            "name" => "required|min:5|max:100",
+            "username" => "required|min:5|max:20|unique:users",
+            "email" => "required|email|unique:users",
+            "password" => "required",
+            "password_confirmation" => "required|same:password"
+        ])->validate();
+        $new_user = new \App\Models\User;
+        $new_user->name = $request->get('name');
+        $new_user->username = $request->get('username');
+        $new_user->roles = "ADMIN";
+        $new_user->email = $request->get('email');
+        $new_user->nik = "-";
+        $new_user->inisiator_id = 6;
+        $new_user->password_proposal = "password";
+        $new_user->password = \Hash::make($request->get('password'));
+
+        $new_user->save();
+        return redirect()->route('user.index')->with('status', 'Admin successfully created');
     }
 
     /**

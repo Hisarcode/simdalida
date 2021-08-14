@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
+use App\Models\ReviewProposal;
 use App\Models\InnovationReport;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,11 +19,11 @@ class InnovationProposalController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $proposal = InnovationProposal::orderBy('users_id', 'DESC')->orderby('id', 'DESC')->get();
+            $proposal = InnovationProposal::orderby('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'OPERATOR') {
             $proposal = InnovationProposal::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $proposal = InnovationProposal::orderBy('users_id', 'DESC')->orderby('id', 'DESC')->get();
+            $proposal = InnovationProposal::orderby('id', 'DESC')->get();
         }
         return view('pages.admin.innovation-proposal.index', ['proposal' => $proposal]);
     }
@@ -106,8 +107,23 @@ class InnovationProposalController extends Controller
      */
     public function show($id)
     {
-        $item = InnovationProposal::find($id);
-        return view('pages.admin.innovation-proposal.show', ['item' => $item]);
+        $item = InnovationProposal::find($id); //utk show data proposal
+        $review = ReviewProposal::where('proposal_id', $id)->first(); //lihat db apakah sudah dibuat reviewnya?
+        if (!empty($review)) { //jika ada datanya maka
+            $data = $review;
+            return view('pages.admin.innovation-proposal.show', [
+                'item' => $item,
+                'review' => $review,
+                'data' => $data
+            ]);
+        } else {
+            $data = 'data tidak ada';
+            return view('pages.admin.innovation-proposal.show2', [ //show2 utk blm ada review
+                'item' => $item,
+                'review' => $review,
+                'data' => $data
+            ]);
+        }
     }
 
     /**
@@ -119,10 +135,25 @@ class InnovationProposalController extends Controller
     public function edit($id)
     {
         $item = InnovationProposal::findOrFail($id);
+        if (Auth::user()->roles == 'SUPERADMIN') {
+            return view('pages.admin.innovation-proposal.edit', [
+                'item' => $item
+            ]);
+        }
 
-        return view('pages.admin.innovation-proposal.edit', [
-            'item' => $item
-        ]);
+        if (Auth::user()->roles == 'OPERATOR') {
+            if ($item->status == 'BELUM') {
+                return view('pages.admin.innovation-proposal.edit', [
+                    'item' => $item
+                ]);
+            } elseif ($item->status == 'SUDAH') {
+                return redirect()->route('innovation-proposal.index')->with('status', 'Tidak bisa mengedit data jika proposal sudah di ACC');
+            }
+        }
+
+        if (Auth::user()->roles == 'ADMIN') {
+            return redirect()->route('innovation-proposal.index')->with('status', 'Admin tidak ada akses untuk mengedit proposal. Silahkan tanya Superadmin');
+        }
     }
 
     /**
@@ -137,7 +168,6 @@ class InnovationProposalController extends Controller
         $proposal = InnovationProposal::findOrFail($id);
 
         \Validator::make($request->all(), [
-            "users_id" => "required",
             "name" => "required",
             "innovation_step" => "required",
             "innovation_initiator" => "required",
@@ -148,13 +178,12 @@ class InnovationProposalController extends Controller
             "start_innovation_trial" => "required",
             "end_innovation_trial" => "required",
             "time_innovation_implement" => "required",
-            "innovation_design" => "required",
+            "innovation_design" => "required|min:300",
             "innovation_goal" => "required",
             "innovation_benefit" => "required",
             "innovation_result" => "required",
         ])->validate();
 
-        $proposal->users_id = $request->get('users_id');
         $proposal->name = $request->get('name');
         $proposal->innovation_step = json_encode($request->innovation_step);
         $proposal->innovation_initiator = json_encode($request->innovation_initiator);
@@ -212,6 +241,7 @@ class InnovationProposalController extends Controller
     {
         $proposal = InnovationProposal::findOrFail($id);
         $proposal->status = 'SUDAH';
+        $proposal->is_review = "2";
         $proposal->update();
         return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
     }
@@ -220,6 +250,7 @@ class InnovationProposalController extends Controller
     {
         $proposal = InnovationProposal::findOrFail($id);
         $proposal->status = 'BELUM';
+        $proposal->is_review = "1";
         $proposal->update();
         return redirect()->route('innovation-proposal.index')->with('status', 'Updated successfully!');
     }

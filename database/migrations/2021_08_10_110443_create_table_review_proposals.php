@@ -19,9 +19,13 @@ class CreateTableReviewProposals extends Migration
             $table->integer('user_review_id');
             $table->integer('proposal_id');
             $table->string('name')->nullable();
+            $table->text('innovation_step')->nullable();
+            $table->text('innovation_initiator')->nullable();
+            $table->text('innovation_type')->nullable();
+            $table->text('innovation_formats')->nullable();
+            $table->text('is_covid')->nullable();
             $table->text('innovation_concern')->nullable();
             $table->text('start_innovation_trial')->nullable();
-            $table->text('end_innovation_trial')->nullable();
             $table->text('time_innovation_implement')->nullable();
             $table->text('innovation_design')->nullable();
             $table->text('innovation_goal')->nullable();

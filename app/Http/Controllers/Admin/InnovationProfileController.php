@@ -61,7 +61,7 @@ class InnovationProfileController extends Controller
                 ],
             ],
             [
-                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah ada silahkan gunakan edit data untuk merubah data Inovasi tersebut"
+                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah ada!"
             ]
         )->validate();
 

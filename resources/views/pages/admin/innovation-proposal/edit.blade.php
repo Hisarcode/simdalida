@@ -24,7 +24,7 @@
             <form action="{{ route('innovation-proposal.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-                {{-- <input type="hidden" name="users_id" value="{{Auth::user()->id}}"> --}}
+                
                 <div class="form-group">
                     <label for="name"><strong>Nama Inovasi</strong></label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inonasi" value="{{ $item->name }}">
@@ -34,7 +34,7 @@
                     <label><strong>Tahapan Inovasi</strong></label><br>
                    
                     <label for="Tahap Inisiatif"> <input 
-                        type="checkbox"
+                        type="radio"
                         {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}} 
                         name="innovation_step[]" 
                         {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
@@ -42,7 +42,7 @@
                         value="Tahap Inisiatif"> Tahap Inisiatif</label>
 
                     <label for="Tahap Uji Coba">   <input 
-                        type="checkbox"
+                        type="radio"
                         {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}} 
                         name="innovation_step[]" 
                         {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
@@ -50,7 +50,7 @@
                         value="Tahap Uji Coba">  Tahap Uji Coba</label>
 
                     <label for="Tahap Penerapan"> <input 
-                        type="checkbox"
+                        type="radio"
                         {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}} 
                         name="innovation_step[]" 
                         {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
@@ -67,7 +67,7 @@
                     <label><strong>Inisiator Inovasi </strong></label><br>
                    
                     <label for="Kepala Daerah"> <input 
-                        type="checkbox"
+                        type="radio"
                         {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}} 
                         name="innovation_initiator[]" 
                         {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}"
@@ -75,7 +75,7 @@
                         value="Kepala Daerah"> Kepala Daerah</label>
 
                         <label for="Anggota DPRD"> <input 
-                            type="checkbox"
+                            type="radio"
                             {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}} 
                             name="innovation_initiator[]" 
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}"
@@ -83,7 +83,7 @@
                             value="Anggota DPRD"> Anggota DPRD</label>
 
                             <label for="ASN"> <input 
-                                type="checkbox"
+                                type="radio"
                                 {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}} 
                                 name="innovation_initiator[]" 
                                 {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}"
@@ -91,7 +91,7 @@
                                 value="ASN"> ASN</label>
 
                                 <label for="Perangkat Daerah"> <input 
-                                    type="checkbox"
+                                    type="radio"
                                     {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}} 
                                     name="innovation_initiator[]" 
                                     {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}"
@@ -99,7 +99,7 @@
                                     value="Perangkat Daerah"> Perangkat Daerah</label>
 
                                     <label for="Anggota Masyarakat"> <input 
-                                        type="checkbox"
+                                        type="radio"
                                         {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}} 
                                         name="innovation_initiator[]" 
                                         {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}"
@@ -115,10 +115,10 @@
                     <label for="innovation_type"><strong>Jenis Inovasi Daerah</strong></label>
                     <br>
                     <label>
-                        <input {{$item->innovation_type == "digital" ? "checked" : ""}} value="digital" type="radio" id="innovation_type" name="innovation_type"> Digital
+                        <input {{$item->innovation_type == "Digital" ? "checked" : ""}} value="Digital" type="radio" id="innovation_type" name="innovation_type"> Digital
                     </label>
                     <label>
-                        <input {{$item->innovation_type == "nonDigital" ? "checked" : ""}} value="nonDigital" type="radio" id="innovation_type" name="innovation_type"> Non-Digital
+                        <input {{$item->innovation_type == "non-Digital" ? "checked" : ""}} value="non-Digital" type="radio" id="innovation_type" name="innovation_type"> Non-Digital
                     </label>
                 </div>
 
@@ -126,15 +126,15 @@
                     <label for="innovation_formats"><strong>Bentuk Inovasi Daerah</strong></label>
                     <br>
                     <label>
-                        <input {{$item->innovation_formats == "kelolaPemerintah" ? "checked" : ""}} value="kelolaPemerintah" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Tata Kelola Pemerintah Daerah
+                        <input {{$item->innovation_formats == "Kelola Pemerintah" ? "checked" : ""}} value="Kelola Pemerintah" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Tata Kelola Pemerintah Daerah
                     </label>
                     <br>
                     <label>
-                        <input {{$item->innovation_formats == "pelayananPublik" ? "checked" : ""}} value="pelayananPublik" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Pelayanan Publik
+                        <input {{$item->innovation_formats == "Pelayanan Publik" ? "checked" : ""}} value="Pelayanan Publik" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Pelayanan Publik
                     </label>
                     <br>
                     <label>
-                        <input {{$item->innovation_formats == "bentukLainnya" ? "checked" : ""}} value="bentukLainnya" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
+                        <input {{$item->innovation_formats == "Bentuk Lainnya" ? "checked" : ""}} value="Bentuk Lainnya" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
                     </label>
                 </div>
 
@@ -170,9 +170,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah</strong></label>
+                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah</strong><i> min 300 kata</i></label>
                     <textarea type="text" name="innovation_design" id="innovation_design" class="form-control"
-                    placeholder="Rancang Bangun Inovasi">{{ $item->innovation_design }}</textarea>
+                    placeholder="Rancang Bangun Inovasi" minlength="300">{{ $item->innovation_design }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -200,18 +200,13 @@
                     <label for="budget_file">file anggaran:</label>
                     <br>
                     @if($item->budget_file)
-                        <iframe src="{{  Storage::url($item->budget_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        <a href="{{  Storage::url($item->budget_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
                       <br>
                     @else 
                       Tidak ada file
                     @endif
                     <br>
-                    <input id="budget_file" name="budget_file" type="file">
+                    <input id="budget_file" name="budget_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file anggaran</small>
                 </div>
               
@@ -223,18 +218,13 @@
                     <label for="profil_bisnis_file">Lampiran Profil Bisnis</label>
                     <br>
                     @if($item->profil_bisnis_file)
-                    <iframe src="{{  Storage::url($item->profil_bisnis_file)  }}"
-                        frameBorder="0"
-                        scrolling="auto"
-                     height="100%"
-                     width="100%"
-                    ></iframe>
+                    <a href="{{  Storage::url($item->profil_bisnis_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
                       <br>
                     @else 
                       Tidak ada file
                     @endif
                     <br>
-                    <input id="profil_bisnis_file" name="profil_bisnis_file" type="file">
+                    <input id="profil_bisnis_file" name="profil_bisnis_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah lampiran profil bisnis</small>
                 </div>
 

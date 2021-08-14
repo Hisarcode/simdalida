@@ -32,6 +32,9 @@ Route::prefix('admin')
         Route::get('/actionedit/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actionedit');
         Route::get('/actioneditt/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actioneditt');
 
+        Route::resource('review-proposal', '\App\Http\Controllers\Admin\ReviewProposalController')->middleware((['auth', 'admin']));
+        Route::put('/simpan/{id}', '\App\Http\Controllers\Admin\ReviewProposalController@simpan')->name('review-proposal.simpan')->middleware((['auth', 'admin']));
+
         Route::resource('innovation-profile', '\App\Http\Controllers\Admin\InnovationProfileController');
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');

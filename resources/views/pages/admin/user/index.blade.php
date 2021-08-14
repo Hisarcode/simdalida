@@ -6,8 +6,14 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Management User/Admin</h1>
-        <i>.</i>
+        <h1 class="h3 mb-0 text-gray-800">Management Admin/Operator</h1>
+        @if (Auth::user()->roles === 'SUPERADMIN')
+        <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Admin
+        </a>
+        @else
+            .
+        @endif
     </div>
   
         <div class="card shadow mb-4">
@@ -22,12 +28,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Inisiator</th>
                             <th>Nama</th>
                             <th>Total Inovasi</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Status</th>
-                            <th>NIK</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,18 +46,26 @@
                         @forelse ($items as $item)
                         <tr>
                             <td>{{ $i++ }}</td>
+                            <td> @if ($item->inisiator->inisiator == 'Admin')
+                                -
+                            @else
+                            {{ $item->inisiator->inisiator }}
+                            @endif</td>
                             <td>{{ $item->name }}
                                 <?php 
                                     $total = $proposal->where('users_id', $item->id)->count();
                                     ?>
                             </td>
-                            <td> <b>{{ $total }}</b></td>
+                            <td> @if ($item->roles == 'ADMIN' || $item->roles == 'SUPERADMIN')
+                                -
+                            @else
+                            <b>{{ $total }}</b>
+                            @endif</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->roles }}</td>
-                            <td>{{ $item->nik }}</td>
                             <td>
-                                @if ($item->name == 'SuperAdmin')
+                                @if ($item->roles == 'SUPERADMIN')
                                     .
                                 @else
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">

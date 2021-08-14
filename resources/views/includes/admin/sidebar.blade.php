@@ -20,7 +20,7 @@
     <li class="nav-item {{ request()->is('admin/user') ?'active' : '' }}">
         <a class="nav-link" href="{{ route('user.index') }}">
             <i class="fas fa-fw fa-hotel"></i>
-            <span>Manajemen User/Admin</span></a>
+            <span style="font-size: 12px">Manajemen Admin/Operator</span></a>
     </li>
     @endif
 

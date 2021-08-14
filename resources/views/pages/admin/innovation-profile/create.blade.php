@@ -27,8 +27,8 @@
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
 
                 <div class="form-group">
-                    <p>*<b>profil inovasi bersifat unik</b> (setiap 1 proposal hanya boleh memiliki 1 profil saja, tidak
-                        boleh lebih. atau akan muncul error)</p>
+                    <p>Catatan :<b>profil inovasi bersifat unik</b> (setiap 1 proposal hanya boleh memiliki 1 profil saja)</p>
+                    <P><b>*Indikator Wajib Isi</b></P>
                     <label for="innovation_proposals_id"><strong>Nama Inovasi</strong></label>
                     <select name="innovation_proposals_id" required class="form-control">
                         <option value="">Pilih Nama Inovasi Berdasarkan Proposal</option>
@@ -40,19 +40,206 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="image">Upload Gambar Inovasi: </label>
                     <input class="form-control-file" type="file" name="image" id="image"
                         placeholder="Gambar">
+                </div> --}}
+
+                <div class="form-group">
+                    <label for="description"><strong>Regulasi Inovasi Daerah*</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file SK (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="description"><strong>Deskripsi Profil Inovasi</strong></label>
+                    <label for="description"><strong>Ketersediaan SDM terhadap inovasi daerah*</strong></label>
                         <div class="form-group">
-                            {{-- <textarea name="description" id="description" cols="30" rows="10"></textarea> --}}
                             <textarea type="text" name="description" id="description" class="form-control"
-                            placeholder="Isikan deskripsi inovasi daerah" required
+                            placeholder=" " required
                             autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file SK (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Dukungan Anggaran</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file SK (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Penggunaan IT</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF  ):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Bimtek Inovasi</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Program dan kegiatan inovasi perangkat daerah dalam RKPD</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Keterlibatan aktor inovasi</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF  ):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Pelaksana Inovasi Daerah</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Jejaring Inovasi</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Sosialisasi Inovasi Daerah</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF  ):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Pedoman Teknis</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Kemudahan Informasi Layanan</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Kemudahan proses inovasi yg dihasilkan</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Penyelesaian layanan pengaduan</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Online Sistem</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Replikasi</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Kecepatan Inovasi*</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Kemanfaatan Inovasi*</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Monitoring dan evaluasi inovasi daerah*</strong></label>
+                        <div class="form-group">
+                            <textarea type="text" name="description" id="description" class="form-control"
+                            placeholder=" " required
+                            autocomplete="off">{{ old('description') }}</textarea>
+                            <label for="profil_bisnis_file"> Upload file pendukung (PDF):  <input type="file" name="profil_bisnis_file"></label> 
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><strong>Kualitas Inovasi Daerah*</strong></label>
+                        <div class="form-group">
+                            <label for="profil_bisnis_file"> Upload Video max 8mb:  <input type="file" name="profil_bisnis_file"></label> 
                         </div>
                 </div>
 
