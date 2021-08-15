@@ -62,7 +62,7 @@
                             </td>
                             <td>{{ $report->quartal }}</td>
                             @if (Auth::user()->roles == 'SUPERADMIN')
-                            <td>{{ $report->user->username }}</td>
+                            <td>{{ $report->user->name }}</td>
                             @else
                             <td>{{ \Carbon\Carbon::parse($report->time_innovation_implement)->format('d M-Y') }}</td>
                             @endif

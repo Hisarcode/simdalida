@@ -41,7 +41,7 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td><b>{{ $complain->innovation_complain->name }}</b>
-                                <br>Pemilik Inovasi : {{ $complain->innovation_complain->user->username }}
+                                <br><br>Pemilik Inovasi : {{ $complain->innovation_complain->user->name }}
                             </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>

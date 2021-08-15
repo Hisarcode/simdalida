@@ -20,17 +20,20 @@ use App\Http\Controllers\InnovationProposalController;
 */
 
 Route::prefix('admin')
-    ->namespace('Admin')
-    ->middleware(['auth', 'admin'])
+    ->namespace('operator')
+    ->middleware(['auth', 'operator'])
     ->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
             ->name('dashboard');
 
-        Route::resource('user', '\App\Http\Controllers\Admin\UserController')->middleware((['auth', 'superadmin']));
+        Route::resource('user', '\App\Http\Controllers\Admin\UserController')->middleware((['auth', 'admin']));
 
         Route::resource('innovation-proposal', '\App\Http\Controllers\Admin\InnovationProposalController');
         Route::get('/actionedit/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actionedit');
         Route::get('/actioneditt/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actioneditt');
+
+        Route::resource('review-proposal', '\App\Http\Controllers\Admin\ReviewProposalController')->middleware((['auth', 'admin']));
+        Route::put('/simpan/{id}', '\App\Http\Controllers\Admin\ReviewProposalController@simpan')->name('review-proposal.simpan')->middleware((['auth', 'admin']));
 
         Route::resource('innovation-profile', '\App\Http\Controllers\Admin\InnovationProfileController');
 
@@ -38,13 +41,18 @@ Route::prefix('admin')
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
 
-        Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'superadmin']));
+        Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'admin']));
 
-        Route::resource('carousel', '\App\Http\Controllers\Admin\CarouselController')->middleware((['auth', 'superadmin']));
+        Route::resource('video', '\App\Http\Controllers\Admin\VideoController')->middleware((['auth', 'admin']));
 
-        Route::resource('infographic-content', '\App\Http\Controllers\Admin\InfographicController')->middleware((['auth', 'superadmin']));
+        Route::resource('carousel', '\App\Http\Controllers\Admin\CarouselController')->middleware((['auth', 'admin']));
+
+        Route::resource('infographic-content', '\App\Http\Controllers\Admin\InfographicController')->middleware((['auth', 'admin']));
         Route::get('/editinfographic/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographic');
         Route::get('/editinfographicc/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographicc');
+
+        // Route::resource('change-password', '\App\Http\Controllers\Admin\ChangePasswordController');
+        Route::post('/changePassword', '\App\Http\Controllers\Admin\UserController@changePassword')->name('changePassword');
     });
 
 Auth::routes();

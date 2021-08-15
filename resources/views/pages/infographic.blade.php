@@ -21,29 +21,50 @@
                     <div class="row mt-5">
                         <div class="col-12">
                             <div class="portfolio-main">
-                                <div id="portfolio-item" class="portfolio-item-active">
-                                    @foreach ($infographic as $item)
-                                    <div class="cbp-item business animation">
-                                        <!-- Single Portfolio -->
-                                        <div class="single-portfolio">
-                                            <div class="portfolio-head overlay">
-                                               @if ($item->image)
-                                               <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}">
-                                               @else
-                                               <img src="front/img/logo-sgu.png" alt="{{ $item->name }}" style="height: 280px">
-                                               @endif
-                                                <a class="more" href="{{ route('infographic-detail', $item->id) }}"><i
-                                                        class="fa fa-long-arrow-right"></i></a>
-                                            </div>
-                                            <div class="portfolio-content">
-                                                <h4><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->name }}</a></h4>
-                                                <p>{{ $item->user->name }}</p>
-                                            </div>
-                                        </div>
-                                        <!--/ End Single Portfolio -->
+                              
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Perangkat Daerah</th>
+                                                    <th>Nama Inovasi Daerah</th>
+                                                    <th>Bentuk Inovasi</th>
+                                                    <th>Tipe inovasi</th>
+                                                    <th>Lihat Detail</th>
+                                                </tr>
+                                            </thead>
+                        
+                                            <tbody>
+                                                <?php
+                                                $i = 1;
+                                                ?>
+                                                @forelse ($infographic as $profile)
+                                                <tr>
+                                                    <td>{{ $i++ }}</td>
+                                                    <td>{{ $profile->user->name }}</td>
+                                                    <td>{{ $profile->name }}</td>
+                                                    <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
+                                                    <td>{{ $profile->innovation_proposal->innovation_type }}</td>
+                                                    <td>
+                                                        <a href="{{ route('infographic-detail', $profile->id) }}" class="btn btn-info">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center">
+                                                        Data Kosong
+                                                    </td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    @endforeach
-                                </div>
+                                
+                              
                             </div>
                         </div>
                     </div>

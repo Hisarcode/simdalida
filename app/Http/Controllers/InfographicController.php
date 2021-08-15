@@ -11,7 +11,7 @@ class InfographicController extends Controller
 {
     public function index()
     {
-        $infographic = InnovationProfile::with(['innovation_proposal'])->where('is_published', 'YES')->orderBy('id', 'DESC')->get();
+        $infographic = InnovationProfile::with(['innovation_proposal'])->orderBy('users_id', 'ASC')->get();
         $about = About::orderBy('id', 'DESC')->get();
 
         return view('pages.infographic', [
@@ -31,7 +31,7 @@ class InfographicController extends Controller
 
         $title_page = InnovationProfile::where('id', $id)->first()->name;
 
-        $post = InnovationProfile::with(['innovation_proposal'])->where('is_published', 'YES')->orderBy('id', 'DESC')->paginate(4);
+        $post = InnovationProfile::with(['innovation_proposal'])->get()->random(4);
 
         return view('pages.infographicdetail', compact('infographic', 'title_page', 'post', 'about'));
     }

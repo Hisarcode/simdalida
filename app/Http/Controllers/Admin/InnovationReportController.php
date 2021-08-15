@@ -19,8 +19,10 @@ class InnovationReportController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $report = InnovationReport::orderBy('id', 'DESC')->get();
+            $report = InnovationReport::orderBy('users_id', 'ASC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
+            $report = InnovationReport::orderBy('users_id', 'ASC')->get();
+        } else if (Auth::user()->roles == 'OPERATOR') {
             $report = InnovationReport::where('users_id', Auth::user()->id)
                 ->orderBy('innovation_profiles_id', 'DESC')
                 ->orderBy('quartal', 'DESC')
