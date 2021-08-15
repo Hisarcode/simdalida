@@ -84,7 +84,10 @@ class DashboardController extends Controller
             $current_triwulan = $this->get_current_triwulan();
 
 
-            $innovation_profiles = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+            // $innovation_profiles = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+
+
+            $innovation_profiles = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->orderBy('id', 'DESC')->get();
 
 
             $notification_collection = collect();

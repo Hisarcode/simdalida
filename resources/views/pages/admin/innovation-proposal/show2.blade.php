@@ -103,12 +103,7 @@
                     <th>Anggaran</th>
                     <td>{{ $item->budget}} <br>
                         @if($item->budget_file)
-                        <iframe src="{{  Storage::url($item->budget_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        <a href="{{  Storage::url($item->budget_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
                       <br>
                     @else 
                       Tidak ada file
@@ -120,12 +115,7 @@
                     <th>Profil Bisnis</th>
                     <td>{{ $item->profil_bisnis }} <br>
                         @if($item->profil_bisnis_file)
-                        <iframe src="{{  Storage::url($item->profil_bisnis_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        <a href="{{  Storage::url($item->profil_bisnis_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
                           <br>
                         @else 
                           Tidak ada file

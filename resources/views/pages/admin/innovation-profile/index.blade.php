@@ -30,10 +30,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Perangkat Daerah</th>
+                            <th>Inovator</th>
                             <th>Nama Inovasi Daerah</th>
+                            <th>Tahap Inovasi</th>
                             <th>Bentuk Inovasi</th>
-                            <th>Tipe inovasi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,20 +46,20 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $profile->user->name }}</td>
-                            <td>{{ $profile->name }}</td>
+                            <td>{{ $profile->innovation_proposal->name }}</td>
+                            <td>@foreach (json_decode($profile->innovation_proposal->innovation_step) as $step)
+                                {{$step}} 
+                                @endforeach</td>
                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
-                            <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                             <td>
-                                @if (Auth::user()->roles === 'ADMIN')
                                 <a href="{{ route('innovation-profile.edit', $profile->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
-                                </a>
-                                @endif
+                                </a>    
                                 <a href="{{ route('innovation-profile.show', $profile->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 <form action="{{ route('innovation-profile.destroy', $profile->id) }}" method="POST"
-                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus? Berkas yg dihapus tidak dapat kembali lagi!');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
@@ -70,7 +70,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center">
+                            <td colspan="6" class="text-center">
                                 Data Kosong
                             </td>
                         </tr>
