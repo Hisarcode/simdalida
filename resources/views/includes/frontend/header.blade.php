@@ -40,6 +40,9 @@
                                                         <li class="{{ request()->is('infographic') ?'active' : '' }}">
                                                             <a href="{{ route('infographic') }}">Infografis</a>
                                                         </li>
+                                                        <li class="{{ request()->is('video') ?'active' : '' }}">
+                                                            <a href="{{ route('video') }}">Video</a>
+                                                        </li>
                                                         <li class="{{ request()->is('about') ?'active' : '' }}">
                                                             <a href="{{ route('about') }}">Tentang Kami</a>
                                                         </li>

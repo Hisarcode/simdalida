@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfographicController;
 use App\Http\Controllers\InnovationProposalController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
 Route::get('/infographic/{id}', [InfographicController::class, 'show'])->name('infographic-detail');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/video', [VideoController::class, 'index'])->name('video');
