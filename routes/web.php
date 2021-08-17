@@ -51,8 +51,7 @@ Route::prefix('admin')
         Route::get('/editinfographic/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographic');
         Route::get('/editinfographicc/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographicc');
 
-        // Route::resource('change-password', '\App\Http\Controllers\Admin\ChangePasswordController');
-        Route::post('/changePassword', '\App\Http\Controllers\Admin\UserController@changePassword')->name('changePassword');
+        Route::resource('change-password', '\App\Http\Controllers\Admin\ChangePasswordController');
     });
 
 Auth::routes();

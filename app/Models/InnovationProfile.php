@@ -23,8 +23,8 @@ class InnovationProfile extends Model
         return $this->belongsTo(InnovationProposal::class, 'innovation_proposals_id', 'id');
     }
 
-    public function innovation_report()
-    {
-        return $this->hasMany(InnovationReport::class, 'innovation_profiles_id', 'id');
-    }
+    // public function innovation_report()
+    // {
+    //     return $this->hasMany(InnovationReport::class, 'innovation_profiles_id', 'id');
+    // }
 }

@@ -61,8 +61,13 @@ class ComplainInboxController extends Controller
     public function update(Request $request, $id)
     {
         $complain = Complain::findOrFail($id);
-        $complain->is_improvement = $request->get('is_improvement');
-        $complain->save();
+        $complain->is_improvement = 'sudah';
+        if ($request->file('bukti_tl')) {
+            $bukti = $request->file('bukti_tl')->store('pengaduan/bukti_tl', 'public');
+            $complain->bukti_tl = $bukti;
+        }
+
+        $complain->update();
         return redirect()->route('complain-inbox.index')->with('status', 'Status Pengaduan Berhasil Diperbarui');
     }
 

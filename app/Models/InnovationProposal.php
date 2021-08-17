@@ -23,6 +23,11 @@ class InnovationProposal extends Model
         return $this->hasOne(InnovationProfile::class, 'innovation_proposals_id', 'id');
     }
 
+    public function innovation_report()
+    {
+        return $this->hasMany(InnovationReport::class, 'innovation_proposals_id', 'id');
+    }
+
     public function complains()
     {
         return $this->hasMany(Complain::class, 'purpose_innovation', 'id');
