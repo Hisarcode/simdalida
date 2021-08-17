@@ -8,6 +8,7 @@ use App\Models\InnovationProfile;
 use App\Models\InnovationProposal;
 use App\Models\User;
 use App\Models\About;
+use App\Models\Complain;
 use App\Models\InnovationReport;
 
 class HomeController extends Controller
@@ -30,6 +31,7 @@ class HomeController extends Controller
         $proposal = InnovationProposal::orderBy('id', 'DESC')->where('status', 'SUDAH')->count();
         $user = User::orderBy('id', 'DESC')->where('roles', 'ADMIN')->count();
         $about = About::orderBy('id', 'DESC')->get();
+        $complains = Complain::count();
 
         return view('pages.index', [
             'title_page' => 'Home',
@@ -37,7 +39,8 @@ class HomeController extends Controller
             'profile' => $infographic,
             'proposal' => $proposal,
             'user' => $user,
-            'about' => $about
+            'about' => $about,
+            "complains" => $complains,
         ]);
     }
 }

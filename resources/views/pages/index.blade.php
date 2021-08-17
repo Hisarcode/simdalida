@@ -33,7 +33,7 @@
 <section class="counterup">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
                     <div class="icon"><i class="fa fa-book"></i></div>
@@ -46,7 +46,7 @@
                 </div>
                 <!--/ End Single Counterup -->
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
                     <div class="icon"><i class="fa fa-users"></i></div>
@@ -59,7 +59,7 @@
                 </div>
                 <!--/ End Single Counterup -->
             </div>
-            <div class="col-lg-4 col-md-4 col-12">
+            <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
                     <div class="icon"><i class="fa fa-life-ring"></i></div>
@@ -68,6 +68,19 @@
                             <h3><b class="number">{{ $user }}</b><span>+</span></h3>
                         </div>
                         <p>Perangkat Daerah</p>
+                    </div>
+                </div>
+                <!--/ End Single Counterup -->
+            </div>
+            <div class="col-lg-3 col-md-4 col-12">
+                <!-- Single Counterup -->
+                <div class="single-counter">
+                    <div class="icon"><i class="fa fa-life-ring"></i></div>
+                    <div class="conter-content">
+                        <div class="counter-head">
+                            <h3><b class="number">{{ $complains }}</b><span>+</span></h3>
+                        </div>
+                        <p>Jumlah Aduan</p>
                     </div>
                 </div>
                 <!--/ End Single Counterup -->
