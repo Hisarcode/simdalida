@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\InnovationProposal;
 
@@ -126,5 +127,13 @@ class UserController extends Controller
         $item->delete();
 
         return redirect()->route('user.index')->with('status', 'Deleted successfully!');
+    }
+
+    public function resetpassword($id)
+    {
+        $item = User::findOrFail($id);
+        $item->password = Hash::make("12345678");
+        $item->update();
+        return redirect()->route('user.index')->with('status', 'Password successfully reset!');
     }
 }

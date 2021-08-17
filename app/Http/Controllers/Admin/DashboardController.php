@@ -40,7 +40,7 @@ class DashboardController extends Controller
     {
 
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
+            $proposal = InnovationProposal::where('status', 'SUDAH')->orderBy('id', 'DESC')->count();
             $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
@@ -49,7 +49,7 @@ class DashboardController extends Controller
             $sum = "";
             $complains = "";
         } else if (Auth::user()->roles == 'ADMIN') {
-            $proposal = InnovationProposal::orderBy('id', 'DESC')->count();
+            $proposal = InnovationProposal::where('status', 'SUDAH')->orderBy('id', 'DESC')->count();
             $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
@@ -58,7 +58,7 @@ class DashboardController extends Controller
             $sum = "";
             $complains = "";
         } else if (Auth::user()->roles == 'OPERATOR') {
-            $proposal = InnovationProposal::where('users_id', Auth::user()->id)->count();
+            $proposal = InnovationProposal::where('status', 'SUDAH')->where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('status', 'KIRIM')->where('users_id', Auth::user()->id)->count();
             $blm_acc = '';
 

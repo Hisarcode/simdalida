@@ -27,6 +27,7 @@ Route::prefix('admin')
             ->name('dashboard');
 
         Route::resource('user', '\App\Http\Controllers\Admin\UserController')->middleware((['auth', 'admin']));
+        Route::get('/resetpassword/{id}', '\App\Http\Controllers\Admin\UserController@resetpassword')->middleware((['auth', 'admin']));
 
         Route::resource('innovation-proposal', '\App\Http\Controllers\Admin\InnovationProposalController');
         Route::get('/actionedit/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actionedit');
