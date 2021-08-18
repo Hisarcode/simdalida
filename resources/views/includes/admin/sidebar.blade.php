@@ -16,11 +16,11 @@
             <span>Dashboard</span></a>
     </li>
 
-    @if (Auth::user()->roles == 'SUPERADMIN')
+    @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li class="nav-item {{ request()->is('admin/user') ?'active' : '' }}">
         <a class="nav-link" href="{{ route('user.index') }}">
             <i class="fas fa-fw fa-hotel"></i>
-            <span>Manajemen User/Admin</span></a>
+            <span style="font-size: 12px">Manajemen Admin/Operator</span></a>
     </li>
     @endif
 
@@ -48,9 +48,9 @@
             <span>Daftar Pengaduan</span></a>
     </li>
 
-    @if (Auth::user()->roles == 'SUPERADMIN')
+    @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li
-        class="nav-item {{ request()->is('admin/carousel') || request()->is('admin/infographic-content') || request()->is('admin/about') ?'active' : '' }}">
+        class="nav-item {{ request()->is('admin/carousel') || request()->is('admin/infographic-content') || request()->is('admin/about') || request()->is('admin/video') ?'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -59,8 +59,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('carousel.index') }}">Carousel</a>
+                <a class="collapse-item" href="{{ route('video.index') }}">Video</a>
                 <a class="collapse-item" href="{{ route('about.index') }}">Tentang Kami</a>
-                <a class="collapse-item" href="{{ route('infographic-content.index') }}">Infografis</a>
+                {{-- <a class="collapse-item" href="{{ route('infographic-content.index') }}">Infografis</a> --}}
             </div>
         </div>
     </li>

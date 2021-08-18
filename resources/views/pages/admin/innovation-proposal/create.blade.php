@@ -32,28 +32,28 @@
 
                 <div class="form-group">
                     <label><strong>Tahapan Inovasi* </strong></label><br>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Inisiatif"> Tahap Inisiatif</label>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Uji Coba"> Tahap Uji Coba</label>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Penerapan"> Tahap Penerapan</label>
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif"> Tahap Inisiatif</label>
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba"> Tahap Uji Coba</label>
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan"> Tahap Penerapan</label>
                 </div>  
 
                 <div class="form-group">
                     <label><strong>Inisiator Inovasi Daerah* </strong></label><br>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Kepala Daerah"> Kepala Daerah</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Anggota DPRD"> Anggota DPRD</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="ASN"> ASN</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Perangkat Daerah"> Perangkat Daerah</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Anggota Masyarakat"> Anggota Masyarakat</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah"> Kepala Daerah</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD"> Anggota DPRD</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="ASN"> ASN</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah"> Perangkat Daerah</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat"> Anggota Masyarakat</label>
                 </div> 
 
                 <div class="form-group">
                     <label for="innovation_type"><strong>Jenis Inovasi Daerah*</strong></label>
                     <br>
                     <label>
-                        <input type="radio" name="innovation_type" id="innovation_type" value="digital" checked> Digital
+                        <input type="radio" name="innovation_type" id="innovation_type" value="Digital" checked> Digital
                     </label>
                     <label>
-                        <input type="radio" name="innovation_type" id="innovation_type" value="nonDigital" checked> Non-Digital
+                        <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" checked> Non-Digital
                     </label>
                 </div>
 
@@ -61,15 +61,15 @@
                     <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
                     <br>
                     <label>
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="kelolaPemerintah" checked> Inovasi Tata Kelola Pemerintah Daerah
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" checked> Inovasi Tata Kelola Pemerintah Daerah
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="pelayananPublik" checked> Inovasi Pelayanan Publik
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" checked> Inovasi Pelayanan Publik
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="bentukLainnya" checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
                     </label>
                 </div>
 
@@ -102,9 +102,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah*</strong></label>
+                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah*</strong> <i>min 300 kata</i></label>
                     <textarea type="text" name="innovation_design" id="innovation_design" class="form-control" placeholder="Isikan Rancang bangun inovasi daerah" required
-                    autocomplete="off">{{ old('innovation_design') }}</textarea>
+                    autocomplete="off" minlength="300">{{ old('innovation_design') }}</textarea>
                 </div>
 
                 <div class="form-group">

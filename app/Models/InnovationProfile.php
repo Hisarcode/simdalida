@@ -9,7 +9,7 @@ class InnovationProfile extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['users_id', 'innovation_proposals_id', 'description', 'name'];
+    protected $fillable = ['users_id', 'innovation_proposals_id', 'regulasi_inovasi', 'ketersediaan_sdm', 'dukungan_anggaran', 'penggunaan_it', 'bimtek_inovasi', 'program_rkpd', 'keterlibatan_aktor', 'pelaksana_inovasi', 'jejaring_inovasi', 'sosialisasi_inovasi', 'pedoman_teknis', 'kemudahan_informasi', 'kemudahan_proses', 'penyelesaian_pengaduan', 'online_sistem', 'replikasi', 'kecepatan_inovasi', 'kemanfaatan_inovasi', 'monitoring_evaluasi', 'kualitas_inovasi'];
 
     protected $hidden = [];
 

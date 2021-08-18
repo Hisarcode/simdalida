@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImageToInnovationProfilesTable extends Migration
+class CreateTableInisiator extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddImageToInnovationProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('innovation_profiles', function (Blueprint $table) {
-            $table->text('image');
+        Schema::create('inisiator', function (Blueprint $table) {
+            $table->id();
+            $table->string('inisiator');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddImageToInnovationProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('innovation_profiles', function (Blueprint $table) {
-            $table->dropColumn('image');
-        });
+        Schema::dropIfExists('inisiator_table');
     }
 }

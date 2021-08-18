@@ -25,15 +25,15 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nama</label>
+                    <label for="name"><b>Nama</b></label>
                     <input type="text" class="form-control" name="name" placeholder="Nama" value="{{ $item->name }}">
                 </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username"><b>Username</b></label>
                     <input type="text" class="form-control" name="username" placeholder="Username" value="{{ $item->username }}">
                 </div>
                <div class="form-group">
-                <label for="roles">Status</label>
+                <label for="roles"><b>Status</b></label>
                 <br/>
                 <input {{$item->roles == "ADMIN" ? "checked" : ""}} 
                 value="ADMIN" 
@@ -42,14 +42,22 @@
                 id="admin" 
                 name="roles">
                 <label for="admin">Admin</label>
-
+                <br>
+                <input {{$item->roles == "OPERATOR" ? "checked" : ""}} 
+                value="OPERATOR" 
+                type="radio" 
+                
+                id="operator" 
+                name="roles">
+                <label for="operator">Operator</label>
+                <br>
                 <input {{$item->roles == "USER" ? "checked" : ""}} 
                 value="USER" 
                 type="radio" 
                 
                 id="user" 
                 name="roles"> 
-                <label for="user">User</label>               
+                <label for="user">User Biasa/Non-Aktif</label>               
                </div>
 
                 <button type="submit" class="btn btn-primary btn-block">

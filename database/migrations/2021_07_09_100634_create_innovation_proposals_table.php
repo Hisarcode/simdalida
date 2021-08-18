@@ -19,8 +19,8 @@ class CreateInnovationProposalsTable extends Migration
             $table->string('name');
             $table->string('innovation_step');
             $table->string('innovation_initiator');
-            $table->enum('innovation_type', ['digital', 'nonDigital']);
-            $table->enum('innovation_formats', ['kelolaPemerintah', 'pelayananPublik', 'bentukLainnya']);
+            $table->enum('innovation_type', ['Digital', 'non-Digital']);
+            $table->enum('innovation_formats', ['Kelola Pemerintah', 'Pelayanan Publik', 'Bentuk Lainnya']);
             $table->enum('is_covid', ['covid', 'nonCovid']);
             $table->text('innovation_concern');
             $table->date('start_innovation_trial');

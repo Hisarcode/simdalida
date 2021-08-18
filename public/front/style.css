@@ -1819,7 +1819,7 @@ blockquote {
   top: 50%;
   width: 8px;
   height: 8px;
-  background: #f3a712;
+  background: none;
   border-radius: 100%;
   margin-top: -4px;
 }
