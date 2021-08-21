@@ -10,42 +10,43 @@
                     <div class="col-12">
                         <div class="blog-single-main">
                             <div class="main-image">
-                                <h2 class="sidebar-title blog-title pb-4">Inovasi-Inovasi Daerah</h2>
+                                <h2 class="sidebar-title blog-title pb-4">Video Inovasi-Inovasi Daerah</h2>
                             </div>
 
                         </div>
                     </div>
                 </div>
 
-
                 <div class="row mt-5">
                     <div class="col-12">
                         <div class="portfolio-main">
                             <div id="portfolio-item" class="portfolio-item-active">
-                                @foreach ($infographic as $item)
+                                @forelse ($report as $video)
                                 <div class="cbp-item business animation">
                                     <!-- Single Portfolio -->
                                     <div class="single-portfolio">
                                         <div class="portfolio-head overlay">
-                                            @if ($item->image)
-                                            <img src="{{ Storage::url($item->image) }}" alt="{{ $item->name }}">
-                                            @else
-                                            <img src="front/img/logo-sgu.png" alt="{{ $item->name }}"
-                                                style="height: 280px">
-                                            @endif
-                                            <a class="more" href="{{ route('infographic-detail', $item->id) }}"><i
+
+                                            <img src="https://www.pngkit.com/png/detail/267-2678423_bacteria-video-thumbnail-default.png"
+                                                alt="#">
+                                            <a class="more" href="{{ route('video-detail', $video->id) }}"><i
                                                     class="fa fa-long-arrow-right"></i></a>
                                         </div>
                                         <div class="portfolio-content">
-                                            <h4><a
-                                                    href="{{ route('infographic-detail', $item->id) }}">{{ $item->name }}</a>
-                                            </h4>
-                                            <p>{{ $item->user->name }}</p>
+                                            <p>
+                                                <a
+                                                    href="{{ route('video-detail', $video->id) }}">{{ 'Video ' . $video->name . ' Triwulan Ke-' . $video->quartal }}</a>
+                                            </p>
+                                            <p class="font-italic font-weight-bold"
+                                                style="font-size: 11px ;  line-height: 120%;">
+                                                {{ $video->user->name }}</p>
                                         </div>
                                     </div>
                                     <!--/ End Single Portfolio -->
                                 </div>
-                                @endforeach
+                                @empty
+                                <h5 class="text-center"> Tidak Ada Data</h5>
+                                @endforelse
                             </div>
                         </div>
                     </div>
