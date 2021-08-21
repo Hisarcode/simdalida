@@ -12,6 +12,7 @@
 
     <title>Simdalida Admin</title>
     @include('includes.admin.style')
+    @stack('addon-style')
 
 </head>
 

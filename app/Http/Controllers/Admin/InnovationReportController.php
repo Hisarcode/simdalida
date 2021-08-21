@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationReport;
 use App\Models\InnovationProfile;
+use App\Models\InnovationProposal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +25,7 @@ class InnovationReportController extends Controller
             $report = InnovationReport::orderBy('users_id', 'ASC')->get();
         } else if (Auth::user()->roles == 'OPERATOR') {
             $report = InnovationReport::where('users_id', Auth::user()->id)
-                ->orderBy('innovation_profiles_id', 'DESC')
+                ->orderBy('innovation_proposals_id', 'DESC')
                 ->orderBy('quartal', 'DESC')
                 ->get();
         }
@@ -39,7 +40,7 @@ class InnovationReportController extends Controller
      */
     public function create()
     {
-        $innovation = InnovationProfile::where('users_id', Auth::user()->id)->get();
+        $innovation = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->get();
         return view('pages.admin.innovation-report.create', [
             'innovation' => $innovation
         ]);
@@ -73,10 +74,9 @@ class InnovationReportController extends Controller
             "innovation_strategy" => "required",
             "video_innovation" => "required",
             'quartal' => [
-                'required',
                 Rule::unique('innovation_reports')->where(function ($query) use ($request) {
                     return $query->where('report_year', $request->get('report_year'))
-                        ->where('innovation_profiles_id', $request->get('innovation_profiles_id'))
+                        ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
                         ->where('quartal', $request->get('quartal'));
                 }),
             ],
@@ -86,10 +86,10 @@ class InnovationReportController extends Controller
         ])->validate();
 
         $report = new InnovationReport();
-        $ambil = InnovationProfile::where('id', $request->get('innovation_profiles_id'))->first()->name;
+        $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
         $report->users_id = $request->get('users_id');
         $report->name = $ambil;
-        $report->innovation_profiles_id = $request->get('innovation_profiles_id');
+        $report->innovation_proposals_id = $request->get('innovation_proposals_id');
         $report->innovation_step = json_encode($request->innovation_step);
         $report->innovation_initiator = json_encode($request->innovation_initiator);
         $report->innovation_type = $request->get('innovation_type');
@@ -300,5 +300,14 @@ class InnovationReportController extends Controller
         $item->delete();
 
         return redirect()->route('innovation-report.index')->with('status', 'Data successfully deleted');
+    }
+
+    public function getlastquartal($id)
+    {
+        $report = InnovationReport::where('innovation_proposals_id', $id)->max('quartal');
+        if (empty($report)) {
+            $report = 0;
+        }
+        return response()->json($report);
     }
 }
