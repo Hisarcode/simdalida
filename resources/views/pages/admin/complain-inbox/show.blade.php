@@ -39,12 +39,36 @@
                     <td>{{ $item->innovation_complain->name }}</td>
                 </tr>
                 <tr>
+                    <th>Waktu pengaduan masuk</th>
+                    <td>{{ \Carbon\Carbon::parse($item->created_at) }}</td>
+                </tr>
+                <tr>
+                    <th>Waktu pengaduan diselesaikan</th>
+                    <td>@if ($item->updated_at)
+                        {{ \Carbon\Carbon::parse($item->updated_at) }}
+                    @else
+                        <i>Belum diselesaikan</i>
+                    @endif</td>
+                </tr>
+                <tr>
+                    <th>Email Pengadu</th>
+                    <td> {{ $item->email }}</td>
+                </tr>
+                <tr>
+                    <th>No Hp</th>
+                    <td> {{ $item->no_hp }}</td>
+                </tr>
+                <tr>
                     <th>Subject Aduan</th>
                     <td>{{ $item->subject }}</td>
                 </tr>
                 <tr>
                     <th>Deskripsi Aduan</th>
                     <td>{{ $item->description }}</td>
+                </tr>   
+                <tr>
+                    <th>Bukti Penyelesaian Pengaduan</th>
+                    <td><a href="{{  Storage::url($item->bukti_tl)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a></td>
                 </tr>
             </table>
 

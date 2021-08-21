@@ -9,7 +9,7 @@ class InnovationReport extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['users_id', 'name', 'innovation_sk_file', 'innovation_step', 'innovation_initiator', 'innovation_type', 'innovation_formats', 'time_innovation_implement', 'problem', 'solution', 'improvement', 'complain_innovation_total', 'complain_innovation_file', 'complain_improvement_total', 'complain_improvement_file', 'achievement_goal_level', 'achievement_goal_level_file', 'achievement_goal_problem', 'benefit_level', 'benefit_level_file', 'achievement_result_level', 'achievement_result_level_file', 'achievement_result_problem', 'innovation_strategy', 'video_innovation', 'innovation_profiles_id'];
+    protected $fillable = ['users_id', 'name', 'innovation_sk_file', 'innovation_step', 'innovation_initiator', 'innovation_type', 'innovation_formats', 'time_innovation_implement', 'problem', 'solution', 'improvement', 'complain_innovation_total', 'complain_innovation_file', 'complain_improvement_total', 'complain_improvement_file', 'achievement_goal_level', 'achievement_goal_level_file', 'achievement_goal_problem', 'benefit_level', 'benefit_level_file', 'achievement_result_level', 'achievement_result_level_file', 'achievement_result_problem', 'innovation_strategy', 'video_innovation', 'innovation_proposals_id'];
 
     protected $hidden = [];
 
@@ -18,9 +18,9 @@ class InnovationReport extends Model
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
-    public function innovation_profile()
+    public function innovation_proposal()
     {
-        return $this->belongsTo(InnovationProfile::class, 'innovation_profiles_id', 'id');
+        return $this->belongsTo(InnovationProposal::class, 'innovation_proposals_id', 'id');
     }
 
     public function innovation_proposal()

@@ -26,28 +26,23 @@
                     <th>Nama Inovasi</th>
                     <td>{{ $item->name }} <br>
                         @if($item->innovation_sk_file)
-                        <iframe src="{{  Storage::url($item->innovation_sk_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        <a href="{{  Storage::url($item->innovation_sk_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk membuka file SK</a>
                       <br>
                     @else 
-                      Tidak ada file
+                      <i>Tidak ada file</i>
                     @endif
                     </td>
                 </tr>
                 <tr>
                     <th>Tahapan Inovasi</th>
                     <td>@foreach (json_decode($item->innovation_step) as $step)
-                        &middot; {{$step}} <br>
+                        {{$step}}
                     @endforeach</td>
                 </tr>
                 <tr>
                     <th>Inisiator Inovasi</th>
                     <td>  @foreach (json_decode($item->innovation_initiator) as $initiator)
-                        &middot; {{$initiator}} <br>
+                        {{$initiator}}
                     @endforeach</td>
                 </tr>
                 <tr>
@@ -78,46 +73,31 @@
                     <th>Jumlah Pengaduan/saran terkait inovasi</th>
                     <td>{{ $item->complain_innovation_total}} <br>
                         @if($item->complain_innovation_file)
-                        <iframe src="{{  Storage::url($item->complain_innovation_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
-                      <br>
-                    @else 
-                      Tidak ada file
-                    @endif
+                    <a href="{{  Storage::url($item->complain_innovation_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
+                  <br>
+                @else 
+                  <i>Tidak ada file</i>
+                @endif
                     </td>
                 </tr>
                 <tr>
                     <th>Jumlah Pengaduan/saran yang sudah ditindaklanjuti</th>
                     <td>{{ $item->complain_improvement_total}} <br>
-                        @if($item->complain_improvement_file)
-                        <iframe src="{{  Storage::url($item->complain_improvement_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
-                      <br>
-                    @else 
-                      Tidak ada file
-                    @endif</td>
+                            @if($item->complain_improvement_file)
+                    <a href="{{  Storage::url($item->complain_improvement_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
+                  <br>
+                @else 
+                  <i>Tidak ada file</i>
+                @endif</td>
                 </tr>
                 <tr>
                     <th>Tingkat capaian tujuan inovasi daerah</th>
                     <td>{{ $item->achievement_goal_level}} <br>
                         @if($item->achievement_goal_level_file)
-                        <iframe src="{{  Storage::url($item->achievement_goal_level_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
+                        <a href="{{  Storage::url($item->achievement_goal_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
                       <br>
                     @else 
-                      Tidak ada file
+                      <i>Tidak ada file</i>
                     @endif</td>
                 </tr>
                 <tr>
@@ -129,32 +109,22 @@
                     </th>
                     <td>{{ $item->benefit_level }} <br>
                         @if($item->benefit_level_file)
-                        <iframe src="{{  Storage::url($item->benefit_level_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
-                          <br>
-                        @else 
-                          Tidak ada file
-                        @endif</td>
+                        <a href="{{  Storage::url($item->benefit_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
+                      <br>
+                    @else 
+                      <i>Tidak ada file</i>
+                    @endif</td>
                 </tr>
                 <tr>
                     <th>Tingkat capaian hasil inovasi daerah
                     </th>
                     <td>{{ $item->achievement_result_level }} <br>
                         @if($item->achievement_result_level_file)
-                        <iframe src="{{  Storage::url($item->achievement_result_level_file)  }}"
-                            frameBorder="0"
-                            scrolling="auto"
-                         height="100%"
-                         width="100%"
-                        ></iframe>
-                          <br>
-                        @else 
-                          Tidak ada file
-                        @endif</td>
+                        <a href="{{  Storage::url($item->achievement_result_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
+                      <br>
+                    @else 
+                      <i>Tidak ada file</i>
+                    @endif</td>
                 </tr>
                 <tr>
                     <th>Kendala pencapaian hasil <br>inovasi daerah</th>
@@ -167,13 +137,11 @@
                 <tr>
                     <th>Video inovasi daerah</th>
                     <td>   @if($item->video_innovation)
-                        {{-- <iframe width="420" height="345" src="{{ $item->video_innovation }}">
-                        </iframe> --}}
-                        <a href="{{ $item->video_innovation }}"  target="_blank" type="button" class="btn btn-success col-xs-5 row-md-5 px-2 col-lg-10 col-lg-offset-1 my-2 text-center">
+                        <a href="{{  Storage::url($item->video_innovation)  }}"  target="_blank" type="button" class="btn btn-success btn-sm">
                             <span  class="fas fa-video mr-3"></span>Buka Video</a>
                           <br>
                         @else 
-                          Tidak ada file
+                          <i>Tidak ada video</i>
                         @endif</td>
                 </tr>
                 

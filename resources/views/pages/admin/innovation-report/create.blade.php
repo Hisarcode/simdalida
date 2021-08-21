@@ -27,7 +27,11 @@
                 <input type="hidden" name="report_year" value="{{\Carbon\Carbon::now('Asia/Jakarta')->year}}">
                 <div class="form-group">
                     <label for="innovation_proposals_id"><b>Nama Inovasi</b></label>
+<<<<<<< HEAD
                     <select name="innovation_proposals_id" id="innovation_proposals_id" required class="form-control">
+=======
+                    <select name="innovation_proposals_id" required class="form-control">
+>>>>>>> 57e503a23c88f63698317ffa3dfec7ae4df2b400
                         <option value="">Pilih Nama Inovasi</option>
                         @foreach ($innovation as $proposal)
                         <option value="{{ $proposal->innovation_proposals_id }}">
@@ -50,24 +54,24 @@
 
                 <div class="form-group">
                     <label><strong><b>Tahapan Inovasi :</b></strong></label><br>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Inisiatif"> Tahap
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif" checked> Tahap
                         Inisiatif</label>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Uji Coba"> Tahap Uji
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba" checked> Tahap Uji
                         Coba</label>
-                    <label><input type="checkbox" name="innovation_step[]" value="Tahap Penerapan"> Tahap
+                    <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan" checked> Tahap
                         Penerapan</label>
                 </div>
 
                 <div class="form-group">
                     <label><strong><b>Inisiator Inovasi Daerah:</b></strong></label><br>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Kepala Daerah"> Kepala
+                    <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah" checked> Kepala
                         Daerah</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Anggota DPRD"> Anggota
+                    <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" checked> Anggota
                         DPRD</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="ASN"> ASN</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Perangkat Daerah"> Perangkat
+                    <label><input type="radio" name="innovation_initiator[]" value="ASN"> ASN</label>
+                    <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah" checked> Perangkat
                         Daerah</label>
-                    <label><input type="checkbox" name="innovation_initiator[]" value="Anggota Masyarakat"> Anggota
+                    <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat"  checked> Anggota
                         Masyarakat</label>
                 </div>
 
@@ -75,7 +79,7 @@
                     <label for="innovation_type"><b>Jenis Inovasi Daerah</b></label>
                     <br>
                     <label>
-                        <input type="radio" name="innovation_type" id="innovation_type" value="digital" checked> Digital
+                        <input type="radio" name="innovation_type" id="innovation_type" value="Digital" checked> Digital
                     </label>
                     <label>
                         <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" checked>
@@ -87,6 +91,7 @@
                     <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
                     <br>
                     <label>
+<<<<<<< HEAD
                         <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah"
                             checked> Inovasi Tata Kelola Pemerintah Daerah
                     </label>
@@ -99,6 +104,17 @@
                     <label>
                         <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya"
                             checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
+=======
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" checked> Inovasi Tata Kelola Pemerintah Daerah
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" checked> Inovasi Pelayanan Publik
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
+>>>>>>> 57e503a23c88f63698317ffa3dfec7ae4df2b400
                     </label>
                 </div>
 
@@ -204,14 +220,16 @@
 
                 <div class="form-group">
                     <label for="video_innovation"><b>Video Inovasi Daerah</b></label>
-                    <input type="text" class="form-control" name="video_innovation"
-                        placeholder="Masukkan link youtube dari video inovasi" value="{{ old('video_innovation') }}"
-                        required autocomplete="off">
+                    <br>
+                    <input type="file"
+                    name="video_innovation">
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
-                    Simpan Data
-                </button>
+            
+            <button class="btn btn-primary" name="save_action" value="KIRIM" onclick="return confirm('Yakin ingin mengirim laporan? jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim Laporan</button>
+            <button class="btn btn-warning" name="save_action" value="DRAFT" >Simpan sebagai Draft</button>     
+                
+
 
             </form>
         </div>
