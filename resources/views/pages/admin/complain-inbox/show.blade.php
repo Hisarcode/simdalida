@@ -27,17 +27,25 @@
                     <td>{{ $item->name }}</td>
                 </tr>
                 <tr>
+                    <th>Email</th>
+                    <td>{{ $item->email }}</td>
+                </tr>
+                <tr>
+                    <th>Nomor Handphone</th>
+                    <td>{{ $item->no_hp }}</td>
+                </tr>
+                <tr>
                     <th>Nama Inovasi yang diadukan</th>
                     <td>{{ $item->innovation_complain->name }}</td>
                 </tr>
                 <tr>
                     <th>Subject Aduan</th>
                     <td>{{ $item->subject }}</td>
-                </tr> 
+                </tr>
                 <tr>
                     <th>Deskripsi Aduan</th>
                     <td>{{ $item->description }}</td>
-                </tr>   
+                </tr>
             </table>
 
             <a href="{{ route('complain-inbox.index') }}" class="btn btn-primary">Kembali </a>

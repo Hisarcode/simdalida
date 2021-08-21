@@ -6,16 +6,16 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Daftar Pengaduan</h1>    
+        <h1 class="h3 mb-0 text-gray-800">Daftar Pengaduan</h1>
     </div>
 
 
-    <div class="card shadow mb-4"> 
+    <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-                <div class="mt-3 alert alert-success alert-dismissable">
-                    {{session('status')}}
-                </div>
+            <div class="mt-3 alert alert-success alert-dismissable">
+                {{session('status')}}
+            </div>
             @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -29,7 +29,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         <?php
                         $i = 1;
@@ -49,17 +49,17 @@
                                 @if ($complain->is_improvement == "sudah")
                                 <i class="fa fa-check" aria-hidden="true"></i> <b>Sudah Ditindaklanjuti</b>
                                 @elseif($complain->is_improvement == "belum")
-                                    <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
-                                    <div data-countdown="{{ $complain->end_time }}" style="display: inline">
-                                        <li style="display: inline" data-days="00">00</li>
-                                        <li style="display: inline" data-hours="00">00</li>
-                                        <li style="display: inline" data-minuts="00">00</li>
-                                        <li style="display: inline" data-seconds="00">00</li>
-                                    </div>
+                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu :
+                                <div data-countdown="{{ $complain->end_time }}" class="countdown">
+                                    <li data-days="00"><span>00</span></li>
+                                    <li data-hours="00"><span>00</span></li>
+                                    <li data-minuts="00"><span>00</span></li>
+                                    <li data-seconds="00"><span>00</span></li>
+                                </div>
                                 @endif
 
                             </td>
-                            <td> 
+                            <td>
                                 <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
@@ -67,22 +67,23 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 @if ( $complain->is_improvement == 'sudah')
-                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST"
+                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
-                                                                          
-                                @endif   
+
+                                @endif
                             </td>
-                            </tr>
-                            @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
-                            <tr>
+                        </tr>
+                        @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
+                        <tr>
                             <td>{{ $j++ }}</td>
                             <td>{{ $complain->innovation_complain->name }}
-                                
+
                             </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
@@ -90,17 +91,17 @@
                                 @if ($complain->is_improvement == "sudah")
                                 <i class="fa fa-check" aria-hidden="true"></i><b> Sudah Ditindaklanjuti</b>
                                 @elseif($complain->is_improvement == "belum")
-                                    <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
-                                    <div data-countdown="{{ $complain->end_time }}" style="display: inline">
-                                        <li style="display: inline" data-days="00">00</li>
-                                        <li style="display: inline" data-hours="00">00</li>
-                                        <li style="display: inline" data-minuts="00">00</li>
-                                        <li style="display: inline" data-seconds="00">00</li>
-                                    </div>
-                                @endif                      
+                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu :
+                                <div data-countdown="{{ $complain->end_time }}" class="countdown">
+                                    <li data-days="00"><span>00</span></li>
+                                    <li data-hours="00"><span>00</span></li>
+                                    <li data-minuts="00"><span>00</span></li>
+                                    <li data-seconds="00"><span>00</span></li>
+                                </div>
+                                @endif
 
                             </td>
-                            <td> 
+                            <td>
                                 <a href="{{ route('complain-inbox.edit', $complain->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
@@ -108,14 +109,15 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 @if ( $complain->is_improvement == 'sudah')
-                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('complain-inbox.destroy', $complain->id) }}" method="POST"
+                                    class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </form>                                  
-                                @endif   
+                                </form>
+                                @endif
                             </td>
                         </tr>
                         @endif
@@ -139,7 +141,6 @@
 @push('addon-script')
 
 <script>
-
     $('[data-countdown]').each(function () {
         var $deadline = new Date($(this).data('countdown')).getTime();
 
@@ -196,4 +197,35 @@
     })
 
 </script>
+@endpush
+
+
+@push('addon-style')
+<style>
+    .countdown li {
+        background-color: yellowgreen;
+        color: black;
+        display: inline-block;
+        font-size: 1rem;
+        list-style-type: none;
+        text-transform: uppercase;
+    }
+
+    .countdown li span {
+        display: block;
+        font-size: 1rem;
+    }
+
+    @media all and (max-width: 768px) {
+        .countdown li {
+            font-size: 1rem;
+            padding: 0rem;
+        }
+
+        .countdown li span {
+            font-size: 1rem;
+        }
+    }
+</style>
+
 @endpush
