@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\ComplainInboxController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ComplainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfographicController;
 use App\Http\Controllers\InnovationProposalController;
-use App\Http\Controllers\VideoController;
+use App\Http\Controllers\VideoGalleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::prefix('admin')
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
+        Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController');
 
         Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'admin']));
 
@@ -67,4 +69,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
 Route::get('/infographic/{id}', [InfographicController::class, 'show'])->name('infographic-detail');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/video', [VideoController::class, 'index'])->name('video');
+Route::get('/video', [VideoGalleryController::class, 'index'])->name('video');
+Route::get('/video/{id}', [VideoGalleryController::class, 'show'])->name('video-detail');
+
+Route::resource('chat', ChatController::class)->only(['store']);
