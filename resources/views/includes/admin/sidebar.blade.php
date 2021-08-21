@@ -48,6 +48,12 @@
             <span>Daftar Pengaduan</span></a>
     </li>
 
+    <li class="nav-item {{ request()->is('admin/chat-inbox') ?'active' : '' }}">
+        <a class="nav-link" href="{{ route('chat-inbox.index') }}">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Daftar Pesan</span></a>
+    </li>
+
     @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li
         class="nav-item {{ request()->is('admin/carousel') || request()->is('admin/infographic-content') || request()->is('admin/about') || request()->is('admin/video') ?'active' : '' }}">
