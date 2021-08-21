@@ -25,6 +25,7 @@
                             <th>Nama Inovasi yang diadukan</th>
                             <th>Nama Pengirim</th>
                             <th>Subject Aduan</th>
+                            <th>Waktu Pengaduan masuk</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -37,7 +38,7 @@
                         $total_belum =0;
                         ?>
                         @forelse ($complains as $complain)
-                        @if (Auth::user()->roles === 'SUPERADMIN')
+                        @if (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td><b>{{ $complain->innovation_complain->name }}</b>
@@ -45,9 +46,13 @@
                             </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
+                            <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>
+                         
                             <td>
                                 @if ($complain->is_improvement == "sudah")
                                 <i class="fa fa-check" aria-hidden="true"></i> <b>Sudah Ditindaklanjuti</b>
+                                <br>
+                                <p>diselesaikan pada: {{ \Carbon\Carbon::parse($complain->updated_at) }}</p>
                                 @elseif($complain->is_improvement == "belum")
                                     <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
                                     <div data-countdown="{{ $complain->end_time }}" style="display: inline">
@@ -86,9 +91,12 @@
                             </td>
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
+                            <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>
                             <td>
                                 @if ($complain->is_improvement == "sudah")
                                 <i class="fa fa-check" aria-hidden="true"></i><b> Sudah Ditindaklanjuti</b>
+                                <br>
+                                <p>diselesaikan pada: {{ \Carbon\Carbon::parse($complain->updated_at) }}</p>
                                 @elseif($complain->is_improvement == "belum")
                                     <b>Belum Ditindaklanjuti</b> <br> sisa waktu : 
                                     <div data-countdown="{{ $complain->end_time }}" style="display: inline">

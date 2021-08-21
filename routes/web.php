@@ -28,6 +28,7 @@ Route::prefix('admin')
             ->name('dashboard');
 
         Route::resource('user', '\App\Http\Controllers\Admin\UserController')->middleware((['auth', 'admin']));
+        Route::get('/resetpassword/{id}', '\App\Http\Controllers\Admin\UserController@resetpassword')->middleware((['auth', 'admin']));
 
         Route::resource('innovation-proposal', '\App\Http\Controllers\Admin\InnovationProposalController');
         Route::get('/actionedit/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actionedit');
@@ -52,8 +53,7 @@ Route::prefix('admin')
         Route::get('/editinfographic/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographic');
         Route::get('/editinfographicc/{id}', '\App\Http\Controllers\Admin\InfographicController@editinfographicc');
 
-        // Route::resource('change-password', '\App\Http\Controllers\Admin\ChangePasswordController');
-        Route::post('/changePassword', '\App\Http\Controllers\Admin\UserController@changePassword')->name('changePassword');
+        Route::resource('change-password', '\App\Http\Controllers\Admin\ChangePasswordController');
     });
 
 Auth::routes();

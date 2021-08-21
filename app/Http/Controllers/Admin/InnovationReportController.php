@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\InnovationReport;
-use App\Models\InnovationProfile;
+use App\Models\InnovationProposal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -19,12 +19,12 @@ class InnovationReportController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 'SUPERADMIN') {
-            $report = InnovationReport::orderBy('users_id', 'ASC')->get();
+            $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'ADMIN') {
-            $report = InnovationReport::orderBy('users_id', 'ASC')->get();
+            $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'OPERATOR') {
             $report = InnovationReport::where('users_id', Auth::user()->id)
-                ->orderBy('innovation_profiles_id', 'DESC')
+                ->orderBy('innovation_proposals_id', 'DESC')
                 ->orderBy('quartal', 'DESC')
                 ->get();
         }
@@ -39,7 +39,7 @@ class InnovationReportController extends Controller
      */
     public function create()
     {
-        $innovation = InnovationProfile::where('users_id', Auth::user()->id)->get();
+        $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
         return view('pages.admin.innovation-report.create', [
             'innovation' => $innovation
         ]);
@@ -76,7 +76,7 @@ class InnovationReportController extends Controller
                 'required',
                 Rule::unique('innovation_reports')->where(function ($query) use ($request) {
                     return $query->where('report_year', $request->get('report_year'))
-                        ->where('innovation_profiles_id', $request->get('innovation_profiles_id'))
+                        ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
                         ->where('quartal', $request->get('quartal'));
                 }),
             ],
@@ -86,10 +86,10 @@ class InnovationReportController extends Controller
         ])->validate();
 
         $report = new InnovationReport();
-        $ambil = InnovationProfile::where('id', $request->get('innovation_profiles_id'))->first()->name;
+        $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
         $report->users_id = $request->get('users_id');
         $report->name = $ambil;
-        $report->innovation_profiles_id = $request->get('innovation_profiles_id');
+        $report->innovation_proposals_id = $request->get('innovation_proposals_id');
         $report->innovation_step = json_encode($request->innovation_step);
         $report->innovation_initiator = json_encode($request->innovation_initiator);
         $report->innovation_type = $request->get('innovation_type');
@@ -106,7 +106,6 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
-        $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             $sk = $request->file('innovation_sk_file')->store('laporan/SKinovasi', 'public');
@@ -138,12 +137,26 @@ class InnovationReportController extends Controller
             $report->achievement_result_level_file = $arlf;
         }
 
+        if ($request->file('video_innovation')) {
+            $arlf = $request->file('video_innovation')->store('laporan/video_inovasi', 'public');
+            $report->video_innovation = $arlf;
+        }
+
         $report->report_year = $request->get('report_year');
         $report->quartal = $request->get('quartal');
+        $report->status = $request->get('save_action');
 
         $report->save();
 
-        return redirect()->route('innovation-report.index')->with('status', 'Created successfully!');
+        if ($request->get('save_action') == 'PUBLISH') {
+            return redirect()
+                ->route('innovation-report.index')
+                ->with('status', 'Laporan successfully saved and published');
+        } else {
+            return redirect()
+                ->route('innovation-report.index')
+                ->with('status', 'Laporan saved as draft');
+        }
     }
 
     /**
@@ -154,7 +167,7 @@ class InnovationReportController extends Controller
      */
     public function show($id)
     {
-        $item = InnovationReport::find($id);
+        $item = InnovationReport::with('innovation_proposal')->find($id);
         return view('pages.admin.innovation-report.show', ['item' => $item]);
     }
 
@@ -167,10 +180,21 @@ class InnovationReportController extends Controller
     public function edit($id)
     {
         $item = InnovationReport::findOrFail($id);
+        if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN') {
+            return view('pages.admin.innovation-report.edit', [
+                'item' => $item
+            ]);
+        }
 
-        return view('pages.admin.innovation-report.edit', [
-            'item' => $item
-        ]);
+        if (Auth::user()->roles == 'OPERATOR') {
+            if ($item->status == 'DRAFT') {
+                return view('pages.admin.innovation-report.edit', [
+                    'item' => $item
+                ]);
+            } elseif ($item->status == 'KIRIM') {
+                return redirect()->route('innovation-report.index')->with('status', 'Tidak bisa mengedit data karena status sudah "Terkirim"');
+            }
+        }
     }
 
     /**
@@ -185,7 +209,6 @@ class InnovationReportController extends Controller
         $report = InnovationReport::findOrFail($id);
 
         \Validator::make($request->all(), [
-            "users_id" => "required",
             "name" => "required",
             "innovation_step" => "required",
             "innovation_initiator" => "required",
@@ -203,11 +226,9 @@ class InnovationReportController extends Controller
             "achievement_result_level" => "required",
             "achievement_result_problem" => "required",
             "innovation_strategy" => "required",
-            "video_innovation" => "required",
             "quartal" => "required",
         ])->validate();
 
-        $report->users_id = $request->get('users_id');
         $report->name = $request->get('name');
         $report->innovation_step = json_encode($request->innovation_step);
         $report->innovation_initiator = json_encode($request->innovation_initiator);
@@ -275,9 +296,30 @@ class InnovationReportController extends Controller
             $report->achievement_result_level_file = $arlf;
         }
 
+
+        if ($request->file('video_innovation')) {
+            if ($report->video_innovation && file_exists(storage_path('app/public/' . $report->video_innovation))) {
+                \Storage::delete('public/' . $report->video_innovation);
+            }
+            $arlf = $request->file('video_innovation')->store('laporan/video_inovasi', 'public');
+            $report->video_innovation = $arlf;
+        }
+
         $report->report_year = $request->get('report_year');
         $report->quartal = $request->get('quartal');
+        $report->status = $request->get('save_action');
+
         $report->save();
+
+        if ($request->get('save_action') == 'PUBLISH') {
+            return redirect()
+                ->route('innovation-report.index')
+                ->with('status', 'Laporan successfully updated and published');
+        } else {
+            return redirect()
+                ->route('innovation-report.index')
+                ->with('status', 'Laporan saved as draft');
+        }
 
         return redirect()->route('innovation-report.index')->with('status', 'Data successfully updated');
     }
