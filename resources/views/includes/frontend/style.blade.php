@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{ url('front/css/reset.css') }}">
 <link rel="stylesheet" href="{{ url('front/style.css') }}">
 <link rel="stylesheet" href="{{ url('front/css/responsive.css') }}">
+<link rel="stylesheet" href="{{ url('front/chat.css') }}">
 <link href="{{ url('backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
 

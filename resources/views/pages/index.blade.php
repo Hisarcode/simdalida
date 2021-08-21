@@ -2,6 +2,84 @@
 
 @section('content')
 <!-- Hero Slider -->
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+@if(session('status'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{session('status')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+<section>
+
+    <button class="chat-btn">
+        Hubungi Kami
+    </button>
+
+    <div class="chat-popup">
+        <div class="chat-area">
+
+            <p class="text-center  text-bold py-3">Hubungi Kami</p>
+            <div class="contact-form-area m-top-30 p-0 m-0" style="background-color: #2E2751">
+                <form class="form" method="POST" action="{{ route('chat.store') }}">
+                    @csrf
+                    <div class="row p-0 m-0">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="icon"><i class="fa fa-user"></i></div>
+                                <input type="text" name="name" placeholder="Nama" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="icon"><i class="fa fa-phone"></i></div>
+                                <input type="text" name="no_hp" placeholder="Nomor Handphone" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="icon"><i class="fa fa-envelope"></i></div>
+                                <input type="text" name="email" placeholder="E-mail" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="icon"><i class="fa fa-envelope"></i></div>
+                                <input type="text" name="subject" placeholder="Subjek" required>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group textarea">
+                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                <textarea type="textarea" name="description" rows="5" placeholder="Deskripsi"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group button">
+                                <button type="submit" class="bizwheel-btn theme-2">Send Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="hero-slider style1">
     <div class="home-slider">
         <!-- Single Slider -->
@@ -156,7 +234,7 @@
                                     <th>Lihat Detail</th>
                                 </tr>
                             </thead>
-        
+
                             <tbody>
                                 <?php
                                 $i = 1;
@@ -188,9 +266,10 @@
                     <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                         <div class="section-title default text-center">
                             <div class="section-top">
-                                <a href="{{ route('infographic') }}"><button class="bizwheel-btn theme-2">Lihat Selengkapnya</button></a>
+                                <a href="{{ route('infographic') }}"><button class="bizwheel-btn theme-2">Lihat
+                                        Selengkapnya</button></a>
                             </div>
-        
+
                         </div>
                     </div>
 

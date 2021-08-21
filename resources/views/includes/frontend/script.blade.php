@@ -36,3 +36,12 @@
 
 <!-- Page level custom scripts -->
 <script src="{{ url('backend/js/demo/datatables-demo.js') }}"></script>
+
+<script>
+    const chatBtn = document.querySelector('.chat-btn');
+    const popup = document.querySelector('.chat-popup');
+
+    chatBtn.addEventListener('click', ()=>{
+        popup.classList.toggle('show');
+    })
+</script>

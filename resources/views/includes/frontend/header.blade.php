@@ -71,22 +71,9 @@
                                     </nav>
                                     <!--/ End Main Menu -->
                                     <!-- Right Bar -->
-                                    <div class="right-bar">
+                                    <div class="right-bar" style="margin-right: 80px ">
                                         <!-- Search Bar -->
-                                        <ul class="right-nav" style="margin-left: 20px;">
-                                            <li class="top-search"><a href="#0"><i class="fa fa-search"></i></a>
-                                            </li>
 
-                                        </ul>
-                                        <!--/ End Search Bar -->
-                                        <!-- Search Form -->
-                                        <div class="search-top">
-                                            <form action="#" class="search-form" method="get">
-                                                <input type="text" name="s" value="" placeholder="Search here" />
-                                                <button type="submit" id="searchsubmit"><i
-                                                        class="fa fa-search"></i></button>
-                                            </form>
-                                        </div>
                                         <!--/ End Search Form -->
                                     </div>
                                     <!--/ End Right Bar -->
