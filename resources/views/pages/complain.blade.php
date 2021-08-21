@@ -50,7 +50,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="icon"><i class="fa fa-phone"></i></div>
-                                            <input type="text" name="phonenumber" placeholder="Nomor Handphone">
+                                            <input type="text" name="no_hp" placeholder="Nomor Handphone">
                                         </div>
                                     </div>
                                     <div class="col-12">

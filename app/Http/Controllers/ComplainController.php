@@ -40,6 +40,8 @@ class ComplainController extends Controller
     {
         $validation = \Validator::make($request->all(), [
             "name" => "required",
+            "no_hp" => "required",
+            "email" => "required",
             "subject" => "required",
             "description" => "required",
             "purpose_innovation" => "required"
@@ -48,6 +50,9 @@ class ComplainController extends Controller
         $complain = new Complain();
 
         $complain->name = $request->get('name');
+        $complain->no_hp = $request->get('no_hp');
+        $complain->email = $request->get('email');
+        $complain->bukti_tl = '';
         $complain->subject = $request->get('subject');
         $complain->description = $request->get('description');
         $complain->purpose_innovation = $request->get('purpose_innovation');

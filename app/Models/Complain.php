@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Complain extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'subject', 'description', 'is_improvement', 'purpose_innovation'];
+    protected $fillable = [
+        'name',
+        'no_hp',
+        'email',
+        'subject',
+        'description',
+        'is_improvement',
+        'purpose_innovation'
+    ];
 
     protected $hidden = [];
 
