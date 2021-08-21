@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,6 +42,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $inisiators = DB::table('inisiators')->orderBy('id', 'ASC')->limit(5)->get();
+        return view('auth.register', [
+            'inisiators' => $inisiators
+        ]);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -68,6 +77,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'inisiator_id' => $data['inisiator_id'],
             'username' => $data['username'],
             'nik' => $data['nik'],
             'email' => $data['email'],

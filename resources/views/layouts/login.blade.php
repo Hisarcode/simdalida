@@ -42,6 +42,25 @@
   <!-- Custom scripts for all pages-->
   <script src="{{ url('backend/js/sb-admin-2.min.js') }}"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("#inisiator_id").change(function() {
+            let selector = $(this).val();
+            console.log(selector);
+            if (selector == 3) {
+                console.log('ok');
+                document.querySelector('label[for=nik]').innerHTML ="NIP";
+            } else {
+              document.querySelector('label[for=nik]').innerHTML="NIK";
+            }
+
+        });
+
+
+    });
+  </script>
+
+
 </body>
 
 </html>
