@@ -37,11 +37,44 @@ class InnovationReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create0()
+    {
+        $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+        return view('pages.admin.innovation-report.create0', [
+            'innovation' => $innovation
+        ]);
+    }
+
+
     public function create()
     {
         $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
-        return view('pages.admin.innovation-report.create', [
+        return view('pages.admin.innovation-report.create0', [
             'innovation' => $innovation
+        ]);
+    }
+
+    public function store0(Request $request)
+    {
+        $report = new InnovationReport();
+        $report->innovation_proposals_id = $request->get('innovation_proposals_id');
+
+        $get_quartal = InnovationReport::where('innovation_proposals_id', $report->innovation_proposals_id)->latest()->first()->quartal;
+
+        if ($get_quartal == 1) {
+            $quartal_next = 2;
+        } else if ($get_quartal == 2) {
+            $quartal_next = 3;
+        } else if ($get_quartal == 3) {
+            $quartal_next = 4;
+        } else if ($get_quartal == 4) {
+            $quartal_next = '';
+        }
+
+        $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+        return view('pages.admin.innovation-report.create', [
+            'innovation' => $innovation,
+            'quartal_next' => $quartal_next
         ]);
     }
 
@@ -245,7 +278,7 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
-        $report->video_innovation = $request->get('video_innovation');
+        // $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             if ($report->innovation_sk_file && file_exists(storage_path('app/public/' . $report->innovation_sk_file))) {

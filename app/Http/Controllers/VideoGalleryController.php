@@ -27,7 +27,7 @@ class VideoGalleryController extends Controller
     public function index()
     {
 
-        $report = InnovationReport::with(['innovation_proposal'])->whereNotNull('video_innovation')->orderBy('users_id', 'ASC')->get();
+        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->orderBy('users_id', 'ASC')->get();
         $about = About::orderBy('id', 'DESC')->get();
 
         return view('pages.videogallery', [
@@ -39,8 +39,7 @@ class VideoGalleryController extends Controller
 
     public function show(Request $request, $id)
     {
-        $video = InnovationReport::with(['innovation_proposal'])
-            ->where('id', $id)
+        $video = InnovationProfile::where('id', $id)
             ->firstOrFail();
 
         $about = About::orderBy('id', 'DESC')->get();

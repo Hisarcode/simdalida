@@ -25,13 +25,9 @@
                 @csrf
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
                 <input type="hidden" name="report_year" value="{{\Carbon\Carbon::now('Asia/Jakarta')->year}}">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="innovation_proposals_id"><b>Nama Inovasi</b></label>
-<<<<<<< HEAD
                     <select name="innovation_proposals_id" id="innovation_proposals_id" required class="form-control">
-=======
-                    <select name="innovation_proposals_id" required class="form-control">
->>>>>>> 57e503a23c88f63698317ffa3dfec7ae4df2b400
                         <option value="">Pilih Nama Inovasi</option>
                         @foreach ($innovation as $proposal)
                         <option value="{{ $proposal->innovation_proposals_id }}">
@@ -39,12 +35,30 @@
                         </option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
 
                 <div class="form-group">
+                    <label for="innovation_proposals_id"><b>Nama Inovasi</b></label>
+                    <select name="innovation_proposals_id" required class="form-control">
+                        <option value="">Pilih Nama Inovasi</option>
+                        @foreach ($innovation as $proposal)
+                        <option value="{{ $proposal->id }}">
+                            {{ $proposal->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- <div class="form-group">
                     <label for="quartal"><strong>Triwulan</strong></label>
                     <input class="form-control" type="text" name="quartal" id="quartal" value=""
                         placeholder="Pilih Inovasi" readonly="readonly">
+                </div> --}}
+
+                <div class="form-group">
+                    <label for="quartal"><strong>Laporan Triwulan Ke -</strong></label>
+                    <input type="text" class="form-control" name="quartal"
+                        value="{{ $quartal_next }}" readonly>
                 </div>
 
                 <div class="form-group">
@@ -91,7 +105,6 @@
                     <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
                     <br>
                     <label>
-<<<<<<< HEAD
                         <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah"
                             checked> Inovasi Tata Kelola Pemerintah Daerah
                     </label>
@@ -104,17 +117,6 @@
                     <label>
                         <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya"
                             checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
-=======
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" checked> Inovasi Tata Kelola Pemerintah Daerah
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" checked> Inovasi Pelayanan Publik
-                    </label>
-                    <br>
-                    <label>
-                        <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" checked> Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
->>>>>>> 57e503a23c88f63698317ffa3dfec7ae4df2b400
                     </label>
                 </div>
 

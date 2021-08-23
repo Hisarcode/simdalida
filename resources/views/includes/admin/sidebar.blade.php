@@ -19,7 +19,7 @@
     @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
     <li class="nav-item {{ request()->is('admin/user') ?'active' : '' }}">
         <a class="nav-link" href="{{ route('user.index') }}">
-            <i class="fas fa-fw fa-hotel"></i>
+            <i class="fas fa-fw fa-user"></i>
             <span style="font-size: 12px">Manajemen Admin/Operator</span></a>
     </li>
     @endif

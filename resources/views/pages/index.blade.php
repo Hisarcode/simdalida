@@ -29,7 +29,7 @@
 
     <div class="chat-popup">
         <div class="chat-area">
-
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             <p class="text-center  text-bold py-3">Hubungi Kami</p>
             <div class="contact-form-area m-top-30 p-0 m-0" style="background-color: #2E2751">
                 <form class="form" method="POST" action="{{ route('chat.store') }}">
@@ -39,12 +39,6 @@
                             <div class="form-group">
                                 <div class="icon"><i class="fa fa-user"></i></div>
                                 <input type="text" name="name" placeholder="Nama" required>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <div class="icon"><i class="fa fa-phone"></i></div>
-                                <input type="text" name="no_hp" placeholder="Nomor Handphone" required>
                             </div>
                         </div>
                         <div class="col-12">
@@ -78,6 +72,8 @@
             </div>
         </div>
     </div>
+
+    <button class="open-button" onclick="openForm()">Chat</button>
 </section>
 
 <section class="hero-slider style1">
@@ -113,10 +109,10 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
-                    <div class="icon"><i class="fa fa-book"></i></div>
+                    <div class="icon"><i class="fa fa-external-link-square"></i></div>
                     <div class="conter-content">
                         <div class="counter-head">
-                            <h3><b class="number">{{ $proposal }}</b><span>+</span></h3>
+                            <h3><b class="number">{{ $proposal }}</b><span></span></h3>
                         </div>
                         <p>Inovasi Masuk</p>
                     </div>
@@ -126,10 +122,10 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
-                    <div class="icon"><i class="fa fa-users"></i></div>
+                    <div class="icon"><i class="fa fa-check-square"></i></div>
                     <div class="conter-content">
                         <div class="counter-head">
-                            <h3><b class="number">0</b><span>+</span></h3>
+                            <h3><b class="number">{{ $terealisasi }}</b><span></span></h3>
                         </div>
                         <p>Inovasi Terealisasi</p>
                     </div>
@@ -139,12 +135,12 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
-                    <div class="icon"><i class="fa fa-life-ring"></i></div>
+                    <div class="icon"><i class="fa fa-user"></i></div>
                     <div class="conter-content">
                         <div class="counter-head">
-                            <h3><b class="number">{{ $user }}</b><span>+</span></h3>
+                            <h3><b class="number">{{ $user }}</b><span></span></h3>
                         </div>
-                        <p>Perangkat Daerah</p>
+                        <p>Inovator</p>
                     </div>
                 </div>
                 <!--/ End Single Counterup -->
@@ -152,10 +148,10 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Single Counterup -->
                 <div class="single-counter">
-                    <div class="icon"><i class="fa fa-life-ring"></i></div>
+                    <div class="icon"><i class="fa fa-inbox"></i></div>
                     <div class="conter-content">
                         <div class="counter-head">
-                            <h3><b class="number">{{ $complains }}</b><span>+</span></h3>
+                            <h3><b class="number">{{ $complains }}</b><span></span></h3>
                         </div>
                         <p>Jumlah Aduan</p>
                     </div>
@@ -192,8 +188,8 @@
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="features-main ">
                     <div class="title">
-                        <h2>Video Inovasi Daerah</h2>
-                        {{-- <p>Ini merupakan penjelasan dari video jika diperlukan</p> --}}
+                        <h2>Profil Sanggau</h2>
+                        <p style="color: antiquewhite">{{ \Illuminate\Support\Str::limit($video->about_content, 350, $end='...') }}</p>
                     </div>
 
 
@@ -237,20 +233,29 @@
 
                             <tbody>
                                 <?php
-                                $i = 1;
-                                ?>
+                                        $i = 1;
+                                        ?>
                                 @forelse ($infographic as $profile)
                                 <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $profile->user->name }}</td>
-                                    <td>{{ $profile->name }}</td>
+                                    <td>{{ $profile->innovation_proposal->name }}</td>
                                     <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
                                     <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                                     <td>
-                                        <a href="{{ route('infographic-detail', $profile->id) }}" class="btn btn-info">
+                                        <a href="{{ route('infographic-detail', $profile->id) }}"
+                                            class="btn btn-info">
                                             <i class="fa fa-eye"></i>
-                                        </a>
+                                        </a> 
+                                        @guest
+                                        @endguest
+                                        @auth
+                                        @if ($profile->sign == 0)
+                                        <i class="fa fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="Ada Laporan yg belum dikumpulkan" style="color: red"></i>
+                                        @endif
+                                        @endauth
                                     </td>
+                                   
                                 </tr>
                                 @empty
                                 <tr>
@@ -280,3 +285,11 @@
 </section>
 <!--/ End Portfolio -->
 @endsection
+
+@push('addon-script')
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+@endpush

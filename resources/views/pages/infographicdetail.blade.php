@@ -10,20 +10,18 @@
                         <div class="col-12">
                             <div class="blog-single-main">
                                 <div class="main-image">
-                                    <h2 class="sidebar-title blog-title pb-4">{{ $infographic->name }}</h2>
+                                    <h2 class="sidebar-title blog-title pb-4">{{ $infographic->innovation_proposal->name }}</h2>
 
 
-                                    @if ($infographic->image == NULL) 
-                                    <img src="front/img/logo-sgu.PNG" alt="{{ $infographic->name }}">
-                                    @else
-                                    <img src="{{ Storage::url($infographic->image) }}" alt="{{ $infographic->name }}">
+                                    @if ($infographic->kualitas_inovasi) 
+                                    <img src="{{ Storage::url($infographic->kualitas_inovasi) }}" alt="{{ $infographic->innovation_proposal->name }}">
                                     @endif
                                 </div>
                                 <div class="blog-detail">
                                     
                                             <table class="table table-bordered">
                                                 <tr>
-                                                    <th width="50%">Nama Perangkat Daerah</th>
+                                                    <th width="50%">Inovator</th>
                                                     <td>{{ $infographic->user->name }}</td>
                                                 </tr>
                                                 <tr>
@@ -35,19 +33,15 @@
                                                     <td>{{ \Carbon\Carbon::parse($infographic->innovation_proposal->time_innovation_implement)->format('d, M Y') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Deskripsi Inovasi</th>
-                                                    <td>{!! $infographic->description !!}</td>
-                                                </tr>
-                                                <tr>
                                                     <th>Tahapan Inovasi</th>
                                                     <td>@foreach (json_decode($infographic->innovation_proposal->innovation_step) as $step)
-                                                        &middot; {{$step}} <br>
+                                                        {{$step}} <br>
                                                         @endforeach</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Inisiator Inovasi</th>
                                                     <td> @foreach (json_decode($infographic->innovation_proposal->innovation_initiator) as $initiator)
-                                                        &middot; {{$initiator}} <br>
+                                                        {{$initiator}} <br>
                                                         @endforeach</td>
                                                 </tr>
                                                 <tr>
@@ -108,11 +102,9 @@
                             <!-- Single News -->
                             @foreach ($post as $item)
                             <div class="single-f-news">
-                                <div class="post-thumb"><a href="{{ route('infographic-detail', $item->id) }}">@if ($item->image == null)
-                                    <img src="front/img/noimage.JPG">
-                                    @else
-                                    <img src="{{ Storage::url($item->image) }}"
-                                            alt="{{ $item->name }}">
+                                <div class="post-thumb"><a href="{{ route('infographic-detail', $item->id) }}">@if ($item->kualitas_inovasi)
+                                    <img src="{{ Storage::url($item->kualitas_inovasi) }}"
+                                            alt="{{ $item->innovation_proposal->name }}">
                                 @endif</a></div>
                                 <div class="content">
                                     <p class="post-meta"><time class="post-date"><i class="fa fa-clock-o"></i>{{ \Carbon\Carbon::parse($item->innovation_proposal->time_innovation_implement)->format('d, M Y') }}</time></p>
