@@ -33,11 +33,12 @@
                     <label for="innovation_sk_file">SK Bupati</label>
                     <br>
                     @if($item->innovation_sk_file)
-                    <a href="{{  Storage::url($item->innovation_sk_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->innovation_sk_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="innovation_sk_file" name="innovation_sk_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
@@ -86,25 +87,25 @@
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Kepala Daerah"
                             value="Kepala Daerah"> Kepala Daerah</label>
-                        <br>
+                    <br>
                     <label for="Anggota DPRD"> <input type="checkbox"
                             {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Anggota DPRD"
                             value="Anggota DPRD"> Anggota DPRD</label>
-                        <br>
+                    <br>
                     <label for="ASN"> <input type="checkbox"
                             {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="ASN" value="ASN">
                         ASN</label>
-                        <br>
+                    <br>
                     <label for="Perangkat Daerah"> <input type="checkbox"
                             {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Perangkat Daerah"
                             value="Perangkat Daerah"> Perangkat Daerah</label>
-                        <b></b>
+                    <b></b>
                     <label for="Anggota Masyarakat"> <input type="checkbox"
                             {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
@@ -154,56 +155,62 @@
                 <div class="form-group">
                     <label for="time_innovation_implement"><strong>Waktu Pelaksanaan Inovasi Daerah</strong></label>
                     <input type="date" class="form-control" name="time_innovation_implement" placeholder=""
-                        value="{{ $item->time_innovation_implement }}">
+                        value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->time_innovation_implement)->format('d/m/Y')}}">
                 </div>
 
                 <div class="form-group">
-                    <label for="problem"><strong>Permasalahan/kendala yang dihadapi dalam pelaksanaan inovasi daerah</strong></label>
-                        <textarea type="text" name="problem" id="problem" class="form-control"
+                    <label for="problem"><strong>Permasalahan/kendala yang dihadapi dalam pelaksanaan inovasi
+                            daerah</strong></label>
+                    <textarea type="text" name="problem" id="problem" class="form-control"
                         placeholder="Permasalahan Pelaksanaan inovasi daerah">{{ $item->problem }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="solution"><strong>Solusi yang dilakukan terhadap permasalahan/kendala</strong></label>
-                        <textarea type="text" name="solution" id="solution" class="form-control"
+                    <textarea type="text" name="solution" id="solution" class="form-control"
                         placeholder="Solusi terhadap permasalahan">{{ $item->solution }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="improvement"><strong>Tindaklanjut terhadap permasalahan/kendala sebelumnya</strong></label>
-                        <textarea type="text" name="improvement" id="improvement" class="form-control"
+                    <label for="improvement"><strong>Tindaklanjut terhadap permasalahan/kendala
+                            sebelumnya</strong></label>
+                    <textarea type="text" name="improvement" id="improvement" class="form-control"
                         placeholder="Tindaklanjut terdahap permasalahan/kendala">{{ $item->improvement }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="complain_innovation_total"><strong>Jumlah pengaduan/saran terkait inovasi</strong></label>
+                    <label for="complain_innovation_total"><strong>Jumlah pengaduan/saran terkait
+                            inovasi</strong></label>
                     <input type="text" class="form-control" name="complain_innovation_total" placeholder=""
                         value="{{ $item->complain_innovation_total }}">
                     <label for="complain_innovation_file">Upload Dokumen rekapitulasi pengaduan</label>
                     <br>
                     @if($item->complain_innovation_file)
-                    <a href="{{  Storage::url($item->complain_innovation_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->complain_innovation_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="complain_innovation_file" name="complain_innovation_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="complain_improvement_total"><strong>Jumlah pengaduan/saran yang sudah ditindaklanjuti</strong></label>
+                    <label for="complain_improvement_total"><strong>Jumlah pengaduan/saran yang sudah
+                            ditindaklanjuti</strong></label>
                     <input type="text" class="form-control" name="complain_improvement_total"
                         placeholder="Hasil Inovasi Daerah" value="{{ $item->complain_improvement_total }}">
                     <label for="complain_improvement_file">Upload dokumen penyelesaian pengaduan</label>
                     <br>
                     @if($item->complaint_improvement_file)
-                    <a href="{{  Storage::url($item->complaint_improvement_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->complaint_improvement_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="complaint_improvement_file" name="complaint_improvement_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
@@ -216,19 +223,22 @@
                     <label for="achievement_goal_level_file">Upload dokumen pendukung</label>
                     <br>
                     @if($item->achievement_goal_level_file)
-                    <a href="{{  Storage::url($item->achievement_goal_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->achievement_goal_level_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="achievement_goal_level_file" name="achievement_goal_level_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="achievement_goal_problem"><strong>Kendala pencapaian tujuan inovasi daerah</strong></label>
-                        <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem" class="form-control">{{ $item->achievement_goal_problem }}</textarea>
+                    <label for="achievement_goal_problem"><strong>Kendala pencapaian tujuan inovasi
+                            daerah</strong></label>
+                    <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem"
+                        class="form-control">{{ $item->achievement_goal_problem }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -238,11 +248,12 @@
                     <label for="benefit_level_file">Upload dokumen pendukung</label>
                     <br>
                     @if($item->benefit_level_file)
-                    <a href="{{  Storage::url($item->benefit_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->benefit_level_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="benefit_level_file" name="benefit_level_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
@@ -255,11 +266,12 @@
                     <label for="achievement_result_level_file">Upload dokumen pendukung</label>
                     <br>
                     @if($item->achievement_result_level_file)
-                    <a href="{{  Storage::url($item->achievement_result_level_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
-                  <br>
-                @else 
-                  Tidak ada file
-                @endif
+                    <a href="{{  Storage::url($item->achievement_result_level_file)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    Tidak ada file
+                    @endif
                     <br>
                     <input id="achievement_result_level_file" name="achievement_result_level_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
@@ -267,13 +279,13 @@
 
                 <div class="form-group">
                     <label for="achievement_result_problem">Kendala Pencapaian Hasil Inovasi Daerah</label>
-                        <textarea type="text" name="achievement_result_problem" id="achievement_result_problem" class="form-control"
-                        placeholder="">{{ $item->achievement_result_problem }}</textarea>
+                    <textarea type="text" name="achievement_result_problem" id="achievement_result_problem"
+                        class="form-control" placeholder="">{{ $item->achievement_result_problem }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="innovation_strategy"><strong>Strategi Pelaksanaan Inovasi</strong></label>
-                        <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
+                    <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
                         placeholder="">{{ $item->innovation_strategy }}</textarea>
                 </div>
 
@@ -281,18 +293,21 @@
                     <label for="video_innovation">Video inovasi daerah</label>
                     <br>
                     @if($item->video_innovation)
-                    <a href="{{  Storage::url($item->video_innovation)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka video</a>
-                  <br>
-                @else 
-                  Tidak ada video
-                @endif
+                    <a href="{{  Storage::url($item->video_innovation)  }}" target="_blank" class="btn btn-warning">Klik
+                        Disini untuk membuka video</a>
+                    <br>
+                    @else
+                    Tidak ada video
+                    @endif
                     <br>
                     <input id="video_innovation" name="video_innovation" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah video</small>
                 </div>
 
-                <button class="btn btn-primary" name="save_action" value="KIRIM" onclick="return confirm('Yakin ingin mengirim laporan? jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim Laporan</button>
-                <button class="btn btn-secondary" name="save_action" value="DRAFT" >Simpan sebagai Draft</button> 
+                <button class="btn btn-primary" name="save_action" value="KIRIM"
+                    onclick="return confirm('Yakin ingin mengirim laporan? jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
+                    Laporan</button>
+                <button class="btn btn-secondary" name="save_action" value="DRAFT">Simpan sebagai Draft</button>
 
             </form>
         </div>
