@@ -29,20 +29,22 @@
                     <select name="innovation_proposals_id" required class="form-control">
                         <option value="">Pilih Nama Inovasi</option>
                         @foreach ($innovation as $proposal)
+                        @if ($proposal->completed_quartal == 0)
                         <option value="{{ $proposal->id }}">
                             {{ $proposal->name }}
                         </option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
 
-               
 
-            
+
+
                 <button type="submit" class="btn btn-primary btn-block">
                     Lanjut
-                </button>    
-                
+                </button>
+
 
 
             </form>
@@ -53,6 +55,3 @@
 <!-- /.container-fluid -->
 
 @endsection
-
-
-

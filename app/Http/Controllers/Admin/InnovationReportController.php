@@ -39,9 +39,19 @@ class InnovationReportController extends Controller
      */
     public function create0()
     {
-        $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+        $innovations = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+
+        foreach ($innovations as $innovation) {
+            $report = InnovationReport::where('innovation_proposals_id', $innovation->id)->max('quartal');
+            if ($report == 4) {
+                $innovation->completed_quartal = '1';
+            } else {
+                $innovation->completed_quartal = '0';
+            }
+        }
+
         return view('pages.admin.innovation-report.create0', [
-            'innovation' => $innovation
+            'innovation' => $innovations
         ]);
     }
 
@@ -56,12 +66,14 @@ class InnovationReportController extends Controller
 
     public function store0(Request $request)
     {
-        $report = new InnovationReport();
-        $report->innovation_proposals_id = $request->get('innovation_proposals_id');
+        $innovation_proposals_id = $request->get('innovation_proposals_id');
 
-        $get_quartal = InnovationReport::where('innovation_proposals_id', $report->innovation_proposals_id)->latest()->first()->quartal;
 
-        if ($get_quartal == 1) {
+        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->max('quartal');
+
+        if (empty($get_quartal)) {
+            $quartal_next = 1;
+        } else if ($get_quartal == 1) {
             $quartal_next = 2;
         } else if ($get_quartal == 2) {
             $quartal_next = 3;
@@ -71,7 +83,7 @@ class InnovationReportController extends Controller
             $quartal_next = '';
         }
 
-        $innovation = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+        $innovation = InnovationProposal::find($innovation_proposals_id);
         return view('pages.admin.innovation-report.create', [
             'innovation' => $innovation,
             'quartal_next' => $quartal_next
