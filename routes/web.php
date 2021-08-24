@@ -48,7 +48,7 @@ Route::prefix('admin')
         Route::post('/innovation-report.store0', '\App\Http\Controllers\Admin\InnovationReportController@store0')->name('innovation-report.store0');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
-        Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController');
+        Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController')->middleware((['auth', 'admin']));
 
         Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'admin']));
 

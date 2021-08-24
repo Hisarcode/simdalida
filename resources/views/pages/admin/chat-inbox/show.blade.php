@@ -31,8 +31,16 @@
                     <td>{{ $item->email }}</td>
                 </tr>
                 <tr>
-                    <th>Nomor Handphone</th>
-                    <td>{{ $item->no_hp }}</td>
+                    <th>Waktu Pesan Masuk</th>
+                    <td>{{ $item->created_at }}</td>
+                </tr>
+                <tr>
+                    <th>Waktu Pesan Dibalas</th>
+                    <td>@if ($item->reply)
+                        {{ $item->updated_at }}
+                    @else
+                        <i>Pesan Belum dibalas</i>
+                    @endif</td>
                 </tr>
                 <tr>
                     <th>Subject Pesan</th>
@@ -42,7 +50,12 @@
                     <th>Deskripsi Pesan</th>
                     <td>{{ $item->description }}</td>
                 </tr>
+             
             </table>
+            <div class="form-group">
+                <label for="reply"><strong>Balasan</strong></label>
+                <textarea type="text" name="reply" id="reply" class="form-control" readonly>{{ $item->reply }}</textarea>
+            </div>
 
             <a href="{{ route('chat-inbox.index') }}" class="btn btn-primary">Kembali </a>
         </div>

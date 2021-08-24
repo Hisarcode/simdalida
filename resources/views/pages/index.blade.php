@@ -73,7 +73,6 @@
         </div>
     </div>
 
-    <button class="open-button" onclick="openForm()">Chat</button>
 </section>
 
 <section class="hero-slider style1">

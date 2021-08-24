@@ -24,6 +24,8 @@
                             <th>No</th>
                             <th>Nama Pengirim</th>
                             <th>Subject Pesan</th>
+                            <th>Waktu Masuk</th>
+                            <td>Sudah Dibalas?</td>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -38,12 +40,28 @@
 
                             <td>{{ $chat->name }}</td>
                             <td>{{ $chat->subject }}</td>
+                            <td>{{ $chat->created_at }}</td>
+                            <td>@if ($chat->reply)
+                                <button class="btn btn-success btn-sm">Sudah Dibalas</button>
+                            @else
+                            <button class="btn btn-warning btn-sm">Belum dibalas</button>
+                            @endif</td>
 
                             <td>
 
                                 <a href="{{ route('chat-inbox.show', $chat->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
+                                @if ($chat->reply)
+                                    
+                                @else
+                                <a href="{{ route('chat-inbox.edit', $chat->id) }}" class="btn btn-info">
+                                    <i class="fa fa-paper-plane"></i>
+                                </a>
+                                @endif
+                          
+
+                               
                                 <form action="{{ route('chat-inbox.destroy', $chat->id) }}" method="POST"
                                     class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
