@@ -108,7 +108,7 @@
                                 @endif</a></div>
                                 <div class="content">
                                     <p class="post-meta"><time class="post-date"><i class="fa fa-clock-o"></i>{{ \Carbon\Carbon::parse($item->innovation_proposal->time_innovation_implement)->format('d, M Y') }}</time></p>
-                                    <h4 class="title"><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->name }}</a></h4>
+                                    <h4 class="title"><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->innovation_proposal->name }}</a></h4>
                                 </div>
                             </div>
                             @endforeach

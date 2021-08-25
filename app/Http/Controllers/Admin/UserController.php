@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 use App\Models\InnovationProposal;
 
@@ -80,7 +81,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = User::find($id);
+        return view('pages.admin.user.show', ['item' => $item]);
     }
 
     /**
@@ -112,6 +114,15 @@ class UserController extends Controller
         $user->username = $request->get('username');
         $user->roles = $request->get('roles');
         $user->save();
+
+        $email = $user->email;
+
+        $data = array('name' => $user->name);
+
+        Mail::send('pages.admin.user.mailuser', $data, function ($message) use ($email) {
+            $message->to($email, 'Bapak ibu')->subject('Akses halaman operator Simdalida');
+            $message->from('simdalida@gmail.com', 'Admin Simdalida');
+        });
         return redirect()->route('user.index')->with('status', 'Updated successfully!');
     }
 

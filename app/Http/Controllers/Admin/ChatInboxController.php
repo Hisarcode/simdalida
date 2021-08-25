@@ -65,8 +65,8 @@ class ChatInboxController extends Controller
         $data = array('name' => $chat->name, 'reply' => $chat->reply, 'subject' => $chat->subject, 'description' => $chat->description);
 
         Mail::send('pages.admin.chat-inbox.mail', $data, function ($message) use ($email) {
-            $message->to($email, 'Admin Simdalida')->subject('Balas Pesan Dari anda');
-            $message->from('fikrihanif84@gmail.com', 'Fikri Hanif');
+            $message->to($email, 'Bapak ibu')->subject('Balas Pesan Dari anda');
+            $message->from('simdalida@gmail.com', 'Fikri Hanif');
         });
 
         return redirect()->route('chat-inbox.index')->with('status', 'Pesan Berhasil Dikirim');

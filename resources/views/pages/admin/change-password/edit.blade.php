@@ -87,7 +87,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Yakin ingin mengubah password?');">
                     Ubah Password
                 </button>
 

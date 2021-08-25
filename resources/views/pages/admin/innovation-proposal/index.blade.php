@@ -20,9 +20,12 @@
     <div class="card shadow mb-4"> 
         <div class="card-body">
             @if(session('status'))
-                <div class="alert alert-success alert-dismissable">
-                    {{session('status')}}
-                </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             @endif
 
             <div class="table-responsive">
@@ -51,7 +54,11 @@
                         @forelse ($proposal as $proposal)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $proposal->name }}</td>
+                            <td>{{ $proposal->name }} 
+                                @if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN')
+                                <hr> <b>Inovator:</b> {{ $proposal->user->name }}
+                                 @endif
+                            </td>
                             <td> @foreach (json_decode($proposal->innovation_step) as $step)
                                 {{$step}} <br>
                             @endforeach
@@ -64,11 +71,11 @@
                             <td>{{ $proposal->innovation_type }}</td>
                             <td>{{ $proposal->innovation_formats }}</td>
                             @if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN') 
-                            <td>{{ $proposal->user->name }} <br>
-                            Status: @if ($proposal->status == 'BELUM')
-                                <a href="actionedit/{{ $proposal->id }}"><input type="submit" name="status" value="Blm ACC" class="btn btn-warning btn-sm" onclick="return confirm('Yakin ingin menyetujui Proposal ini?');"></a>
+                            <td>
+                            @if ($proposal->status == 'BELUM')
+                                <a href="actionedit/{{ $proposal->id }}" type="submit" onclick="return confirm('Yakin ingin menyetujui Proposal ini?');" class="btn btn-warning btn-sm">Belum ACC</a>
                             @else
-                            <a href="actioneditt/{{ $proposal->id }}"><input type="submit" name="status" value="Sudah ACC " class="btn btn-success btn-sm" onclick="return confirm('Yakin ingin membatalkan ACC?');"></a>
+                            <a href="actioneditt/{{ $proposal->id }}" type="submit" onclick="return confirm('Yakin ingin membatalkan ACC?');" class="btn btn-success btn-sm">Sudah ACC</a>
                             @endif
                             </td>
                             @else

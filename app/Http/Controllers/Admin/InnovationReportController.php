@@ -84,9 +84,13 @@ class InnovationReportController extends Controller
         }
 
         $innovation = InnovationProposal::find($innovation_proposals_id);
+
+        $item = InnovationProposal::where('id', $innovation_proposals_id)->first();
+
         return view('pages.admin.innovation-report.create', [
             'innovation' => $innovation,
-            'quartal_next' => $quartal_next
+            'quartal_next' => $quartal_next,
+            'item' => $item
         ]);
     }
 

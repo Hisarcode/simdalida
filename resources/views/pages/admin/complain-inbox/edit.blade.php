@@ -30,8 +30,8 @@
                 <input id="bukti_tl" name="bukti_tl" type="file" required><br>
                </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
-                    Ubah Data
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Yakin dengan penyelesaian aduan?');">
+                    Selesai
                 </button>
 
             </form>

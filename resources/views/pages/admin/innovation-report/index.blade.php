@@ -20,8 +20,11 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-            <div class="alert alert-success alert-dismissable">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             @endif
 
@@ -35,7 +38,7 @@
                             <th>Inisiator</th>
                             <th>Triwulan</th>
                             @if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN')
-                            <th>Pemilik Inovasi</th>
+                            <th>Inovator</th>
                             @else
                             <th>Waktu Pelaksanaan</th>
                             <th>Status</th>
@@ -61,7 +64,7 @@
                                 {{$initiator}}
                                 @endforeach
                             </td>
-                            <td>{{ $report->quartal }}</td>
+                            <td>{{ $report->quartal }} <hr> Tahun: {{ $report->report_year }}</td>
                             @if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN')
                             <td>{{ $report->user->name }}</td>
                             @else

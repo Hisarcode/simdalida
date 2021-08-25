@@ -61,7 +61,7 @@
                 <label for="user">User Biasa/Non-Aktif</label>               
                </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Yakin ingin megubah data?');">
                     Ubah Data
                 </button>
 

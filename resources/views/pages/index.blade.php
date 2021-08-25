@@ -22,57 +22,66 @@
 @endif
 
 <section>
-
-    <button class="chat-btn">
-        Hubungi Kami
-    </button>
-
-    <div class="chat-popup">
-        <div class="chat-area">
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-            <p class="text-center  text-bold py-3">Hubungi Kami</p>
-            <div class="contact-form-area m-top-30 p-0 m-0" style="background-color: #2E2751">
+    <!-- Button trigger modal -->
+<button type="button" class="chat-btn" data-toggle="modal" data-target="#exampleModal">
+    Hubungi Kami
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  style="z-index: 999999">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hubungi Kami</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="contact-form-area m-top-30 m-bottom-30 p-0 m-0"  style="background-color: #2E2751">
                 <form class="form" method="POST" action="{{ route('chat.store') }}">
                     @csrf
-                    <div class="row p-0 m-0">
+                    <div class="row p-0 m-0 mb-3">
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="icon"><i class="fa fa-user"></i></div>
-                                <input type="text" name="name" placeholder="Nama" required>
+                                <input type="text" name="name" placeholder="Nama" required autocomplete="off">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
                                 <div class="icon"><i class="fa fa-envelope"></i></div>
-                                <input type="text" name="email" placeholder="E-mail" required>
+                                <input type="email" name="email" placeholder="E-mail" required>
                             </div>
                         </div>
 
                         <div class="col-12">
                             <div class="form-group">
-                                <div class="icon"><i class="fa fa-envelope"></i></div>
-                                <input type="text" name="subject" placeholder="Subjek" required>
+                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                <input type="text" name="subject" placeholder="Subjek" required autocomplete="off">
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 mb-3">
                             <div class="form-group textarea">
                                 <div class="icon"><i class="fa fa-pencil"></i></div>
-                                <textarea type="textarea" name="description" rows="5" placeholder="Deskripsi"
-                                    required></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group button">
-                                <button type="submit" class="bizwheel-btn theme-2">Send Now</button>
+                                <textarea type="textarea" name="description" rows="3" placeholder="Deskripsi"
+                                    required autocomplete="off"></textarea>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+               
+            
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Kirim</button>
+        </div>
+    </form>
+</div>
+      </div>
     </div>
-
+  </div>
 </section>
 
 <section class="hero-slider style1">
