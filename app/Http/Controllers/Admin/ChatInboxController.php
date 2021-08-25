@@ -7,6 +7,8 @@ use App\Models\Chat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\SendEmail;
+use Illuminate\Support\Facades\Mail;
 
 class ChatInboxController extends Controller
 {
@@ -34,6 +36,42 @@ class ChatInboxController extends Controller
         return view('pages.admin.chat-inbox.show', ['item' => $item]);
     }
 
+    public function edit($id)
+    {
+        $item = Chat::findOrFail($id);
+
+        return view('pages.admin.chat-inbox.edit', [
+            'item' => $item
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $chat = Chat::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "reply" => "required"
+        ])->validate();
+        $chat->reply = $request->get('reply');
+        $chat->email = $request->get('email');
+        $chat->name = $request->get('name');
+        $chat->subject = $request->get('subject');
+        $chat->description = $request->get('description');
+        $chat->update();
+
+        $email = $chat->email;
+
+
+        $data = array('name' => $chat->name, 'reply' => $chat->reply, 'subject' => $chat->subject, 'description' => $chat->description);
+
+        Mail::send('pages.admin.chat-inbox.mail', $data, function ($message) use ($email) {
+            $message->to($email, 'Admin Simdalida')->subject('Balas Pesan Dari anda');
+            $message->from('fikrihanif84@gmail.com', 'Fikri Hanif');
+        });
+
+        return redirect()->route('chat-inbox.index')->with('status', 'Pesan Berhasil Dikirim');
+    }
+
 
 
     public function destroy($id)
@@ -42,5 +80,11 @@ class ChatInboxController extends Controller
         $item->delete();
 
         return redirect()->route('chat-inbox.index')->with('status', 'Deleted successfully!');
+    }
+
+    public function balas($id)
+    {
+        $item = Chat::find($id);
+        return view('pages.admin.chat-inbox.balas', ['item' => $item]);
     }
 }

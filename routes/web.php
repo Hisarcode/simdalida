@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfographicController;
 use App\Http\Controllers\InnovationProposalController;
 use App\Http\Controllers\VideoGalleryController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +40,15 @@ Route::prefix('admin')
         Route::put('/simpan/{id}', '\App\Http\Controllers\Admin\ReviewProposalController@simpan')->name('review-proposal.simpan')->middleware((['auth', 'admin']));
 
         Route::resource('innovation-profile', '\App\Http\Controllers\Admin\InnovationProfileController');
+        Route::get('/actioneditt/{id}', '\App\Http\Controllers\Admin\InnovationProposalController@actioneditt');
+
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
         Route::get('/innovation-report.create0', '\App\Http\Controllers\Admin\InnovationReportController@create0')->name('innovation-report.create0');
         Route::post('/innovation-report.store0', '\App\Http\Controllers\Admin\InnovationReportController@store0')->name('innovation-report.store0');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
-        Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController');
+        Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController')->middleware((['auth', 'admin']));
 
         Route::resource('about', '\App\Http\Controllers\Admin\AboutController')->middleware((['auth', 'admin']));
 

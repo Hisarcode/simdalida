@@ -40,9 +40,6 @@
                   </div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox small">
-                      {{-- <input type="checkbox" class="custom-control-input" id="customCheck">
-                      <label class="custom-control-label" for="customCheck">Remember Me</label>
-                       --}}
                       <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                       <label class="form-check-label" for="remember">
@@ -58,11 +55,30 @@
                 </form>
 
                 <hr>
+        
                 <div class="text-center">
-                  <a class="small" href="">Forgot Password?</a>
+                  <a class="small" href="/register">Buat Akun | </a>
+                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    Lupa Password?
+                  </button>
                 </div>
-                <div class="text-center">
-                  <a class="small" href="/register">Buat Akun</a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Lupa Password?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Silahkan Hubungi Admin untuk mereset Password anda
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

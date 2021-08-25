@@ -23,7 +23,6 @@ class InnovationReport extends Model
         return $this->belongsTo(InnovationProposal::class, 'innovation_proposals_id', 'id');
     }
 
-
     public function setStepAttribute($value)
     {
         $this->attributes['innovation_step'] = json_encode($value);

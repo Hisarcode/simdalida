@@ -44,12 +44,6 @@
             <input type="hidden" name="innovation_proposals_id" value="{{ $innovation->id }}" readonly>
         </div>
 
-        {{-- <div class="form-group">
-                    <label for="quartal"><strong>Triwulan</strong></label>
-                    <input class="form-control" type="text" name="quartal" id="quartal" value=""
-                        placeholder="Pilih Inovasi" readonly="readonly">
-                </div> --}}
-
         <div class="form-group">
             <label for="quartal"><strong>Laporan Triwulan Ke -</strong></label>
             <input type="text" class="form-control" name="quartal" value="{{ $quartal_next }}" readonly>

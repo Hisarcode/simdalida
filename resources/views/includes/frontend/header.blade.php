@@ -53,7 +53,12 @@
                                                         <li><a href="/login">Login/Register</a></li>
                                                         @endguest
                                                         @auth
+                                                        @if (Auth::user()->roles === 'OPERATOR')
+                                                        <li><a href="/admin">Operator</a></li>
+                                                        @elseif (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
                                                         <li><a href="/admin">Admin</a></li>
+                                                        @endif
+                                                      
                                                         <li>
                                                             <form action="{{ url('logout') }}" method="POST">
                                                                 @csrf

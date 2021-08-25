@@ -33,7 +33,6 @@
                                             <th>Bentuk Inovasi</th>
                                             <th>Tipe inovasi</th>
                                             <th>Lihat Detail</th>
-                                            <th>*</th>
                                         </tr>
                                     </thead>
 
@@ -45,18 +44,23 @@
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $profile->user->name }}</td>
-                                            <td>{{ $profile->name }}</td>
+                                            <td>{{ $profile->innovation_proposal->name }}</td>
                                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
                                             <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                                             <td>
                                                 <a href="{{ route('infographic-detail', $profile->id) }}"
                                                     class="btn btn-info">
                                                     <i class="fa fa-eye"></i>
-                                                </a>
+                                                </a> 
+                                                @guest
+                                                @endguest
+                                                @auth
+                                                @if ($profile->sign == 0)
+                                                <i class="fa fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" title="Ada Laporan yg belum dikumpulkan" style="color: red"></i>
+                                                @endif
+                                                @endauth
                                             </td>
-                                            <td>@if ($profile->sign == 0)
-                                                <span class="text-danger">*</span>
-                                                @endif</td>
+                                           
                                         </tr>
                                         @empty
                                         <tr>
@@ -81,3 +85,11 @@
 </section>
 <!--/ End Services -->
 @endsection
+
+@push('addon-script')
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+@endpush

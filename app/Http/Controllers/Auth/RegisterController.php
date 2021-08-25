@@ -61,9 +61,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'nik' => ['required', 'numeric', 'digits:16', 'unique:users'],
+            'nik' => ['required', 'numeric', 'digits_between:16,18', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            "nik.digits_between" => "NIP harus 18 digit, NIK harus 16 digit !"
         ]);
     }
 

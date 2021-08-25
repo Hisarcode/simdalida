@@ -146,7 +146,7 @@
                                         <li style="display: inline" data-days="00">00</li>
                                         <li style="display: inline" data-hours="00">00</li>
                                         <li style="display: inline" data-minuts="00">00</li>
-                                        <li style="display: inline" data-seconds="00">00</li>
+                                        <li style="display: inline" data-seconds="00">00<li>                 
                                     </div>
                                 @endif</p>
                             </div>
@@ -215,11 +215,10 @@
             if (t <= 0) {
                 clearInterval(x);
 
-                $dataDays.html('00');
-                $dataHours.html('00');
-                $dataMinuts.html('00');
-                $dataSeconds.html('00');
-
+                $dataDays.html('Waktu');
+                $dataHours.html('--');
+                $dataMinuts.html('');
+                $dataSeconds.html('Habis!');
             }
 
 

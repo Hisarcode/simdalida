@@ -45,7 +45,7 @@ class InfographicController extends Controller
             $innovation_report = InnovationReport::where('innovation_proposals_id', $infographic->innovation_proposals_id)
                 ->where('report_year', $current_year)->count();
 
-            // dd($current_triwulan);
+            // dd($current_triwulan); 
 
             if ($innovation_report < $current_triwulan) {
                 $infographic->sign = 0;

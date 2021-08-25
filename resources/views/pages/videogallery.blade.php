@@ -22,12 +22,13 @@
                         <div class="portfolio-main">
                             <div id="portfolio-item" class="portfolio-item-active">
                                 @forelse ($report as $video)
+                                @if ($video->kualitas_inovasi)
                                 <div class="cbp-item business animation">
                                     <!-- Single Portfolio -->
                                     <div class="single-portfolio">
                                         <div class="portfolio-head overlay">
 
-                                            <img src="https://www.pngkit.com/png/detail/267-2678423_bacteria-video-thumbnail-default.png"
+                                            <img src="{{ Storage::url($video->kualitas_inovasi) }}"
                                                 alt="#">
                                             <a class="more" href="{{ route('video-detail', $video->id) }}"><i
                                                     class="fa fa-long-arrow-right"></i></a>
@@ -35,7 +36,7 @@
                                         <div class="portfolio-content">
                                             <p>
                                                 <a
-                                                    href="{{ route('video-detail', $video->id) }}">{{ 'Video ' . $video->name . ' Triwulan Ke-' . $video->quartal }}</a>
+                                                    href="{{ route('video-detail', $video->id) }}">{{ $video->innovation_proposal->name }}</a>
                                             </p>
                                             <p class="font-italic font-weight-bold"
                                                 style="font-size: 11px ;  line-height: 120%;">
@@ -44,6 +45,7 @@
                                     </div>
                                     <!--/ End Single Portfolio -->
                                 </div>
+                                @endif
                                 @empty
                                 <h5 class="text-center"> Tidak Ada Data</h5>
                                 @endforelse

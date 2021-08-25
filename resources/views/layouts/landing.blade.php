@@ -39,7 +39,9 @@
 
     </div>
 
+    @stack('prepend-script')
     @include('includes.frontend.script')
+    @stack('addon-script')
 
 </body>
 
