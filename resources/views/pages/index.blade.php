@@ -199,6 +199,10 @@
                         <h2>Profil Sanggau</h2>
                         <p style="color: antiquewhite">{{ \Illuminate\Support\Str::limit($video->about_content, 350, $end='...') }}</p>
                     </div>
+                    <div class="section-top mt-3">
+                        <a href="{{ route('video') }}"><button class="btn btn-success">Lihat
+                                Video Inovasi</button></a>
+                    </div>
 
 
                 </div>

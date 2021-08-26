@@ -39,7 +39,7 @@ class InnovationReportController extends Controller
      */
     public function create0()
     {
-        $innovations = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '["Tahap Uji Coba"]')->orWhere('innovation_step', '["Tahap Penerapan"]')->get();
+        $innovations = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '<>', '["Tahap Inisiatif"]')->get();
 
         foreach ($innovations as $innovation) {
             $report = InnovationReport::where('innovation_proposals_id', $innovation->id)->max('quartal');

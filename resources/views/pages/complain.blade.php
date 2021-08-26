@@ -31,8 +31,11 @@
                         @endif
 
                         @if(session('status'))
-                        <div class="mt-5 alert alert-success alert-dismissable">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{session('status')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         @endif
 
@@ -44,19 +47,19 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="icon"><i class="fa fa-user"></i></div>
-                                            <input type="text" name="name" placeholder="Nama">
+                                            <input type="text" name="name" placeholder="Nama" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="icon"><i class="fa fa-phone"></i></div>
-                                            <input type="text" name="no_hp" placeholder="Nomor Handphone">
+                                            <input type="text" name="no_hp" placeholder="Nomor Handphone" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="icon"><i class="fa fa-envelope"></i></div>
-                                            <input type="text" name="email" placeholder="E-mail">
+                                            <input type="email" name="email" placeholder="E-mail" required>
                                         </div>
                                     </div>
 
@@ -77,7 +80,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <div class="icon"><i class="fa fa-envelope"></i></div>
-                                            <input type="text" name="subject" placeholder="Subjek Aduan">
+                                            <input type="text" name="subject" placeholder="Subjek Aduan" required>
                                         </div>
                                     </div>
 
@@ -85,12 +88,12 @@
                                         <div class="form-group textarea">
                                             <div class="icon"><i class="fa fa-pencil"></i></div>
                                             <textarea type="textarea" name="description" rows="5"
-                                                placeholder="Penjelasan Aduan"></textarea>
+                                                placeholder="Penjelasan Aduan" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group button">
-                                            <button type="submit" class="bizwheel-btn theme-2">Send Now</button>
+                                            <button type="submit" class="bizwheel-btn theme-2">Kirim Aduan</button>
                                         </div>
                                     </div>
                                 </div>

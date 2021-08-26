@@ -23,6 +23,14 @@
         <div class="card-body">
             <table class="table table-bordered">
                 <tr>
+                    <th>Nama Inovasi yang diadukan</th>
+                    @if($item->innovation_complain == null)
+                   <td><i>Nama Inovasi telah dihapus</i></td>
+                    @else
+                    <td>{{ $item->innovation_complain->name }}</td>
+                    @endif
+                </tr>
+                <tr>
                     <th>Nama Pengirim</th>
                     <td>{{ $item->name }}</td>
                 </tr>
@@ -35,10 +43,6 @@
                     <td>{{ $item->no_hp }}</td>
                 </tr>
                 <tr>
-                    <th>Nama Inovasi yang diadukan</th>
-                    <td>{{ $item->innovation_complain->name }}</td>
-                </tr>
-                <tr>
                     <th>Waktu pengaduan masuk</th>
                     <td>{{ \Carbon\Carbon::parse($item->created_at) }}</td>
                 </tr>
@@ -49,14 +53,6 @@
                     @else
                         <i>Belum diselesaikan</i>
                     @endif</td>
-                </tr>
-                <tr>
-                    <th>Email Pengadu</th>
-                    <td> {{ $item->email }}</td>
-                </tr>
-                <tr>
-                    <th>No Hp</th>
-                    <td> {{ $item->no_hp }}</td>
                 </tr>
                 <tr>
                     <th>Subject Aduan</th>

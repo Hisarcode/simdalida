@@ -53,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+                {{ $report->links() }}
 
             </div>
 

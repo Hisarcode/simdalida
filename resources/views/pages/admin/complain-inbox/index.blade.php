@@ -44,9 +44,13 @@
                         @if (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
                         <tr>
                             <td>{{ $i++ }}</td>
+                            @if($complain->innovation_complain == null)
+                            <td><i>(Nama Inovasi sudah dihapus)</i></td>
+                            @else
                             <td><b>{{ $complain->innovation_complain->name }}</b>
                                 <br><br>Pemilik Inovasi : {{ $complain->innovation_complain->user->name }}
                             </td>
+                            @endif
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>
@@ -90,9 +94,13 @@
                         @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
                         <tr>
                             <td>{{ $j++ }}</td>
-                            <td>{{ $complain->innovation_complain->name }}
-
+                            @if($complain->innovation_complain == null)
+                            <td><i>(Nama Inovasi sudah dihapus)</i></td>
+                            @else
+                            <td><b>{{ $complain->innovation_complain->name }}</b>
+                                <br><br>Pemilik Inovasi : {{ $complain->innovation_complain->user->name }}
                             </td>
+                            @endif
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>

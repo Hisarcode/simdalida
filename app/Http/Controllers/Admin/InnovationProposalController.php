@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
 use App\Models\ReviewProposal;
 use App\Models\InnovationReport;
+use App\Models\InnovationProfile;
+use App\Models\Complain;
 use Illuminate\Support\Facades\Auth;
 
 class InnovationProposalController extends Controller
@@ -233,6 +235,16 @@ class InnovationProposalController extends Controller
         \Storage::delete('public/' . $item->budget_file); //utk hapus file di storage agar tidk penuh
         \Storage::delete('public/' . $item->profil_bisnis_file); //utk hapus file di storage agar tidk penuh
         $item->delete();
+
+        // ----------------------
+        $profile = InnovationProfile::where('innovation_proposals_id', $id); //hapus profile yg berkaitan dgn proposal
+        $profile->delete();
+
+        $report = InnovationReport::where('innovation_proposals_id', $id); //hapus laporan yg berkaitan dgn proposal
+        $report->delete();
+
+        $pengaduan = Complain::where('purpose_innovation', $id); //hapus pengaduan yg berkaitan dgn user
+        $pengaduan->delete();
 
         return redirect()->route('innovation-proposal.index')->with('status', 'Deleted successfully!');
     }

@@ -82,9 +82,11 @@ class DashboardController extends Controller
             $i = 1;
             $total_belum = 0;
             foreach ($complain as $complain1) {
-                if ($complain1->innovation_complain->users_id == Auth::user()->id) {
-                    if ($complain1->is_improvement == "belum") {
-                        $total_belum = $total_belum + 1;
+                if ($complain1->innovation_complain != null) {
+                    if ($complain1->innovation_complain->users_id == Auth::user()->id) {
+                        if ($complain1->is_improvement == "belum") {
+                            $total_belum = $total_belum + 1;
+                        }
                     }
                 }
             }
@@ -104,7 +106,7 @@ class DashboardController extends Controller
             // $innovation_profiles = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
 
-            $innovation_proposals = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->orderBy('id', 'DESC')->get();
+            $innovation_proposals = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '<>', '["Tahap Inisiatif"]')->orderBy('id', 'DESC')->get();
 
 
             $notification_collection = collect();

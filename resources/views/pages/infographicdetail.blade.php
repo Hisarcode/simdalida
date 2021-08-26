@@ -81,6 +81,27 @@
                                                     <th>Hasil Inovasi</th>
                                                     <td>{{ $infographic->innovation_proposal->innovation_result}}</td>
                                                 </tr>
+                                                <tr>
+                                                    <th>Regulasi Inovasi Daerah</th>
+                                                    <td>{{ $infographic->regulasi_inovasi }} <br>
+                                                        @if($infographic->regulasi_inovasi_file)
+                                                        <a href="{{  Storage::url($infographic->regulasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file</a>
+                                                      <br>
+                                                    @else 
+                                                    <small class="text-muted">tidak ada file</small>
+                                                    @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ketersediaan SDM terhadap Inovasi Daerah</th>
+                                                    <td>{{ $infographic->ketersediaan_sdm }} <br>
+                                                        @if($infographic->ketersediaan_sdm_file)
+                                                        <a href="{{  Storage::url($infographic->ketersediaan_sdm_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
+                                                      <br>
+                                                    @else 
+                                                    <small class="text-muted">tidak ada file</small>
+                                                    @endif</td>
+                                                </tr>
                                             </table>
                                    
                                     
