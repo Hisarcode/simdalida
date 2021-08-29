@@ -13,6 +13,28 @@
     <div class="row">
 
         <!-- Earnings (Monthly) Card Example -->
+        @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Inovator</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $inovator }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -26,12 +48,28 @@
                             <i class="fas fa-hotel fa-2x text-gray-300"></i>
                         </div>
                     </div>
-                    @if (Auth::user()->roles == 'SUPERADMIN' || Auth::user()->roles == 'ADMIN')
-                    <p>Menunggu Acc : {{ $blm_acc }}</p>
-                    @endif
+                    <p class="p-0 m-0">Menunggu Acc : {{ $blm_acc }}</p>
                 </div>
             </div>
         </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Profil Inovasi
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $profil }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-fw fa-home fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
@@ -96,6 +134,28 @@
         </div>
         @endif
 
+        @if (Auth::user()->roles == 'ADMIN' || Auth::user()->roles == 'SUPERADMIN')
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Pesan masuk yang belum dibalas</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $pesan }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-envelope-square fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
     </div>
 
     @if (Auth::user()->roles == 'OPERATOR')
@@ -127,6 +187,7 @@
             </div>
         </div>
 
+        @if ($sum > 0)
         <div class="col-xl-6 mb-4">
             <div class="card shadow">
                 <div class="card-header bg-primary py-3">
@@ -137,12 +198,13 @@
                     overflow-y: scroll;">
 
                         @forelse ($complains as $complain)
+                        @if ($complain->innovation_complain->users_id == Auth::user()->id)
                         <div class="card mb-4 py-0 my-0 border-bottom-warning">
                             <div class="card-body p-1 m-1">
                                 <h6 class="font-weight-bold">Nama pengirim: {{ $complain->name }}</h6>
                                 <p>@if ($complain->is_improvement == 'belum')
                                     <b>Belum Ditindaklanjuti</b>, sisa waktu : 
-                                    <div data-countdown="{{ $complain->end_time }}" style="display: inline">
+                                    <div data-countdown="{{ $complain->end_time }}">
                                         <li style="display: inline" data-days="00">00</li>
                                         <li style="display: inline" data-hours="00">00</li>
                                         <li style="display: inline" data-minuts="00">00</li>
@@ -151,6 +213,8 @@
                                 @endif</p>
                             </div>
                         </div>
+
+                        @endif
                         @empty
                         <p class="text-center">Tidak ada notifikasi pengaduan</p>
                         <hr>
@@ -160,6 +224,8 @@
                 </div>
             </div>
         </div>
+        @endif
+      
     </div>
 
     @endif

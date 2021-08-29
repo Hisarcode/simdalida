@@ -27,7 +27,7 @@ class VideoGalleryController extends Controller
     public function index()
     {
 
-        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->orderBy('users_id', 'ASC')->get();
+        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->orderBy('users_id', 'ASC')->paginate(9);;
         $about = About::orderBy('id', 'DESC')->get();
 
         return view('pages.videogallery', [

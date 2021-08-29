@@ -81,6 +81,27 @@
                                                     <th>Hasil Inovasi</th>
                                                     <td>{{ $infographic->innovation_proposal->innovation_result}}</td>
                                                 </tr>
+                                                <tr>
+                                                    <th>Regulasi Inovasi Daerah</th>
+                                                    <td>{{ $infographic->regulasi_inovasi }} <br>
+                                                        @if($infographic->regulasi_inovasi_file)
+                                                        <a href="{{  Storage::url($infographic->regulasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file</a>
+                                                      <br>
+                                                    @else 
+                                                    <small class="text-muted">tidak ada file</small>
+                                                    @endif
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ketersediaan SDM terhadap Inovasi Daerah</th>
+                                                    <td>{{ $infographic->ketersediaan_sdm }} <br>
+                                                        @if($infographic->ketersediaan_sdm_file)
+                                                        <a href="{{  Storage::url($infographic->ketersediaan_sdm_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
+                                                      <br>
+                                                    @else 
+                                                    <small class="text-muted">tidak ada file</small>
+                                                    @endif</td>
+                                                </tr>
                                             </table>
                                    
                                     
@@ -108,7 +129,7 @@
                                 @endif</a></div>
                                 <div class="content">
                                     <p class="post-meta"><time class="post-date"><i class="fa fa-clock-o"></i>{{ \Carbon\Carbon::parse($item->innovation_proposal->time_innovation_implement)->format('d, M Y') }}</time></p>
-                                    <h4 class="title"><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->name }}</a></h4>
+                                    <h4 class="title"><a href="{{ route('infographic-detail', $item->id) }}">{{ $item->innovation_proposal->name }}</a></h4>
                                 </div>
                             </div>
                             @endforeach

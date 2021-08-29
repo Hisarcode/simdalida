@@ -358,7 +358,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Yakin ingin mengubah data?');">
                     Ubah Data
                 </button>
 
@@ -369,14 +369,3 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
-{{-- @push('addon-script')
-<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('description', {
-        filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'form'
-    });
-</script>
-
-
-@endpush --}}

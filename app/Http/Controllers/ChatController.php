@@ -34,6 +34,6 @@ class ChatController extends Controller
         $chat->description = $request->get('description');
         $chat->save();
 
-        return redirect()->route('home')->with('status', 'Pesan Berhasil Dikirim, kami akan menghubungi anda kembali');
+        return redirect()->route('home')->with('status', 'Pesan Berhasil Dikirim, kami akan segera menghubungi anda kembali lewat email');
     }
 }

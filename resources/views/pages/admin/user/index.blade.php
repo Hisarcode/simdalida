@@ -19,10 +19,13 @@
         <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-            <div class="alert alert-success alert-dismissable">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        @endif
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -70,6 +73,9 @@
                                 @else
                                 <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <a href="{{ route('user.show', $item->id) }}" class="btn btn-info">
+                                    <i class="fa fa-eye"></i>
                                 </a>
                                 <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf

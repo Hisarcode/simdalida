@@ -13,8 +13,11 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             @if(session('status'))
-            <div class="mt-3 alert alert-success alert-dismissable">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             @endif
             <div class="table-responsive">
@@ -41,9 +44,13 @@
                         @if (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
                         <tr>
                             <td>{{ $i++ }}</td>
+                            @if($complain->innovation_complain == null)
+                            <td><i>(Nama Inovasi sudah dihapus)</i></td>
+                            @else
                             <td><b>{{ $complain->innovation_complain->name }}</b>
                                 <br><br>Pemilik Inovasi : {{ $complain->innovation_complain->user->name }}
                             </td>
+                            @endif
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>
@@ -54,12 +61,12 @@
                                 <br>
                                 <p>diselesaikan pada: {{ \Carbon\Carbon::parse($complain->updated_at) }}</p>
                                 @elseif($complain->is_improvement == "belum")
-                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu :
-                                <div data-countdown="{{ $complain->end_time }}" class="countdown">
-                                    <li data-days="00"><span>00</span></li>
-                                    <li data-hours="00"><span>00</span></li>
-                                    <li data-minuts="00"><span>00</span></li>
-                                    <li data-seconds="00"><span>00</span></li>
+                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu : <br>
+                                <div data-countdown="{{ $complain->end_time }}" class="countdown" style="display: inline">
+                                    <li data-days="00" style="display: inline"><span>00</span></li>
+                                    <li data-hours="00" style="display: inline"><span>00</span></li>
+                                    <li data-minuts="00" style="display: inline"><span>00</span></li>
+                                    <li data-seconds="00" style="display: inline"><span>00</span></li>
                                 </div>
                                 @endif
 
@@ -87,9 +94,13 @@
                         @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
                         <tr>
                             <td>{{ $j++ }}</td>
-                            <td>{{ $complain->innovation_complain->name }}
-
+                            @if($complain->innovation_complain == null)
+                            <td><i>(Nama Inovasi sudah dihapus)</i></td>
+                            @else
+                            <td><b>{{ $complain->innovation_complain->name }}</b>
+                                <br><br>Pemilik Inovasi : {{ $complain->innovation_complain->user->name }}
                             </td>
+                            @endif
                             <td>{{ $complain->name }}</td>
                             <td>{{ $complain->subject }}</td>
                             <td>{{ \Carbon\Carbon::parse($complain->created_at) }}</td>
@@ -99,12 +110,12 @@
                                 <br>
                                 <p>diselesaikan pada: {{ \Carbon\Carbon::parse($complain->updated_at) }}</p>
                                 @elseif($complain->is_improvement == "belum")
-                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu :
-                                <div data-countdown="{{ $complain->end_time }}" class="countdown">
-                                    <li data-days="00"><span>00</span></li>
-                                    <li data-hours="00"><span>00</span></li>
-                                    <li data-minuts="00"><span>00</span></li>
-                                    <li data-seconds="00"><span>00</span></li>
+                                <b>Belum Ditindaklanjuti</b> <br> sisa waktu : <br>
+                                <div data-countdown="{{ $complain->end_time }}" class="countdown" style="display: inline">
+                                    <li data-days="00" style="display: inline"><span>00</span></li>
+                                    <li data-hours="00" style="display: inline"><span>00</span></li>
+                                    <li data-minuts="00" style="display: inline"><span>00</span></li>
+                                    <li data-seconds="00" style="display: inline"><span>00</span></li>
                                 </div>
                                 @endif
 
@@ -192,10 +203,10 @@
             if (t <= 0) {
                 clearInterval(x);
 
-                $dataDays.html('00');
-                $dataHours.html('00');
-                $dataMinuts.html('00');
-                $dataSeconds.html('00');
+                $dataDays.html('Waktu');
+                $dataHours.html('--');
+                $dataMinuts.html('');
+                $dataSeconds.html('Habis!');
 
             }
 
@@ -209,14 +220,14 @@
 
 
 @push('addon-style')
-<style>
+{{-- <style>
     .countdown li {
         background-color: yellowgreen;
         color: black;
         display: inline-block;
         font-size: 1rem;
         list-style-type: none;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
     }
 
     .countdown li span {
@@ -234,6 +245,6 @@
             font-size: 1rem;
         }
     }
-</style>
+</style> --}}
 
 @endpush

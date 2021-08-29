@@ -56,24 +56,24 @@
 
         <div class="form-group">
             <label><strong><b>Tahapan Inovasi :</b></strong></label><br>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif" checked> Tahap
+            <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif"    {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
                 Inisiatif</label>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba" checked> Tahap Uji
+            <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba"    {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap Uji
                 Coba</label>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan" checked> Tahap
+            <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan"    {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
                 Penerapan</label>
         </div>
 
         <div class="form-group">
             <label><strong><b>Inisiator Inovasi Daerah:</b></strong></label><br>
-            <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah" checked> Kepala
+            <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah"  {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Kepala
                 Daerah</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" checked> Anggota
+            <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Anggota
                 DPRD</label>
-            <label><input type="radio" name="innovation_initiator[]" value="ASN"> ASN</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah" checked> Perangkat
+            <label><input type="radio" name="innovation_initiator[]" value="ASN" {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}}> ASN</label>
+            <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah" {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Perangkat
                 Daerah</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat" checked> Anggota
+            <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat" {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Anggota
                 Masyarakat</label>
         </div>
 
@@ -81,10 +81,10 @@
             <label for="innovation_type"><b>Jenis Inovasi Daerah</b></label>
             <br>
             <label>
-                <input type="radio" name="innovation_type" id="innovation_type" value="Digital" checked> Digital
+                <input type="radio" name="innovation_type" id="innovation_type" value="Digital" {{($item->innovation_type == "Digital")? "checked" : ""}}> Digital
             </label>
             <label>
-                <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" checked>
+                <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" {{($item->innovation_type == "non-Digital")? "checked" : ""}}>
                 Non-Digital
             </label>
         </div>
@@ -93,17 +93,17 @@
             <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" checked>
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" {{($item->innovation_formats == "Kelola Pemerintah")? "checked" : ""}}>
                 Inovasi Tata Kelola Pemerintah Daerah
             </label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" checked>
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" {{($item->innovation_formats == "Pelayanan Publik") ? "checked" : ""}} >
                 Inovasi Pelayanan Publik
             </label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" checked>
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" {{($item->innovation_formats == "Bentuk Lainnya") ? "checked" : ""}}>
                 Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
             </label>
         </div>

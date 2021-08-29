@@ -55,7 +55,7 @@
                     <textarea type="text" name="reply" id="reply" class="form-control">{{ $item->reply }}</textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block" onclick="return confirm('Yakin ingin mengirim pesan?');">
                      Kirim Pesan
                 </button>
 

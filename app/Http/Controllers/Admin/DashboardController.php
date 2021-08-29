@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\InnovationProposal;
 use App\Models\InnovationReport;
 use App\Models\InnovationProfile;
+use App\Models\User;
+use App\Models\Chat;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Foreach_;
@@ -44,23 +46,35 @@ class DashboardController extends Controller
             $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
+            $pesan = Chat::where('reply', null)->orderBy('id', 'DESC')->count();
+            $inovator = User::where('roles', 'OPERATOR')->orderBy('id', 'DESC')->count();
+            $blm_inovator = User::where('roles', 'USER')->orderBy('id', 'DESC')->count();
             $current_triwulan = "";
             $notifications = "";
             $sum = "";
             $complains = "";
+            $profil = InnovationProfile::orderBy('id', 'DESC')->count();
         } else if (Auth::user()->roles == 'ADMIN') {
             $proposal = InnovationProposal::where('status', 'SUDAH')->orderBy('id', 'DESC')->count();
             $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('status', 'BELUM')->count();
             $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->count();
             $is_improvement = Complain::where('is_improvement', 'belum')->count();
+            $pesan = Chat::where('reply', null)->orderBy('id', 'DESC')->count();
+            $inovator = User::where('roles', 'OPERATOR')->orderBy('id', 'DESC')->count();
+            $blm_inovator = User::where('roles', 'USER')->orderBy('id', 'DESC')->count();
             $current_triwulan = "";
             $notifications = "";
             $sum = "";
             $complains = "";
+            $profil = InnovationProfile::orderBy('id', 'DESC')->count();
         } else if (Auth::user()->roles == 'OPERATOR') {
             $proposal = InnovationProposal::where('status', 'SUDAH')->where('users_id', Auth::user()->id)->count();
             $report = InnovationReport::where('status', 'KIRIM')->where('users_id', Auth::user()->id)->count();
-            $blm_acc = '';
+            $blm_acc = InnovationProposal::orderBy('id', 'DESC')->where('users_id', Auth::user()->id)->where('status', 'BELUM')->count();
+            $profil = InnovationProfile::orderBy('id', 'DESC')->where('users_id', Auth::user()->id)->count();
+            $pesan = '';
+            $inovator = '';
+            $blm_inovator = '';
 
             //buat notifikasi jmlah pengaduan brdasarkan perngaduan yg masuk ke masing2 operator
             $complain = Complain::with(['innovation_complain'])->orderBy('id', 'DESC')->get();
@@ -68,9 +82,11 @@ class DashboardController extends Controller
             $i = 1;
             $total_belum = 0;
             foreach ($complain as $complain1) {
-                if ($complain1->innovation_complain->users_id == Auth::user()->id) {
-                    if ($complain1->is_improvement == "belum") {
-                        $total_belum = $total_belum + 1;
+                if ($complain1->innovation_complain != null) {
+                    if ($complain1->innovation_complain->users_id == Auth::user()->id) {
+                        if ($complain1->is_improvement == "belum") {
+                            $total_belum = $total_belum + 1;
+                        }
                     }
                 }
             }
@@ -90,7 +106,7 @@ class DashboardController extends Controller
             // $innovation_profiles = InnovationProfile::with(['innovation_proposal'])->where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
 
-            $innovation_proposals = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->orderBy('id', 'DESC')->get();
+            $innovation_proposals = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '<>', '["Tahap Inisiatif"]')->orderBy('id', 'DESC')->get();
 
 
             $notification_collection = collect();
@@ -133,7 +149,11 @@ class DashboardController extends Controller
             'current_triwulan' => $current_triwulan,
             'sum' => $sum, //total dari jmlah pengaduan brdasarakan masing2 operator
             'blm_acc' => $blm_acc,
-            'complains' => $complains
+            'complains' => $complains,
+            'pesan' => $pesan,
+            'inovator' => $inovator,
+            'blm_inovator' => $blm_inovator,
+            'profil' => $profil
         ]);
     }
 }

@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\InnovationProposal;
+use App\Models\InnovationProfile;
+use App\Models\InnovationReport;
+use App\Models\Complain;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
-use App\Models\InnovationProposal;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -80,7 +83,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = User::find($id);
+        return view('pages.admin.user.show', ['item' => $item]);
     }
 
     /**
@@ -112,6 +116,15 @@ class UserController extends Controller
         $user->username = $request->get('username');
         $user->roles = $request->get('roles');
         $user->save();
+
+        $email = $user->email;
+
+        $data = array('name' => $user->name);
+
+        Mail::send('pages.admin.user.mailuser', $data, function ($message) use ($email) {
+            $message->to($email, 'Bapak ibu')->subject('Akses halaman operator Simdalida');
+            $message->from('simdalida@gmail.com', 'Admin Simdalida');
+        });
         return redirect()->route('user.index')->with('status', 'Updated successfully!');
     }
 
@@ -125,6 +138,20 @@ class UserController extends Controller
     {
         $item = User::findOrFail($id);
         $item->delete();
+
+        $proposal = InnovationProposal::where('users_id', $id); //hapus proposal yg berkaitan dgn user
+        $id_proposal = InnovationProposal::where('users_id', $id)->first()->id;
+        $proposal->delete();
+
+        $profile = InnovationProfile::where('users_id', $id); //hapus profile yg berkaitan dgn user
+        $profile->delete();
+
+
+        $report = InnovationReport::where('users_id', $id); //hapus laporan yg berkaitan dgn user
+        $report->delete();
+
+        $pengaduan = Complain::where('purpose_innovation', $id_proposal); //hapus pengaduan yg berkaitan dgn user
+        $pengaduan->delete();
 
         return redirect()->route('user.index')->with('status', 'Deleted successfully!');
     }
