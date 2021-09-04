@@ -70,7 +70,9 @@ class InfographicController extends Controller
         $about = About::orderBy('id', 'DESC')->get();
 
         $title_page = InnovationProfile::where('id', $id)->first()->innovation_proposal->name;
-        $post = InnovationProfile::with(['innovation_proposal'])->get()->take(1);
+        $post_count = InnovationProfile::with(['innovation_proposal'])->count();
+
+        $post = InnovationProfile::with(['innovation_proposal'])->get()->random(4);
 
         return view('pages.infographicdetail', compact('infographic', 'title_page', 'post', 'about'));
     }

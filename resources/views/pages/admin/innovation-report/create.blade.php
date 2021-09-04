@@ -109,9 +109,9 @@
         </div>
 
         <div class="form-group">
-            <label for="time_innovation_implement"><b>Waktu Inovasi Daerah Diterapkan</b></label>
+            <label for="time_innovation_implement"><b>Waktu Inovasi Daerah Diterapkan*</b></label>
             <input type="date" class="form-control" name="time_innovation_implement" placeholder="time"
-                value="{{ old('time_innovation_implement') }}">
+                value="{{ old('time_innovation_implement') }}" required>
         </div>
 
         <div class="form-group">
@@ -200,21 +200,20 @@
         </div>
 
         <div class="form-group">
-            <label for="innovation_strategy"><b>Strategi Pelaksanaan Inovasi</b></label>
+            <label for="innovation_strategy"><b>Strategi Pelaksanaan Inovasi*</b></label>
             <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
                 placeholder="Isikan strategi pelaksanaan inovasi" required
                 autocomplete="off">{{ old('innovation_strategy') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="video_innovation"><b>Video Inovasi Daerah</b></label>
-            <br>
-            <input type="file" name="video_innovation">
+            <label for="video_innovation"><b>Video Inovasi Daerah*</b></label>
+            <input type="text" class="form-control" name="video_innovation" placeholder="Link Youtube Laporan Video" value="{{ old('video_innovation') }}" required autocomplete="off">
         </div>
 
 
         <button class="btn btn-primary" name="save_action" value="KIRIM"
-            onclick="return confirm('Yakin ingin mengirim laporan? jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
+            onclick="return confirm('Yakin ingin mengirim laporan? Silahkan Cek kelengkapan data yang wajib diisi. Jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
             Laporan</button>
         <button class="btn btn-warning" name="save_action" value="DRAFT">Simpan sebagai Draft</button>
 

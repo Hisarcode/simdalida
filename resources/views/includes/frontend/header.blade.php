@@ -42,7 +42,7 @@
                                                             <a href="{{ route('infographic') }}">Infografis</a>
                                                         </li>
                                                         <li class="{{ request()->is('video') ?'active' : '' }}">
-                                                            <a href="{{ route('video') }}">Video</a>
+                                                            <a href="{{ route('video') }}">Galeri Video</a>
                                                         </li>
                                                         <li class="{{ request()->is('complain') ?'active' : '' }}">
                                                             <a href="{{ route('complain.index') }}">Pengaduan</a></li>
@@ -55,7 +55,9 @@
                                                         @auth
                                                         @if (Auth::user()->roles === 'OPERATOR')
                                                         <li><a href="/admin">Operator</a></li>
-                                                        @elseif (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
+                                                        @elseif (Auth::user()->roles === 'SUPERADMIN')
+                                                        <li><a href="/admin">Super Admin</a></li>
+                                                        @elseif (Auth::user()->roles === 'ADMIN')
                                                         <li><a href="/admin">Admin</a></li>
                                                         @endif
                                                       

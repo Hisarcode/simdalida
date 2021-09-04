@@ -238,7 +238,7 @@
                         <br>
                     
                     @if($item->kualitas_inovasi_file)
-                        <a href="{{  Storage::url($item->kualitas_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video</a>
+                    <a href="{{ $item->kualitas_inovasi_file }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video</a>
                       <br>
                     @else 
                     <small class="text-muted">tidak ada file</small>

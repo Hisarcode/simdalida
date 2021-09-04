@@ -44,7 +44,7 @@ class VideoGalleryController extends Controller
 
         $about = About::orderBy('id', 'DESC')->get();
 
-        $title_page = InnovationProfile::where('id', $id)->first()->name;
+        $title_page = InnovationProfile::where('id', $id)->first()->innovation_proposal->name;
 
 
         return view('pages.videogallerydetail', compact('video', 'title_page', 'about'));

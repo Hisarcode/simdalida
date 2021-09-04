@@ -155,9 +155,9 @@
                 <div class="form-group">
                     <label for="time_innovation_implement"><strong>Waktu Pelaksanaan Inovasi Daerah</strong></label>
                     <input type="date" class="form-control" name="time_innovation_implement" placeholder=""
-                        value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->time_innovation_implement)->format('d/m/Y')}}">
+                    value="{{ $item->time_innovation_implement }}" required>
                 </div>
-
+              
                 <div class="form-group">
                     <label for="problem"><strong>Permasalahan/kendala yang dihadapi dalam pelaksanaan inovasi
                             daerah</strong></label>
@@ -293,19 +293,19 @@
                     <label for="video_innovation">Video inovasi daerah</label>
                     <br>
                     @if($item->video_innovation)
-                    <a href="{{  Storage::url($item->video_innovation)  }}" target="_blank" class="btn btn-warning">Klik
+                    <a href="{{ $item->video_innovation }}" target="_blank" class="btn btn-warning">Klik
                         Disini untuk membuka video</a>
                     <br>
                     @else
                     Tidak ada video
                     @endif
                     <br>
-                    <input id="video_innovation" name="video_innovation" type="file"><br>
+                    <input type="text" class="form-control" name="video_innovation" placeholder="Link Youtube Laporan Video" value="{{ $item->video_innovation }}">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah video</small>
                 </div>
 
                 <button class="btn btn-primary" name="save_action" value="KIRIM"
-                    onclick="return confirm('Yakin ingin mengirim laporan? jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
+                    onclick="return confirm('Yakin ingin mengirim laporan? Silahkan Cek kelengkapan data yang wajib diisi. Jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
                     Laporan</button>
                 <button class="btn btn-secondary" name="save_action" value="DRAFT">Simpan sebagai Draft</button>
 

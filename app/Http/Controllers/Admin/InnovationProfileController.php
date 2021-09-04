@@ -59,6 +59,7 @@ class InnovationProfileController extends Controller
                 "kecepatan_inovasi" => "required",
                 "ketersediaan_sdm" => "required",
                 "regulasi_inovasi" => "required",
+                "kualitas_inovasi_file" => "required",
                 "users_id" => "required",
                 "innovation_proposals_id" => [
                     "required",
@@ -66,7 +67,8 @@ class InnovationProfileController extends Controller
                 ],
             ],
             [
-                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah dibuat!"
+                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah dibuat!",
+                "kualitas_inovasi_file.required" => "Link Video Inovasi belum dimasukkan!"
             ]
         )->validate();
 
@@ -93,6 +95,7 @@ class InnovationProfileController extends Controller
         $profile->kecepatan_inovasi = $request->get('kecepatan_inovasi');
         $profile->kemanfaatan_inovasi = $request->get('kemanfaatan_inovasi');
         $profile->monitoring_evaluasi = $request->get('monitoring_evaluasi');
+        $profile->kualitas_inovasi_file = $request->get('kualitas_inovasi_file');
 
         if ($request->file('regulasi_inovasi_file')) {
             $regulasi_inovasi_file = $request->file('regulasi_inovasi_file')->store('profile/regulasi_inovasi_file', 'public');
@@ -194,14 +197,9 @@ class InnovationProfileController extends Controller
             $profile->kualitas_inovasi = $kualitas_inovasi;
         };
 
-        if ($request->file('kualitas_inovasi_file')) {
-            $kualitas_inovasi_file = $request->file('kualitas_inovasi_file')->store('profile/kualitas_inovasi_file', 'public');
-            $profile->kualitas_inovasi_file = $kualitas_inovasi_file;
-        };
-
         $profile->save();
 
-        return redirect()->route('innovation-profile.index')->with('status', 'Created successfully!');
+        return redirect()->route('innovation-profile.index')->with('status', 'Profil Inovasi Berhasil Dibuat!');
     }
 
     /**
@@ -250,6 +248,7 @@ class InnovationProfileController extends Controller
             "kecepatan_inovasi" => "required",
             "ketersediaan_sdm" => "required",
             "regulasi_inovasi" => "required",
+            "kualitas_inovasi_file" => "required",
 
         ])->validate();
 
@@ -272,6 +271,7 @@ class InnovationProfileController extends Controller
         $profile->kecepatan_inovasi = $request->get('kecepatan_inovasi');
         $profile->kemanfaatan_inovasi = $request->get('kemanfaatan_inovasi');
         $profile->monitoring_evaluasi = $request->get('monitoring_evaluasi');
+        $profile->kualitas_inovasi_file = $request->get('kualitas_inovasi_file');
 
         if ($request->file('regulasi_inovasi_file')) {
             if ($profile->regulasi_inovasi_file && file_exists(storage_path('app/public/' . $profile->regulasi_inovasi_file))) {
@@ -433,16 +433,9 @@ class InnovationProfileController extends Controller
             $profile->kualitas_inovasi = $sk;
         }
 
-        if ($request->file('kualitas_inovasi_file')) {
-            if ($profile->kualitas_inovasi_file && file_exists(storage_path('app/public/' . $profile->kualitas_inovasi_file))) {
-                \Storage::delete('public/' . $profile->kualitas_inovasi_file);
-            }
-            $sk = $request->file('kualitas_inovasi_file')->store('profile/kualitas_inovasi_file', 'public');
-            $profile->kualitas_inovasi_file = $sk;
-        }
         $profile->save();
 
-        return redirect()->route('innovation-profile.index')->with('status', 'Data successfully updated');
+        return redirect()->route('innovation-profile.index')->with('status', 'Data Profil Berhasil Diubah!');
     }
 
     /**
@@ -474,11 +467,10 @@ class InnovationProfileController extends Controller
         \Storage::delete('public/' . $item->kemanfaatan_inovasi_file);
         \Storage::delete('public/' . $item->monitoring_evaluasi_file);
         \Storage::delete('public/' . $item->kualitas_inovasi);
-        \Storage::delete('public/' . $item->kualitas_inovasi_file);
 
 
         $item->delete();
 
-        return redirect()->route('innovation-profile.index')->with('status', 'Deleted successfully!');
+        return redirect()->route('innovation-profile.index')->with('status', 'Data Profil Berhasil Dihapus');
     }
 }

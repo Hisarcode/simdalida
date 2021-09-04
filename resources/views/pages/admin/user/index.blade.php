@@ -77,13 +77,14 @@
                                 <a href="{{ route('user.show', $item->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus? Jika akun ini dihapus maka semua asset yang berkaitan dengan user ini juga akan terhapus !');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
+                                <a href="resetpassword/{{ $item->id }}"><input type="submit" name="resetpassword" value="Reset Password" class="btn btn-warning btn-sm" onclick="return confirm('Yakin ingin mereset password akun ini? Password default = 12345678');"></a>
                                 @endif
                             </td>
                         </tr>

@@ -137,7 +137,7 @@
                 <tr>
                     <th>Video inovasi daerah</th>
                     <td>   @if($item->video_innovation)
-                        <a href="{{  Storage::url($item->video_innovation)  }}"  target="_blank" type="button" class="btn btn-success btn-sm">
+                        <a href="{{ $item->video_innovation }}"  target="_blank" type="button" class="btn btn-success btn-sm">
                             <span  class="fas fa-video mr-3"></span>Buka Video</a>
                           <br>
                         @else 

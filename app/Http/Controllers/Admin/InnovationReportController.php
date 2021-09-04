@@ -102,36 +102,56 @@ class InnovationReportController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
-            "users_id" => "required",
-            "innovation_step" => "required",
-            "innovation_initiator" => "required",
-            "innovation_type" => "required",
-            "innovation_formats" => "required",
-            "time_innovation_implement" => "required",
-            "problem" => "required",
-            "solution" => "required",
-            "improvement" => "required",
-            "complain_innovation_total" => "required",
-            "complain_improvement_total" => "required",
-            "achievement_goal_level" => "required",
-            "achievement_goal_problem" => "required",
-            "benefit_level" => "required",
-            "achievement_result_level" => "required",
-            "achievement_result_problem" => "required",
-            "innovation_strategy" => "required",
-            "video_innovation" => "required",
-            'quartal' => [
-                Rule::unique('innovation_reports')->where(function ($query) use ($request) {
-                    return $query->where('report_year', $request->get('report_year'))
-                        ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
-                        ->where('quartal', $request->get('quartal'));
-                }),
-            ],
-            [
-                "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
-            ]
-        ])->validate();
+
+        if ($request->get('save_action') == 'KIRIM') {
+            $validation = \Validator::make($request->all(), [
+                "users_id" => "required",
+                "innovation_step" => "required",
+                "innovation_initiator" => "required",
+                "innovation_type" => "required",
+                "innovation_formats" => "required",
+                "time_innovation_implement" => "required",
+                "problem" => "required",
+                "solution" => "required",
+                "improvement" => "required",
+                "complain_innovation_total" => "required",
+                "complain_improvement_total" => "required",
+                "achievement_goal_level" => "required",
+                "achievement_goal_problem" => "required",
+                "benefit_level" => "required",
+                "achievement_result_level" => "required",
+                "achievement_result_problem" => "required",
+                "innovation_strategy" => "required",
+                "video_innovation" => "required",
+                'quartal' => [
+                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                        return $query->where('report_year', $request->get('report_year'))
+                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                            ->where('quartal', $request->get('quartal'));
+                    }),
+                ],
+                [
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                ]
+            ])->validate();
+        } elseif ($request->get('save_action') == 'DRAFT') {
+            $validation = \Validator::make($request->all(), [
+                "users_id" => "required",
+
+                'quartal' => [
+                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                        return $query->where('report_year', $request->get('report_year'))
+                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                            ->where('quartal', $request->get('quartal'));
+                    }),
+                ],
+                [
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                ]
+            ])->validate();
+        }
+
+
 
         $report = new InnovationReport();
         $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
@@ -154,6 +174,7 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
+        $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             $sk = $request->file('innovation_sk_file')->store('laporan/SKinovasi', 'public');
@@ -185,25 +206,20 @@ class InnovationReportController extends Controller
             $report->achievement_result_level_file = $arlf;
         }
 
-        if ($request->file('video_innovation')) {
-            $arlf = $request->file('video_innovation')->store('laporan/video_inovasi', 'public');
-            $report->video_innovation = $arlf;
-        }
-
         $report->report_year = $request->get('report_year');
         $report->quartal = $request->get('quartal');
         $report->status = $request->get('save_action');
 
         $report->save();
 
-        if ($request->get('save_action') == 'PUBLISH') {
+        if ($request->get('save_action') == 'KIRIM') {
             return redirect()
                 ->route('innovation-report.index')
-                ->with('status', 'Laporan successfully saved and published');
-        } else {
+                ->with('status', 'Laporan Berhasil Disimpan dan Dikirim!');
+        } elseif ($request->get('save_action') == 'DRAFT') {
             return redirect()
                 ->route('innovation-report.index')
-                ->with('status', 'Laporan saved as draft');
+                ->with('status', 'Laporan Berhasil Disimpan Sebagai Draft!');
         }
     }
 
@@ -256,26 +272,43 @@ class InnovationReportController extends Controller
     {
         $report = InnovationReport::findOrFail($id);
 
-        \Validator::make($request->all(), [
-            "name" => "required",
-            "innovation_step" => "required",
-            "innovation_initiator" => "required",
-            "innovation_type" => "required",
-            "innovation_formats" => "required",
-            "time_innovation_implement" => "required",
-            "problem" => "required",
-            "solution" => "required",
-            "improvement" => "required",
-            "complain_innovation_total" => "required",
-            "complain_improvement_total" => "required",
-            "achievement_goal_level" => "required",
-            "achievement_goal_problem" => "required",
-            "benefit_level" => "required",
-            "achievement_result_level" => "required",
-            "achievement_result_problem" => "required",
-            "innovation_strategy" => "required",
-            "quartal" => "required",
-        ])->validate();
+        if ($request->get('save_action') == 'KIRIM') {
+            $validation = \Validator::make($request->all(), [
+                "name" => "required",
+                "innovation_step" => "required",
+                "innovation_initiator" => "required",
+                "innovation_type" => "required",
+                "innovation_formats" => "required",
+                "time_innovation_implement" => "required",
+                "problem" => "required",
+                "solution" => "required",
+                "improvement" => "required",
+                "complain_innovation_total" => "required",
+                "complain_improvement_total" => "required",
+                "achievement_goal_level" => "required",
+                "achievement_goal_problem" => "required",
+                "benefit_level" => "required",
+                "achievement_result_level" => "required",
+                "achievement_result_problem" => "required",
+                "innovation_strategy" => "required",
+                "quartal" => "required",
+                "video_innovation" => "required"
+            ])->validate();
+        } elseif ($request->get('save_action') == 'DRAFT') {
+            $validation = \Validator::make($request->all(), [
+
+                'quartal' => [
+                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                        return $query->where('report_year', $request->get('report_year'))
+                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                            ->where('quartal', $request->get('quartal'));
+                    }),
+                ],
+                [
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                ]
+            ])->validate();
+        }
 
         $report->name = $request->get('name');
         $report->innovation_step = json_encode($request->innovation_step);
@@ -294,7 +327,7 @@ class InnovationReportController extends Controller
         $report->achievement_result_level = $request->get('achievement_result_level');
         $report->achievement_result_problem = $request->get('achievement_result_problem');
         $report->innovation_strategy = $request->get('innovation_strategy');
-        // $report->video_innovation = $request->get('video_innovation');
+        $report->video_innovation = $request->get('video_innovation');
 
         if ($request->file('innovation_sk_file')) {
             if ($report->innovation_sk_file && file_exists(storage_path('app/public/' . $report->innovation_sk_file))) {
@@ -344,32 +377,21 @@ class InnovationReportController extends Controller
             $report->achievement_result_level_file = $arlf;
         }
 
-
-        if ($request->file('video_innovation')) {
-            if ($report->video_innovation && file_exists(storage_path('app/public/' . $report->video_innovation))) {
-                \Storage::delete('public/' . $report->video_innovation);
-            }
-            $arlf = $request->file('video_innovation')->store('laporan/video_inovasi', 'public');
-            $report->video_innovation = $arlf;
-        }
-
         $report->report_year = $request->get('report_year');
         $report->quartal = $request->get('quartal');
         $report->status = $request->get('save_action');
 
         $report->save();
 
-        if ($request->get('save_action') == 'PUBLISH') {
+        if ($request->get('save_action') == 'KIRIM') {
             return redirect()
                 ->route('innovation-report.index')
-                ->with('status', 'Laporan successfully updated and published');
-        } else {
+                ->with('status', 'Laporan Berhasil diUpdate dan Dikirim!');
+        } elseif ($request->get('save_action') == 'DRAFT') {
             return redirect()
                 ->route('innovation-report.index')
-                ->with('status', 'Laporan saved as draft');
+                ->with('status', 'Laporan Berhasil Disimpan Sebagai Draft!');
         }
-
-        return redirect()->route('innovation-report.index')->with('status', 'Data successfully updated');
     }
 
     /**
@@ -389,7 +411,7 @@ class InnovationReportController extends Controller
         \Storage::delete('public/' . $item->achievement_result_level_file);
         $item->delete();
 
-        return redirect()->route('innovation-report.index')->with('status', 'Data successfully deleted');
+        return redirect()->route('innovation-report.index')->with('status', 'Data Laporan Berhasil Dihapus!');
     }
 
     public function getlastquartal($id)

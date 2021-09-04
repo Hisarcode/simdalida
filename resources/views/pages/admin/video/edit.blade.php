@@ -42,7 +42,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="video">Nomor Telepon</label>
+                    <label for="video">Video</label>
                     <input type="text" class="form-control" name="video"
                         value="{{ $item->video }}">
                 </div>

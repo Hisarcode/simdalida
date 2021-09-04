@@ -235,7 +235,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Perangkat Daerah</th>
+                                    <th>Inovator</th>
                                     <th>Nama Inovasi Daerah</th>
                                     <th>Bentuk Inovasi</th>
                                     <th>Tipe inovasi</th>

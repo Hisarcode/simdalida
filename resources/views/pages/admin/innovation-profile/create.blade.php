@@ -233,7 +233,8 @@
                     <label for="kualitas_inovasi"><strong>Kualitas Inovasi Daerah*</strong></label>
                         <div class="form-group">
                             <label for="kualitas_inovasi"> Upload Thumbnail Video:  <input type="file" name="kualitas_inovasi" class="form-control" required></label> <br>
-                            <label for="kualitas_inovasi_file"> Upload Video max 8mb:  <input type="file" name="kualitas_inovasi_file" required class="form-control"></label> 
+                            <label for="kualitas_inovasi_file"></label> 
+                            <input type="text" class="form-control" name="kualitas_inovasi_file" placeholder="Link Youtube Video Inovasi" value="{{ old('kualitas_inovasi_file') }}" required autocomplete="off">
                         </div>
                 </div>
 

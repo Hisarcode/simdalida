@@ -345,16 +345,16 @@
                     <input class="form-control" id="kualitas_inovasi" name="kualitas_inovasi" type="file">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                     <br>
-                    <label for="kualitas_inovasi_file"><strong>Upload video Inovasi (max 8 mb):</strong></label>
+                    <label for="kualitas_inovasi_file"><strong>Upload Link video Inovasi:</strong></label>
                     
                     @if($item->kualitas_inovasi_file)
-                        <a href="{{  Storage::url($item->kualitas_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video sebelumnya</a>
+                        <a href="{{ $item->kualitas_inovasi_file }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file sebelumnya</small>
+                    <small class="text-muted">tidak ada file</small>
                     @endif
-                    <input class="form-control" id="kualitas_inovasi_file" name="kualitas_inovasi_file" type="file">
-                    <small class="text-muted">Kosongkan jika tidak ingin mengubah video sebelumnya</small>
+                    <input type="text" class="form-control" name="kualitas_inovasi_file" placeholder="Link Youtube Video" value="{{ $item->kualitas_inovasi_file }}">
+                    <small class="text-muted">Kosongkan jika tidak ingin mengubah video</small>
                 </div>
 
 
