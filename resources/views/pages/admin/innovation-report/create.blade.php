@@ -25,17 +25,6 @@
                 @csrf
                 <input type="hidden" name="users_id" value="{{Auth::user()->id}}">
                 <input type="hidden" name="report_year" value="{{\Carbon\Carbon::now('Asia/Jakarta')->year}}">
-                {{-- <div class="form-group">
-                    <label for="innovation_proposals_id"><b>Nama Inovasi</b></label>
-                    <select name="innovation_proposals_id" id="innovation_proposals_id" required class="form-control">
-                        <option value="">Pilih Nama Inovasi</option>
-                        @foreach ($innovation as $proposal)
-                        <option value="{{ $proposal->innovation_proposals_id }}">
-                {{ $proposal->innovation_proposal->name }}
-                </option>
-                @endforeach
-                </select>
-        </div> --}}
 
         <div class="form-group">
             <label for="innovation_proposals_id"><strong>Nama Inovasi</strong></label>
@@ -51,7 +40,7 @@
 
         <div class="form-group">
             <label for="innovation_sk_file"> <b>Upload SK Bupati:</b> <input type="file" name="innovation_sk_file"
-                    placeholder="SK bupati" required></label>
+                    placeholder="SK bupati"></label>
         </div>
 
         <div class="form-group">
@@ -117,20 +106,20 @@
         <div class="form-group">
             <label for="problem"><b>Permasalahan/kendala yg dihadapi</b></label>
             <textarea type="text" name="problem" id="problem" class="form-control"
-                placeholder="Isikan masalah yang dihadapi" required autocomplete="off">{{ old('problem') }}</textarea>
+                placeholder="Isikan masalah yang dihadapi" autocomplete="off">{{ old('problem') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="solution"><b>Solusi terhadap Permasalahan/kendala yg dihadapi</b></label>
             <textarea type="text" name="solution" id="solution" class="form-control"
-                placeholder="Isikan solusi masalah yang dihadapi" required
+                placeholder="Isikan solusi masalah yang dihadapi" 
                 autocomplete="off">{{ old('solution') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="improvement"><b>Tindaklanjut terhadap permasalahan</b></label>
             <textarea type="text" name="improvement" id="improvement" class="form-control"
-                placeholder="Isikan tindaklanjut dari masalah yang dihadapi" required
+                placeholder="Isikan tindaklanjut dari masalah yang dihadapi"
                 autocomplete="off">{{ old('improvement') }}</textarea>
         </div>
 
@@ -139,7 +128,7 @@
             <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi</b></label>
             <input type="text" class="form-control" name="complain_innovation_total"
                 placeholder="Isikan Jumlah pengaduan/saran terkait inovasi"
-                value="{{ old('complain_innovation_total') }}" required autocomplete="off">
+                value="{{ old('complain_innovation_total') }}" autocomplete="off">
 
             <label for="complain_innovation_file"> <b>Upload dokumen rekapitulasi pengaduan: </b><input type="file"
                     name="complain_innovation_file" placeholder="SK bupati"></label>
@@ -150,7 +139,7 @@
                     ditindaklanjuti</b></label>
             <input type="text" class="form-control" name="complain_improvement_total"
                 placeholder="Isikan Jumlah pengaduan/saran terkait inovasi"
-                value="{{ old('complain_improvement_total') }}" required autocomplete="off">
+                value="{{ old('complain_improvement_total') }}" autocomplete="off">
 
             <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan:</b> <input type="file"
                     name="complain_improvement_file" placeholder="SK bupati"></label>
@@ -160,7 +149,7 @@
             <label for="achievement_goal_level"><b>Tingkat Capaian Tujuan Inovasi Daerah</b></label>
             <input type="text" class="form-control" name="achievement_goal_level"
                 placeholder="Isikan Jumlah pengaduan/saran terkait inovasi" value="{{ old('achievement_goal_level') }}"
-                required autocomplete="off">
+                autocomplete="off">
 
             <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <input type="file"
                     name="achievement_goal_level_file"></label>
@@ -169,14 +158,14 @@
         <div class="form-group">
             <label for="achievement_goal_problem"><b>Kendala Pencapaian tujuan inovasi daerah</b></label>
             <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem" class="form-control"
-                placeholder="Isikan kendala pencapaian tujuan inovasi daerah" required
+                placeholder="Isikan kendala pencapaian tujuan inovasi daerah" 
                 autocomplete="off">{{ old('achievement_goal_problem') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="benefit_level"><b>Tingkat Kemanfaatan Inovasi Daerah</b></label>
             <input type="text" class="form-control" name="benefit_level" placeholder="Isikan Kemanfaatan Inovasi Daerah"
-                value="{{ old('benefit_level') }}" required autocomplete="off">
+                value="{{ old('benefit_level') }}" autocomplete="off">
 
             <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <input type="file"
                     name="benefit_level_file"></label>
@@ -185,7 +174,7 @@
         <div class="form-group">
             <label for="achievement_result_level"><b>Tingkat Capaian Hasil Inovasi Daerah</b></label>
             <input type="text" class="form-control" name="achievement_result_level"
-                placeholder="Isikan Kemanfaatan Inovasi Daerah" value="{{ old('achievement_result_level') }}" required
+                placeholder="Isikan Kemanfaatan Inovasi Daerah" value="{{ old('achievement_result_level') }}" 
                 autocomplete="off">
 
             <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: </b><input type="file"
@@ -195,20 +184,20 @@
         <div class="form-group">
             <label for="achievement_result_problem"><b>Kendala Pencapaian hasil inovasi daerah</b></label>
             <textarea type="text" name="achievement_result_problem" id="achievement_result_problem" class="form-control"
-                placeholder="Isikan kendala pencapaian hasil inovasi daerah" required
+                placeholder="Isikan kendala pencapaian hasil inovasi daerah" 
                 autocomplete="off">{{ old('achievement_result_problem') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="innovation_strategy"><b>Strategi Pelaksanaan Inovasi*</b></label>
             <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
-                placeholder="Isikan strategi pelaksanaan inovasi" required
+                placeholder="Isikan strategi pelaksanaan inovasi" 
                 autocomplete="off">{{ old('innovation_strategy') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="video_innovation"><b>Video Inovasi Daerah*</b></label>
-            <input type="text" class="form-control" name="video_innovation" placeholder="Link Youtube Laporan Video" value="{{ old('video_innovation') }}" required autocomplete="off">
+            <input type="text" class="form-control" name="video_innovation" placeholder="Link Youtube Laporan Video" value="{{ old('video_innovation') }}" autocomplete="off">
         </div>
 
 

@@ -39,7 +39,7 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                <div class="icon"><i class="fa fa-tag"></i></div>
                                 <input type="text" name="subject" placeholder="Subjek" required autocomplete="off">
                             </div>
                         </div>
@@ -76,7 +76,10 @@
                             <div class="main-image">
                                 <h2 class="sidebar-title blog-title pb-4">Video Inovasi-Inovasi Daerah</h2>
                             </div>
-
+                            <form action="{{ route('video-cari') }}" method="GET">
+                                <input type="text" name="cari" placeholder="Cari Video .." value="{{ old('cari') }}">
+                                <input type="submit" value="CARI">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -85,8 +88,15 @@
                     <div class="col-12">
                         <div class="portfolio-main">
                             <div id="portfolio-item" class="portfolio-item-active">
+                                <?php 
+                                $count = $report->count();    
+                                ?>
+                                @if ($count>0)
                                 @forelse ($report as $video)
                                 @if ($video->kualitas_inovasi)
+                                <?php 
+                                $count2 = $report->count();
+                                ?>
                                 <div class="cbp-item business animation">
                                     <!-- Single Portfolio -->
                                     <div class="single-portfolio">
@@ -113,6 +123,11 @@
                                 @empty
                                 <h5 class="text-center"> Tidak Ada Data</h5>
                                 @endforelse
+                                @else
+                                <div class="cbp-item business animation">
+                                  <h4>Data yang anda cari tidak ada...</h4>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

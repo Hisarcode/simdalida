@@ -42,7 +42,7 @@
                                                             <a href="{{ route('infographic') }}">Infografis</a>
                                                         </li>
                                                         <li class="{{ request()->is('video') ?'active' : '' }}">
-                                                            <a href="{{ route('video') }}">Galeri Video</a>
+                                                            <a href="{{ route('video-inovasi') }}">Galeri Video</a>
                                                         </li>
                                                         <li class="{{ request()->is('complain') ?'active' : '' }}">
                                                             <a href="{{ route('complain.index') }}">Pengaduan</a></li>

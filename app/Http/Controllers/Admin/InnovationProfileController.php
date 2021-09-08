@@ -73,7 +73,8 @@ class InnovationProfileController extends Controller
         )->validate();
 
         $profile = new InnovationProfile;
-
+        $ambil = InnovationProposal::where('id', $request->get('innovation_proposals_id'))->first()->name;
+        $profile->name = $ambil;
         $profile->users_id = $request->get('users_id');
         $profile->innovation_proposals_id = $request->get('innovation_proposals_id');
         $profile->regulasi_inovasi = $request->get('regulasi_inovasi');

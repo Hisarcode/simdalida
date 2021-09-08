@@ -57,7 +57,7 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                <div class="icon"><i class="fa fa-tag"></i></div>
                                 <input type="text" name="subject" placeholder="Subjek" required autocomplete="off">
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                         <p style="color: antiquewhite">{{ \Illuminate\Support\Str::limit($video->about_content, 350, $end='...') }}</p>
                     </div>
                     <div class="section-top mt-3">
-                        <a href="{{ route('video') }}"><button class="btn btn-success">Lihat
+                        <a href="{{ route('video-inovasi') }}"><button class="btn btn-success">Lihat
                                 Video Inovasi</button></a>
                     </div>
 

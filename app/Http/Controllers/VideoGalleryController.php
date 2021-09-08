@@ -27,7 +27,8 @@ class VideoGalleryController extends Controller
     public function index()
     {
 
-        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->orderBy('users_id', 'ASC')->paginate(9);;
+        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->orderBy('users_id', 'DESC')->paginate(9);
+
         $about = About::orderBy('id', 'DESC')->get();
 
         return view('pages.videogallery', [
@@ -48,5 +49,23 @@ class VideoGalleryController extends Controller
 
 
         return view('pages.videogallerydetail', compact('video', 'title_page', 'about'));
+    }
+
+    public function cari(Request $request)
+    {
+        // menangkap data pencarian
+        $cari = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        $report = InnovationProfile::whereNotNull('kualitas_inovasi_file')->where('name', 'like', "%" . $cari . "%")
+            ->paginate(9);
+
+        $about = About::orderBy('id', 'DESC')->get();
+
+        return view('pages.videogallery', [
+            'title_page' => 'Video Simdalida',
+            'report' => $report,
+            'about' => $about
+        ]);
     }
 }

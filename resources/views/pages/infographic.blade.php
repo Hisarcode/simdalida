@@ -52,7 +52,7 @@
                 
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                                <div class="icon"><i class="fa fa-tag"></i></div>
                                                 <input type="text" name="subject" placeholder="Subjek" required autocomplete="off">
                                             </div>
                                         </div>

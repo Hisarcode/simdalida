@@ -104,36 +104,51 @@ class InnovationReportController extends Controller
     {
 
         if ($request->get('save_action') == 'KIRIM') {
-            $validation = \Validator::make($request->all(), [
-                "users_id" => "required",
-                "innovation_step" => "required",
-                "innovation_initiator" => "required",
-                "innovation_type" => "required",
-                "innovation_formats" => "required",
-                "time_innovation_implement" => "required",
-                "problem" => "required",
-                "solution" => "required",
-                "improvement" => "required",
-                "complain_innovation_total" => "required",
-                "complain_improvement_total" => "required",
-                "achievement_goal_level" => "required",
-                "achievement_goal_problem" => "required",
-                "benefit_level" => "required",
-                "achievement_result_level" => "required",
-                "achievement_result_problem" => "required",
-                "innovation_strategy" => "required",
-                "video_innovation" => "required",
-                'quartal' => [
-                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
-                        return $query->where('report_year', $request->get('report_year'))
-                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
-                            ->where('quartal', $request->get('quartal'));
-                    }),
+            $validation = \Validator::make(
+                $request->all(),
+                [
+                    "users_id" => "required",
+                    "innovation_step" => "required",
+                    "innovation_initiator" => "required",
+                    "innovation_type" => "required",
+                    "innovation_formats" => "required",
+                    "time_innovation_implement" => "required",
+                    "problem" => "required",
+                    "solution" => "required",
+                    "improvement" => "required",
+                    "complain_innovation_total" => "required",
+                    "complain_improvement_total" => "required",
+                    "achievement_goal_level" => "required",
+                    "achievement_goal_problem" => "required",
+                    "benefit_level" => "required",
+                    "achievement_result_level" => "required",
+                    "achievement_result_problem" => "required",
+                    "innovation_strategy" => "required",
+                    "video_innovation" => "required",
+                    'quartal' => [
+                        Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                            return $query->where('report_year', $request->get('report_year'))
+                                ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                                ->where('quartal', $request->get('quartal'));
+                        }),
+                    ]
                 ],
                 [
-                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
+                    "problem.required" => "field kendala pelaksanaan inovasi daerah harus diisi!",
+                    "solution.required" => "field solusi terhadap masalah harus diisi!",
+                    "improvement.required" => "field tindaklanjut terhadap masalah harus diisi!",
+                    "complain_innovation_total.required" => "field jumlah pengaduan inovasi daerah harus diisi!",
+                    "complain_improvement_total.required" => "field jumlah pengaduan yang sudah di TL harus diisi!",
+                    "achievement_goal_level.required" => "field tingkat capaian inovasi daerah harus diisi!",
+                    "achievement_goal_problem.required" => "field kendala pencapaian tujuan harus diisi!",
+                    "benefit_level.required" => "field tingkat kemanfaatan inovasi daerah harus diisi!",
+                    "achievement_result_level.required" => "field Tingkat Capaian Hasil Inovasi Daerah harus diisi!",
+                    "achievement_result_problem.required" => "field Kendala Pencapaian Hasil Inovasi Daerah harus diisi!",
+                    "innovation_strategy.required" => "field strategi inovasi Daerah harus diisi!",
+                    "video_innovation.required" => "field video inovasi Daerah harus diisi!",
                 ]
-            ])->validate();
+            )->validate();
         } elseif ($request->get('save_action') == 'DRAFT') {
             $validation = \Validator::make($request->all(), [
                 "users_id" => "required",
@@ -273,27 +288,50 @@ class InnovationReportController extends Controller
         $report = InnovationReport::findOrFail($id);
 
         if ($request->get('save_action') == 'KIRIM') {
-            $validation = \Validator::make($request->all(), [
-                "name" => "required",
-                "innovation_step" => "required",
-                "innovation_initiator" => "required",
-                "innovation_type" => "required",
-                "innovation_formats" => "required",
-                "time_innovation_implement" => "required",
-                "problem" => "required",
-                "solution" => "required",
-                "improvement" => "required",
-                "complain_innovation_total" => "required",
-                "complain_improvement_total" => "required",
-                "achievement_goal_level" => "required",
-                "achievement_goal_problem" => "required",
-                "benefit_level" => "required",
-                "achievement_result_level" => "required",
-                "achievement_result_problem" => "required",
-                "innovation_strategy" => "required",
-                "quartal" => "required",
-                "video_innovation" => "required"
-            ])->validate();
+            $validation = \Validator::make(
+                $request->all(),
+                [
+                    "innovation_step" => "required",
+                    "innovation_initiator" => "required",
+                    "innovation_type" => "required",
+                    "innovation_formats" => "required",
+                    "time_innovation_implement" => "required",
+                    "problem" => "required",
+                    "solution" => "required",
+                    "improvement" => "required",
+                    "complain_innovation_total" => "required",
+                    "complain_improvement_total" => "required",
+                    "achievement_goal_level" => "required",
+                    "achievement_goal_problem" => "required",
+                    "benefit_level" => "required",
+                    "achievement_result_level" => "required",
+                    "achievement_result_problem" => "required",
+                    "innovation_strategy" => "required",
+                    "video_innovation" => "required",
+                    'quartal' => [
+                        Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                            return $query->where('report_year', $request->get('report_year'))
+                                ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                                ->where('quartal', $request->get('quartal'));
+                        }),
+                    ]
+                ],
+                [
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
+                    "problem.required" => "field kendala pelaksanaan inovasi daerah harus diisi!",
+                    "solution.required" => "field solusi terhadap masalah harus diisi!",
+                    "improvement.required" => "field tindaklanjut terhadap masalah harus diisi!",
+                    "complain_innovation_total.required" => "field jumlah pengaduan inovasi daerah harus diisi!",
+                    "complain_improvement_total.required" => "field jumlah pengaduan yang sudah di TL harus diisi!",
+                    "achievement_goal_level.required" => "field tingkat capaian inovasi daerah harus diisi!",
+                    "achievement_goal_problem.required" => "field kendala pencapaian tujuan harus diisi!",
+                    "benefit_level.required" => "field tingkat kemanfaatan inovasi daerah harus diisi!",
+                    "achievement_result_level.required" => "field Tingkat Capaian Hasil Inovasi Daerah harus diisi!",
+                    "achievement_result_problem.required" => "field Kendala Pencapaian Hasil Inovasi Daerah harus diisi!",
+                    "innovation_strategy.required" => "field strategi inovasi Daerah harus diisi!",
+                    "video_innovation.required" => "field video inovasi Daerah harus diisi!",
+                ]
+            )->validate();
         } elseif ($request->get('save_action') == 'DRAFT') {
             $validation = \Validator::make($request->all(), [
 

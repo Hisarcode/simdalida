@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label><strong>Tahapan Inovasi :</strong></label><br>
+                    <label><strong>Tahapan Inovasi </strong></label><br>
                     <label for="Tahap Inisiatif"> <input type="checkbox"
                             {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}}
                             name="innovation_step[]" {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label><strong>Inisiator Inovasi :</strong></label><br>
+                    <label><strong>Inisiator Inovasi </strong></label><br>
 
                     <label for="Kepala Daerah"> <input type="checkbox"
                             {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}
@@ -278,7 +278,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="achievement_result_problem">Kendala Pencapaian Hasil Inovasi Daerah</label>
+                    <label for="achievement_result_problem"><strong>Kendala Pencapaian Hasil Inovasi Daerah</strong></label>
                     <textarea type="text" name="achievement_result_problem" id="achievement_result_problem"
                         class="form-control" placeholder="">{{ $item->achievement_result_problem }}</textarea>
                 </div>
@@ -290,7 +290,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="video_innovation">Video inovasi daerah</label>
+                    <label for="video_innovation"><strong>Video inovasi daerah</strong></label>
                     <br>
                     @if($item->video_innovation)
                     <a href="{{ $item->video_innovation }}" target="_blank" class="btn btn-warning">Klik
