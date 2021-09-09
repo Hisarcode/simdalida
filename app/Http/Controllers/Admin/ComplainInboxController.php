@@ -61,6 +61,15 @@ class ComplainInboxController extends Controller
     public function update(Request $request, $id)
     {
         $complain = Complain::findOrFail($id);
+        \Validator::make(
+            $request->all(),
+            [
+                "bukti_tl" => "required|mimes:doc,pdf,docx|max:5240",
+            ],
+            [
+                "bukti_tl.mimes" => "type file harus PDF/docx!",
+            ]
+        )->validate();
         $complain->is_improvement = 'sudah';
         if ($request->file('bukti_tl')) {
             $bukti = $request->file('bukti_tl')->store('pengaduan/bukti_tl', 'public');

@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="budget"><strong>Isikan anggaran, jika diperlukan</strong></label>
+                    <label for="budget"><strong>Isikan anggaran, jika diperlukan</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
                     <textarea type="text" name="budget" id="budget" class="form-control" placeholder="Isikan anggaran"
                     autocomplete="off">{{ old('budget') }}</textarea>
 
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="profil_bisnis"><strong>Isikan Profil Bisnis, jika ada</strong></label>
+                    <label for="profil_bisnis"><strong>Isikan Profil Bisnis, jika ada</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
                     <textarea type="text" name="profil_bisnis" id="profil_bisnis" class="form-control" placeholder="Isikan Profil Bisnis"
                     autocomplete="off">{{ old('profil_bisnis') }}</textarea>
 

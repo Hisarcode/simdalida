@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/favicon.png" href="{{ url('front/img/favicon.png') }}">
+    <link rel="icon" type="image/favicon.png" href="{{ url('front/img/logo-sgu.png') }}">
 
     <title>Simdalida Admin</title>
     @include('includes.admin.style')

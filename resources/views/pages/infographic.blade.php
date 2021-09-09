@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', 'Simdalida Sanggau - Inovasi Daerah')
 
 @section('content')
 <!-- Blog Single -->
@@ -90,8 +91,8 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Nama Inovasi</th>
                                             <th>Inovator</th>
-                                            <th>Nama Inovasi Daerah</th>
                                             <th>Bentuk Inovasi</th>
                                             <th>Tipe inovasi</th>
                                             <th>Lihat Detail</th>
@@ -105,8 +106,8 @@
                                         @forelse ($infographic as $profile)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $profile->user->name }}</td>
                                             <td>{{ $profile->innovation_proposal->name }}</td>
+                                            <td>{{ $profile->user->name }}</td>
                                             <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
                                             <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                                             <td>

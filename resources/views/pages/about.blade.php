@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', 'Simdalida Sanggau - Maju dan Terdepan')
 
 @section('content')
     <!-- Blog Single -->

@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', $video->innovation_proposal->name)
 
 @section('content')
 	<!-- Blog Single -->

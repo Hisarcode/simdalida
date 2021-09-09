@@ -39,12 +39,12 @@
         </div>
 
         <div class="form-group">
-            <label for="innovation_sk_file"> <b>Upload SK Bupati:</b> <input type="file" name="innovation_sk_file"
+            <label for="innovation_sk_file"> <b>Upload SK Bupati:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file" name="innovation_sk_file"
                     placeholder="SK bupati"></label>
         </div>
 
         <div class="form-group">
-            <label><strong><b>Tahapan Inovasi :</b></strong></label><br>
+            <label><strong><b>Tahapan Inovasi* :</b></strong></label><br>
             <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif"    {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
                 Inisiatif</label>
             <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba"    {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap Uji
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            <label><strong><b>Inisiator Inovasi Daerah:</b></strong></label><br>
+            <label><strong><b>Inisiator Inovasi Daerah* :</b></strong></label><br>
             <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah"  {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Kepala
                 Daerah</label>
             <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Anggota
@@ -67,7 +67,7 @@
         </div>
 
         <div class="form-group">
-            <label for="innovation_type"><b>Jenis Inovasi Daerah</b></label>
+            <label for="innovation_type"><b>Jenis Inovasi Daerah*</b></label>
             <br>
             <label>
                 <input type="radio" name="innovation_type" id="innovation_type" value="Digital" {{($item->innovation_type == "Digital")? "checked" : ""}}> Digital
@@ -104,100 +104,92 @@
         </div>
 
         <div class="form-group">
-            <label for="problem"><b>Permasalahan/kendala yg dihadapi</b></label>
+            <label for="problem"><b>Permasalahan/kendala yg dihadapi*</b></label>
             <textarea type="text" name="problem" id="problem" class="form-control"
-                placeholder="Isikan masalah yang dihadapi" autocomplete="off">{{ old('problem') }}</textarea>
+               autocomplete="off">{{ old('problem') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="solution"><b>Solusi terhadap Permasalahan/kendala yg dihadapi</b></label>
+            <label for="solution"><b>Solusi terhadap Permasalahan/kendala yg dihadapi*</b></label>
             <textarea type="text" name="solution" id="solution" class="form-control"
-                placeholder="Isikan solusi masalah yang dihadapi" 
+               
                 autocomplete="off">{{ old('solution') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="improvement"><b>Tindaklanjut terhadap permasalahan</b></label>
+            <label for="improvement"><b>Tindaklanjut terhadap permasalahan*</b></label>
             <textarea type="text" name="improvement" id="improvement" class="form-control"
-                placeholder="Isikan tindaklanjut dari masalah yang dihadapi"
                 autocomplete="off">{{ old('improvement') }}</textarea>
         </div>
 
 
         <div class="form-group">
-            <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi</b></label>
+            <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
             <input type="text" class="form-control" name="complain_innovation_total"
-                placeholder="Isikan Jumlah pengaduan/saran terkait inovasi"
                 value="{{ old('complain_innovation_total') }}" autocomplete="off">
 
-            <label for="complain_innovation_file"> <b>Upload dokumen rekapitulasi pengaduan: </b><input type="file"
-                    name="complain_innovation_file" placeholder="SK bupati"></label>
+            <label for="complain_innovation_file"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+                    name="complain_innovation_file"></label>
         </div>
 
         <div class="form-group">
             <label for="complain_improvement_total"><b>Jumlah pengaduan/saran yg sudah
-                    ditindaklanjuti</b></label>
+                    ditindaklanjuti*</b></label>
             <input type="text" class="form-control" name="complain_improvement_total"
-                placeholder="Isikan Jumlah pengaduan/saran terkait inovasi"
                 value="{{ old('complain_improvement_total') }}" autocomplete="off">
 
-            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan:</b> <input type="file"
-                    name="complain_improvement_file" placeholder="SK bupati"></label>
+            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+                    name="complain_improvement_file" ></label>
         </div>
 
         <div class="form-group">
-            <label for="achievement_goal_level"><b>Tingkat Capaian Tujuan Inovasi Daerah</b></label>
-            <input type="text" class="form-control" name="achievement_goal_level"
-                placeholder="Isikan Jumlah pengaduan/saran terkait inovasi" value="{{ old('achievement_goal_level') }}"
+            <label for="achievement_goal_level"><b>Tingkat Capaian Tujuan Inovasi Daerah*</b></label>
+            <input type="text" class="form-control" name="achievement_goal_level" value="{{ old('achievement_goal_level') }}"
                 autocomplete="off">
 
-            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <input type="file"
+            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
                     name="achievement_goal_level_file"></label>
         </div>
 
         <div class="form-group">
-            <label for="achievement_goal_problem"><b>Kendala Pencapaian tujuan inovasi daerah</b></label>
+            <label for="achievement_goal_problem"><b>Kendala Pencapaian tujuan inovasi daerah*</b></label>
             <textarea type="text" name="achievement_goal_problem" id="achievement_goal_problem" class="form-control"
-                placeholder="Isikan kendala pencapaian tujuan inovasi daerah" 
                 autocomplete="off">{{ old('achievement_goal_problem') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="benefit_level"><b>Tingkat Kemanfaatan Inovasi Daerah</b></label>
-            <input type="text" class="form-control" name="benefit_level" placeholder="Isikan Kemanfaatan Inovasi Daerah"
+            <label for="benefit_level"><b>Tingkat Kemanfaatan Inovasi Daerah*</b></label>
+            <input type="text" class="form-control" name="benefit_level" 
                 value="{{ old('benefit_level') }}" autocomplete="off">
 
-            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <input type="file"
+            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
                     name="benefit_level_file"></label>
         </div>
 
         <div class="form-group">
-            <label for="achievement_result_level"><b>Tingkat Capaian Hasil Inovasi Daerah</b></label>
-            <input type="text" class="form-control" name="achievement_result_level"
-                placeholder="Isikan Kemanfaatan Inovasi Daerah" value="{{ old('achievement_result_level') }}" 
+            <label for="achievement_result_level"><b>Tingkat Capaian Hasil Inovasi Daerah*</b></label>
+            <input type="text" class="form-control" name="achievement_result_level" value="{{ old('achievement_result_level') }}" 
                 autocomplete="off">
 
-            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: </b><input type="file"
+            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: <i>(maks: 5MB|PDF, docx)</i> <br> </b><input type="file"
                     name="achievement_result_level_file"></label>
         </div>
 
         <div class="form-group">
-            <label for="achievement_result_problem"><b>Kendala Pencapaian hasil inovasi daerah</b></label>
+            <label for="achievement_result_problem"><b>Kendala Pencapaian hasil inovasi daerah*</b></label>
             <textarea type="text" name="achievement_result_problem" id="achievement_result_problem" class="form-control"
-                placeholder="Isikan kendala pencapaian hasil inovasi daerah" 
                 autocomplete="off">{{ old('achievement_result_problem') }}</textarea>
         </div>
 
         <div class="form-group">
             <label for="innovation_strategy"><b>Strategi Pelaksanaan Inovasi*</b></label>
             <textarea type="text" name="innovation_strategy" id="innovation_strategy" class="form-control"
-                placeholder="Isikan strategi pelaksanaan inovasi" 
                 autocomplete="off">{{ old('innovation_strategy') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="video_innovation"><b>Video Inovasi Daerah*</b></label>
-            <input type="text" class="form-control" name="video_innovation" placeholder="Link Youtube Laporan Video" value="{{ old('video_innovation') }}" autocomplete="off">
+            <label for="video_innovation"><b>Video Inovasi Daerah (Link Youtube)*</b></label>
+            <input type="text" class="form-control" name="video_innovation" value="{{ old('video_innovation') }}" autocomplete="off">
         </div>
 
 

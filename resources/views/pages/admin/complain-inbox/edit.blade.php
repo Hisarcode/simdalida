@@ -25,7 +25,7 @@
                 @method('PUT')
                 @csrf
                <div class="form-group">
-                <label for="bukti_tl"><strong>Silahkan upload bukti penyelesaian pengaduan</strong></label> 
+                <label for="bukti_tl"><strong>Silahkan upload bukti penyelesaian pengaduan</strong> <i>(maks: 5MB, PDF/docx)</i></label> 
                 <br>
                 <input id="bukti_tl" name="bukti_tl" type="file" required><br>
                </div>

@@ -34,7 +34,7 @@
                         autocomplete="off">{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="carousel_image">Upload Gambar Carousel: </label>
+                    <label for="carousel_image">Upload Gambar Carousel: <i>(maks: 3MB)</i></label>
                     <input class="form-control-file" type="file" name="carousel_image" id="carousel_image"
                         placeholder="Gambar Carousel">
                 </div>

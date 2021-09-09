@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', 'Simdalida Sanggau - Video Inovasi Daerah')
 
 @section('content')
 <!-- Blog Single -->
@@ -76,12 +77,14 @@
                             <div class="main-image">
                                 <h2 class="sidebar-title blog-title pb-4">Video Inovasi-Inovasi Daerah</h2>
                             </div>
-                            <form action="{{ route('video-cari') }}" method="GET">
-                                <input type="text" name="cari" placeholder="Cari Video .." value="{{ old('cari') }}">
-                                <input type="submit" value="CARI">
-                            </form>
                         </div>
                     </div>
+                        <div class="col-md-8 ">
+                            <form action="{{ route('video-cari') }}" method="GET" class="form-inline">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Cari video..." name="cari" value="{{ old('cari') }}" autocomplete="off">
+                                <input type="submit" class="btn btn-primary my-2 my-sm-0" value="Cari">
+                            </form>
+                        </div>
                 </div>
 
                 <div class="row mt-5">
@@ -103,17 +106,17 @@
                                         <div class="portfolio-head overlay">
 
                                             <img src="{{ Storage::url($video->kualitas_inovasi) }}"
-                                                alt="#">
+                                                alt="#" style="height: 250px!important;">
                                             <a class="more" href="{{ route('video-detail', $video->id) }}"><i
                                                     class="fa fa-long-arrow-right"></i></a>
                                         </div>
-                                        <div class="portfolio-content">
+                                        <div class="portfolio-content" style="height: 110px!important">
                                             <p>
                                                 <a
                                                     href="{{ route('video-detail', $video->id) }}">{{ $video->innovation_proposal->name }}</a>
                                             </p>
                                             <p class="font-italic font-weight-bold"
-                                                style="font-size: 11px ;  line-height: 120%;">
+                                                style="font-size: 11px;  line-height: 120%;">
                                                 {{ $video->user->name }}</p>
                                         </div>
                                     </div>

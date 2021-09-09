@@ -43,7 +43,7 @@ class InfographicController extends Controller
         foreach ($infographics as $infographic) {
 
             $innovation_report = InnovationReport::where('innovation_proposals_id', $infographic->innovation_proposals_id)
-                ->where('report_year', $current_year)->count();
+                ->where('report_year', $current_year)->where('status', 'KIRIM')->count();
 
             // dd($current_triwulan); 
 

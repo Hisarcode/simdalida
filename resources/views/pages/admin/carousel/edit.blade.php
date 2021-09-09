@@ -34,7 +34,7 @@
                         placeholder="Input deskripsi carousel"">{{ $item->description }}</textarea>
                 </div>
 
-                <label for=" carousel_image"> Upload Gambar Carousel:  </label> 
+                <label for=" carousel_image"> Upload Gambar Carousel: <i>(maks: 3MB)</i> </label> 
                 @if($item->carousel_image)
                     <iframe src="{{  Storage::url($item->carousel_image)  }}"
                         frameBorder="0"

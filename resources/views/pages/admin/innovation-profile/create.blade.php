@@ -45,7 +45,7 @@
                     <label for="regulasi_inovasi"><strong>Regulasi Inovasi Daerah*</strong></label>
                         <div class="form-group">
                             <textarea type="text" name="regulasi_inovasi" id="regulasi_inovasi" class="form-control" required autocomplete="off">{{ old('regulasi_inovasi') }}</textarea>
-                            <label for="regulasi_inovasi_file"> Upload file SK (PDF):  <input type="file" name="regulasi_inovasi_file"></label> 
+                            <label for="regulasi_inovasi_file"> Upload file SK (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="regulasi_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -55,7 +55,7 @@
                             <textarea type="text" name="ketersediaan_sdm" id="ketersediaan_sdm" class="form-control"
                             placeholder=" " required
                             autocomplete="off">{{ old('ketersediaan_sdm') }}</textarea>
-                            <label for="ketersediaan_sdm_file"> Upload file SK (PDF):  <input type="file" name="ketersediaan_sdm_file"></label> 
+                            <label for="ketersediaan_sdm_file"> Upload file SK (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="ketersediaan_sdm_file"></label> 
                         </div>
                 </div>
 
@@ -65,7 +65,7 @@
                             <textarea type="text" name="dukungan_anggaran" id="dukungan_anggaran" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('dukungan_anggaran') }}</textarea>
-                            <label for="dukungan_anggaran_file"> Upload file SK (PDF):  <input type="file" name="dukungan_anggaran_file"></label> 
+                            <label for="dukungan_anggaran_file"> Upload file SK (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="dukungan_anggaran_file"></label> 
                         </div>
                 </div>
 
@@ -75,7 +75,7 @@
                             <textarea type="text" name="penggunaan_it" id="penggunaan_it" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('penggunaan_it') }}</textarea>
-                            <label for="penggunaan_it_file"> Upload file pendukung (PDF  ):  <input type="file" name="penggunaan_it_file"></label> 
+                            <label for="penggunaan_it_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="penggunaan_it_file"></label> 
                         </div>
                 </div>
 
@@ -85,7 +85,7 @@
                             <textarea type="text" name="bimtek_inovasi" id="bimtek_inovasi" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('bimtek_inovasi') }}</textarea>
-                            <label for="bimtek_inovasi_file"> Upload file pendukung (PDF):  <input type="file" name="bimtek_inovasi_file"></label> 
+                            <label for="bimtek_inovasi_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="bimtek_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -95,7 +95,7 @@
                             <textarea type="text" name="program_rkpd" id="program_rkpd" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('program_rkpd') }}</textarea>
-                            <label for="program_rkpd_file"> Upload file pendukung (PDF):  <input type="file" name="program_rkpd_file"></label> 
+                            <label for="program_rkpd_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="program_rkpd_file"></label> 
                         </div>
                 </div>
 
@@ -105,7 +105,7 @@
                             <textarea type="text" name="keterlibatan_aktor" id="keterlibatan_aktor" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('keterlibatan_aktor') }}</textarea>
-                            <label for="keterlibatan_aktor_file"> Upload file pendukung (PDF  ):  <input type="file" name="keterlibatan_aktor_file"></label> 
+                            <label for="keterlibatan_aktor_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br>  <input type="file" name="keterlibatan_aktor_file"></label> 
                         </div>
                 </div>
 
@@ -115,7 +115,7 @@
                             <textarea type="text" name="pelaksana_inovasi" id="pelaksana_inovasi" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('pelaksana_inovasi') }}</textarea>
-                            <label for="pelaksana_inovasi_file"> Upload file pendukung (PDF):  <input type="file" name="pelaksana_inovasi_file"></label> 
+                            <label for="pelaksana_inovasi_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="pelaksana_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -125,7 +125,7 @@
                             <textarea type="text" name="jejaring_inovasi" id="jejaring_inovasi" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('jejaring_inovasi') }}</textarea>
-                            <label for="jejaring_inovasi_file"> Upload file pendukung (PDF):  <input type="file" name="jejaring_inovasi_file"></label> 
+                            <label for="jejaring_inovasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="jejaring_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -135,7 +135,7 @@
                             <textarea type="text" name="sosialisasi_inovasi" id="sosialisasi_inovasi" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('sosialisasi_inovasi') }}</textarea>
-                            <label for="sosialisasi_inovasi_file"> Upload file pendukung (PDF  ):  <input type="file" name="sosialisasi_inovasi_file"></label> 
+                            <label for="sosialisasi_inovasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br>  <input type="file" name="sosialisasi_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -145,7 +145,7 @@
                             <textarea type="text" name="pedoman_teknis" id="pedoman_teknis" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('pedoman_teknis') }}</textarea>
-                            <label for="pedoman_teknis_file"> Upload file pendukung (PDF):  <input type="file" name="pedoman_teknis_file"></label> 
+                            <label for="pedoman_teknis_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="pedoman_teknis_file"></label> 
                         </div>
                 </div>
 
@@ -155,7 +155,7 @@
                             <textarea type="text" name="kemudahan_informasi" id="kemudahan_informasi" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('kemudahan_informasi') }}</textarea>
-                            <label for="kemudahan_informasi_file"> Upload file pendukung (PDF):  <input type="file" name="kemudahan_informasi_file"></label> 
+                            <label for="kemudahan_informasi_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="kemudahan_informasi_file"></label> 
                         </div>
                 </div>
 
@@ -165,7 +165,7 @@
                             <textarea type="text" name="kemudahan_proses" id="kemudahan_proses" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('kemudahan_proses') }}</textarea>
-                            <label for="kemudahan_proses_file"> Upload file pendukung (PDF):  <input type="file" name="kemudahan_proses_file"></label> 
+                            <label for="kemudahan_proses_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="kemudahan_proses_file"></label> 
                         </div>
                 </div>
 
@@ -175,7 +175,7 @@
                             <textarea type="text" name="penyelesaian_pengaduan" id="penyelesaian_pengaduan" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('penyelesaian_pengaduan') }}</textarea>
-                            <label for="penyelesaian_pengaduan_file"> Upload file pendukung (PDF):  <input type="file" name="penyelesaian_pengaduan_file"></label> 
+                            <label for="penyelesaian_pengaduan_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="penyelesaian_pengaduan_file"></label> 
                         </div>
                 </div>
 
@@ -185,7 +185,7 @@
                             <textarea type="text" name="online_sistem" id="description" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('online_sistem') }}</textarea>
-                            <label for="online_sistem_file"> Upload file pendukung (PDF):  <input type="file" name="online_sistem_file"></label> 
+                            <label for="online_sistem_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="online_sistem_file"></label> 
                         </div>
                 </div>
 
@@ -195,7 +195,7 @@
                             <textarea type="text" name="replikasi" id="replikasi" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('replikasi') }}</textarea>
-                            <label for="replikasi_file"> Upload file pendukung (PDF):  <input type="file" name="replikasi_file"></label> 
+                            <label for="replikasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="replikasi_file"></label> 
                         </div>
                 </div>
 
@@ -205,7 +205,7 @@
                             <textarea type="text" name="kecepatan_inovasi" id="kecepatan_inovasi" class="form-control"
                             placeholder=" " required
                             autocomplete="off">{{ old('kecepatan_inovasi') }}</textarea>
-                            <label for="kecepatan_inovasi_file"> Upload file pendukung (PDF):  <input type="file" name="kecepatan_inovasi_file"></label> 
+                            <label for="kecepatan_inovasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="kecepatan_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -215,7 +215,7 @@
                             <textarea type="text" name="kemanfaatan_inovasi" id="kemanfaatan_inovasi" class="form-control"
                             placeholder=" " required
                             autocomplete="off">{{ old('kemanfaatan_inovasi') }}</textarea>
-                            <label for="kemanfaatan_inovasi_file"> Upload file pendukung (PDF):  <input type="file" name="kemanfaatan_inovasi_file"></label> 
+                            <label for="kemanfaatan_inovasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="kemanfaatan_inovasi_file"></label> 
                         </div>
                 </div>
 
@@ -225,14 +225,14 @@
                             <textarea type="text" name="monitoring_evaluasi" id="monitoring_evaluasi" class="form-control"
                             placeholder=" " required
                             autocomplete="off">{{ old('monitoring_evaluasi') }}</textarea>
-                            <label for="monitoring_evaluasi_file"> Upload file pendukung (PDF):  <input type="file" name="monitoring_evaluasi_file"></label> 
+                            <label for="monitoring_evaluasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="monitoring_evaluasi_file"></label> 
                         </div>
                 </div>
 
                 <div class="form-group">
                     <label for="kualitas_inovasi"><strong>Kualitas Inovasi Daerah*</strong></label>
                         <div class="form-group">
-                            <label for="kualitas_inovasi"> Upload Thumbnail Video:  <input type="file" name="kualitas_inovasi" class="form-control" required></label> <br>
+                            <label for="kualitas_inovasi"> Upload Thumbnail Video:  <i>(maks: 3MB)</i> <br><input type="file" name="kualitas_inovasi" class="form-control" required></label>
                             <label for="kualitas_inovasi_file"></label> 
                             <input type="text" class="form-control" name="kualitas_inovasi_file" placeholder="Link Youtube Video Inovasi" value="{{ old('kualitas_inovasi_file') }}" required autocomplete="off">
                         </div>

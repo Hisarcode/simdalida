@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', $infographic->innovation_proposal->name)
 
 @section('content')    
     <!-- Blog Single -->
@@ -77,7 +78,7 @@
 
 
                                     @if ($infographic->kualitas_inovasi) 
-                                    <img src="{{ Storage::url($infographic->kualitas_inovasi) }}" alt="{{ $infographic->innovation_proposal->name }}">
+                                    <img src="{{ Storage::url($infographic->kualitas_inovasi) }}" alt="{{ $infographic->innovation_proposal->name }}" style="height: 410px!important; width:750px!important">
                                     @endif
                                 </div>
                                 <div class="blog-detail">
