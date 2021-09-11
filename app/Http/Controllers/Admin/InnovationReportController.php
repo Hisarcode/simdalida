@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InnovationReport;
 use App\Models\InnovationProposal;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 
 class InnovationReportController extends Controller
@@ -64,9 +65,16 @@ class InnovationReportController extends Controller
         ]);
     }
 
-    public function store0(Request $request)
+    public function postCreate0(Request $request)
     {
         $innovation_proposals_id = $request->get('innovation_proposals_id');
+
+        return Redirect::route('innovation-report.store0', $innovation_proposals_id);
+    }
+
+    public function store0($id)
+    {
+        $innovation_proposals_id = $id;
 
 
         $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->max('quartal');

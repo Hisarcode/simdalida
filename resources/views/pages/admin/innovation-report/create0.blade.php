@@ -21,7 +21,7 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <form action="{{ route('innovation-report.store0') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('innovation-report.postcreate0') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">

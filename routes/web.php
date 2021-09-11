@@ -45,7 +45,8 @@ Route::prefix('admin')
 
         Route::resource('innovation-report', '\App\Http\Controllers\Admin\InnovationReportController');
         Route::get('/innovation-report.create0', '\App\Http\Controllers\Admin\InnovationReportController@create0')->name('innovation-report.create0');
-        Route::post('/innovation-report.store0', '\App\Http\Controllers\Admin\InnovationReportController@store0')->name('innovation-report.store0');
+        Route::post('/innovation-report.postCreate0', '\App\Http\Controllers\Admin\InnovationReportController@postCreate0')->name('innovation-report.postcreate0');
+        Route::get('/innovation-report.store0/{id}', '\App\Http\Controllers\Admin\InnovationReportController@store0')->name('innovation-report.store0');
 
         Route::resource('complain-inbox', '\App\Http\Controllers\Admin\ComplainInboxController');
         Route::resource('chat-inbox', '\App\Http\Controllers\Admin\ChatInboxController')->middleware((['auth', 'admin']));
