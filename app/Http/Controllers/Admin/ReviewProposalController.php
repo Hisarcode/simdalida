@@ -65,7 +65,7 @@ class ReviewProposalController extends Controller
 
         $review->save();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Review Created successfully!');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Review Berhasil Dibuat!');
     }
 
     public function simpan(Request $request, $id)
@@ -102,7 +102,7 @@ class ReviewProposalController extends Controller
 
         $review->save();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Review Created successfully!');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Review Berhasil Dibuat!');
     }
 
     /**
@@ -170,7 +170,7 @@ class ReviewProposalController extends Controller
         $proposal->is_review = "1";
         $proposal->save();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Review Data successfully updated');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Review Data Berhasil diUpdate!');
     }
 
     /**

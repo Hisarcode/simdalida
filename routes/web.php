@@ -74,7 +74,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/infographic', [InfographicController::class, 'index'])->name('infographic');
 Route::get('/infographic/{id}', [InfographicController::class, 'show'])->name('infographic-detail');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/video', [VideoGalleryController::class, 'index'])->name('video');
+Route::get('/video', [VideoGalleryController::class, 'index'])->name('video-inovasi');
+Route::get('/video/cari', [VideoGalleryController::class, 'cari'])->name('video-cari');
 Route::get('/video/{id}', [VideoGalleryController::class, 'show'])->name('video-detail');
 
 Route::resource('chat', ChatController::class)->only(['store']);

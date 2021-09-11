@@ -5,7 +5,8 @@
     <!-- Meta Tag -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name='copyright' content='pavilan'>
+    <meta name='copyright' content='SIMDALIDA SANGGAU'>
+    <meta name="description" content="@yield('description')" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,7 +14,7 @@
     <title>{{ $title_page }} - SIMDALIDA SANGGAU</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/favicon.png" href="{{ url('front/img/favicon.png') }}">
+    <link rel="icon" type="image/favicon.png" href="{{ url('front/img/logo-sgu.png') }}">
 
     @include('includes.frontend.style')
     

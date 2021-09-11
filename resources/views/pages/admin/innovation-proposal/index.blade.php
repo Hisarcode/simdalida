@@ -39,7 +39,7 @@
                             <th>Jenis</th>
                             <th>Bentuk Inovasi</th>
                             @if (Auth::user()->roles == 'SUPERADMIN')
-                            <th>Pemilik Inovasi</th>
+                            <th>Status</th>
                             @else
                             <th>Status</th>
                             @endif
@@ -100,7 +100,7 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 @endif
-                                <form action="{{ route('innovation-proposal.destroy', $proposal->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('innovation-proposal.destroy', $proposal->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus? Jika proposal ini dihapus maka profil inovasi maupun laporan inovasi dari proposal ini juga akan terhapus !');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
@@ -118,7 +118,7 @@
                                     <i class="fa fa-eye"></i>
                                 </a>
                                 @endif
-                                <form action="{{ route('innovation-proposal.destroy', $proposal->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                                <form action="{{ route('innovation-proposal.destroy', $proposal->id) }}" method="POST" class="d-inline" onclick="return confirm('Yakin ingin menghapus? Jika proposal ini dihapus maka profil inovasi maupun laporan inovasi dari proposal ini juga akan terhapus !');">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
@@ -160,7 +160,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center">
+                            <td colspan="8" class="text-center">
                                 Data Kosong
                             </td>
                         </tr>

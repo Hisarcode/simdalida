@@ -43,7 +43,7 @@ class InfographicController extends Controller
         foreach ($infographics as $infographic) {
 
             $innovation_report = InnovationReport::where('innovation_proposals_id', $infographic->innovation_proposals_id)
-                ->where('report_year', $current_year)->count();
+                ->where('report_year', $current_year)->where('status', 'KIRIM')->count();
 
             // dd($current_triwulan); 
 
@@ -70,7 +70,9 @@ class InfographicController extends Controller
         $about = About::orderBy('id', 'DESC')->get();
 
         $title_page = InnovationProfile::where('id', $id)->first()->innovation_proposal->name;
-        $post = InnovationProfile::with(['innovation_proposal'])->get()->take(1);
+        $post_count = InnovationProfile::with(['innovation_proposal'])->count();
+
+        $post = InnovationProfile::with(['innovation_proposal'])->inRandomOrder()->limit(5)->get();
 
         return view('pages.infographicdetail', compact('infographic', 'title_page', 'post', 'about'));
     }

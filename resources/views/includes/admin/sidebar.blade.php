@@ -66,7 +66,6 @@
                 <a class="collapse-item" href="{{ route('carousel.index') }}">Carousel</a>
                 <a class="collapse-item" href="{{ route('video.index') }}">Video</a>
                 <a class="collapse-item" href="{{ route('about.index') }}">Tentang Kami</a>
-                {{-- <a class="collapse-item" href="{{ route('infographic-content.index') }}">Infografis</a> --}}
             </div>
         </div>
     </li>

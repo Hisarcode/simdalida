@@ -48,26 +48,35 @@ class InnovationProposalController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
-            "users_id" => "required",
-            "name" => "required",
-            "innovation_step" => "required",
-            "innovation_initiator" => "required",
-            "innovation_type" => "required",
-            "innovation_formats" => "required",
-            "is_covid" => "required",
-            "innovation_concern" => "required",
-            "start_innovation_trial" => "required",
-            "end_innovation_trial" => "required",
-            "time_innovation_implement" => "required",
-            "innovation_design" => "required",
-            "innovation_goal" => "required",
-            "innovation_benefit" => "required",
-            "innovation_result" => "required",
-        ])->validate();
+        $validation = \Validator::make(
+            $request->all(),
+            [
+                "users_id" => "required",
+                "name" => "required",
+                "innovation_step" => "required",
+                "innovation_initiator" => "required",
+                "innovation_type" => "required",
+                "innovation_formats" => "required",
+                "is_covid" => "required",
+                "innovation_concern" => "required",
+                "start_innovation_trial" => "required",
+                "end_innovation_trial" => "required",
+                "time_innovation_implement" => "required",
+                "innovation_design" => "required",
+                "innovation_goal" => "required",
+                "innovation_benefit" => "required",
+                "innovation_result" => "required",
+            ],
+            [
+                "innovation_concern.required" => "Urusan Inovasi Daerah Harus Diisi!",
+                "innovation_design.required" => "Rancang Bangun Inovasi Harus Diisi, min 300Kata!",
+                "innovation_goal.required" => "Tujuan Inovasi Harus Diisi!",
+                "innovation_benefit.required" => "Manfaat Inovasi Harus Diisi!",
+                "innovation_result.required" => "Hasil Inovasi Harus Diisi!",
+            ]
+        )->validate();
 
         $proposal = new InnovationProposal;
-        //  ubah time ke zona indo
         $proposal->users_id = $request->get('users_id');
         $proposal->name = $request->get('name');
         $proposal->innovation_step = json_encode($request->innovation_step);
@@ -169,22 +178,32 @@ class InnovationProposalController extends Controller
     {
         $proposal = InnovationProposal::findOrFail($id);
 
-        \Validator::make($request->all(), [
-            "name" => "required",
-            "innovation_step" => "required",
-            "innovation_initiator" => "required",
-            "innovation_type" => "required",
-            "innovation_formats" => "required",
-            "is_covid" => "required",
-            "innovation_concern" => "required",
-            "start_innovation_trial" => "required",
-            "end_innovation_trial" => "required",
-            "time_innovation_implement" => "required",
-            "innovation_design" => "required|min:300",
-            "innovation_goal" => "required",
-            "innovation_benefit" => "required",
-            "innovation_result" => "required",
-        ])->validate();
+        \Validator::make(
+            $request->all(),
+            [
+                "name" => "required",
+                "innovation_step" => "required",
+                "innovation_initiator" => "required",
+                "innovation_type" => "required",
+                "innovation_formats" => "required",
+                "is_covid" => "required",
+                "innovation_concern" => "required",
+                "start_innovation_trial" => "required",
+                "end_innovation_trial" => "required",
+                "time_innovation_implement" => "required",
+                "innovation_design" => "required|min:300",
+                "innovation_goal" => "required",
+                "innovation_benefit" => "required",
+                "innovation_result" => "required",
+            ],
+            [
+                "innovation_concern.required" => "Urusan Inovasi Daerah Harus Diisi!",
+                "innovation_design.required" => "Rancang Bangun Inovasi Harus Diisi, min 300Kata!",
+                "innovation_goal.required" => "Tujuan Inovasi Harus Diisi!",
+                "innovation_benefit.required" => "Manfaat Inovasi Harus Diisi!",
+                "innovation_result.required" => "Hasil Inovasi Harus Diisi!",
+            ]
+        )->validate();
 
         $proposal->name = $request->get('name');
         $proposal->innovation_step = json_encode($request->innovation_step);

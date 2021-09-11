@@ -34,7 +34,7 @@
                     <label for="regulasi_inovasi"><strong>Regulasi Inovasi Daerah*</strong></label>
                     <textarea type="text" name="regulasi_inovasi" id="regulasi_inovasi" class="form-control">{{ $item->regulasi_inovasi }}</textarea>
 
-                    <label for="regulasi_inovasi_file">Upload file SK (PDF):</label>
+                    <label for="regulasi_inovasi_file">Upload file SK (PDF): <i>(maks: 5MB)</i> <br></label>
                     @if($item->regulasi_inovasi_file)
                         <a href="{{  Storage::url($item->regulasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk membuka file sebelumnya</a>
                       <br>
@@ -49,7 +49,7 @@
                     <label for="ketersediaan_sdm"><strong>Ketersediaan SDM terhadap inovasi daerah*</strong></label>
                     <textarea type="text" name="ketersediaan_sdm" id="ketersediaan_sdm" class="form-control">{{ $item->ketersediaan_sdm }}</textarea>
 
-                    <label for="ketersediaan_sdm_file">Upload file SK (PDF):</label>
+                    <label for="ketersediaan_sdm_file">Upload file SK (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->ketersediaan_sdm_file)
                         <a href="{{  Storage::url($item->ketersediaan_sdm_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -65,7 +65,7 @@
                     <label for="dukungan_anggaran"><strong>Dukungan Anngaran</strong></label>
                     <textarea type="text" name="dukungan_anggaran" id="dukungan_anggaran" class="form-control">{{ $item->dukungan_anggaran }}</textarea>
 
-                    <label for="dukungan_anggaran_file">Upload file SK (PDF):</label>
+                    <label for="dukungan_anggaran_file">Upload file SK (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->dukungan_anggaran_file)
                         <a href="{{  Storage::url($item->dukungan_anggaran_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -81,7 +81,7 @@
                     <label for="penggunaan_it"><strong>Penggunaan IT</strong></label>
                     <textarea type="text" name="penggunaan_it" id="penggunaan_it" class="form-control">{{ $item->penggunaan_it }}</textarea>
 
-                    <label for="penggunaan_it_file">Upload file pendukung (PDF):</label>
+                    <label for="penggunaan_it_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->penggunaan_it_file)
                         <a href="{{  Storage::url($item->penggunaan_it_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -97,7 +97,7 @@
                     <label for="bimtek_inovasi"><strong>Bimtek Inovasi</strong></label>
                     <textarea type="text" name="bimtek_inovasi" id="bimtek_inovasi" class="form-control">{{ $item->bimtek_inovasi }}</textarea>
 
-                    <label for="bimtek_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="bimtek_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->bimtek_inovasi_file)
                         <a href="{{  Storage::url($item->bimtek_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -113,7 +113,7 @@
                     <label for="program_rkpd"><strong>Program dan kegiatan inovasi perangkat daerah dalam RKPD</strong></label>
                     <textarea type="text" name="program_rkpd" id="program_rkpd" class="form-control">{{ $item->program_rkpd }}</textarea>
 
-                    <label for="program_rkpd_file">Upload file pendukung (PDF):</label>
+                    <label for="program_rkpd_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->program_rkpd_file)
                         <a href="{{  Storage::url($item->program_rkpd_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -129,7 +129,7 @@
                     <label for="keterlibatan_aktor"><strong>Keterlibatan Aktor Inovasi</strong></label>
                     <textarea type="text" name="keterlibatan_aktor" id="keterlibatan_aktor" class="form-control">{{ $item->keterlibatan_aktor }}</textarea>
 
-                    <label for="keterlibatan_aktor_file">Upload file pendukung (PDF):</label>
+                    <label for="keterlibatan_aktor_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->keterlibatan_aktor_file)
                         <a href="{{  Storage::url($item->keterlibatan_aktor_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -145,7 +145,7 @@
                     <label for="pelaksana_inovasi"><strong>Pelaksana Inovasi Daerah</strong></label>
                     <textarea type="text" name="pelaksana_inovasi" id="pelaksana_inovasi" class="form-control">{{ $item->pelaksana_inovasi }}</textarea>
 
-                    <label for="pelaksana_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="pelaksana_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->pelaksana_inovasi_file)
                         <a href="{{  Storage::url($item->pelaksana_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -161,7 +161,7 @@
                     <label for="jejaring_inovasi"><strong>Jejaring Inovasi Daerah</strong></label>
                     <textarea type="text" name="jejaring_inovasi" id="jejaring_inovasi" class="form-control">{{ $item->jejaring_inovasi }}</textarea>
 
-                    <label for="jejaring_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="jejaring_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->pelaksana_inovasi_file)
                         <a href="{{  Storage::url($item->jejaring_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -177,7 +177,7 @@
                     <label for="sosialisasi_inovasi"><strong>Sosialisasi Inovasi Daerah</strong></label>
                     <textarea type="text" name="sosialisasi_inovasi" id="sosialisasi_inovasi" class="form-control">{{ $item->sosialisasi_inovasi }}</textarea>
 
-                    <label for="sosialisasi_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="sosialisasi_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->sosialisasi_inovasi_file)
                         <a href="{{  Storage::url($item->sosialisasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -193,7 +193,7 @@
                     <label for="pedoman_teknis"><strong>Pedoman Teknis</strong></label>
                     <textarea type="text" name="pedoman_teknis" id="pedoman_teknis" class="form-control">{{ $item->pedoman_teknis }}</textarea>
 
-                    <label for="pedoman_teknis_file">Upload file pendukung (PDF):</label>
+                    <label for="pedoman_teknis_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->pedoman_teknis_file)
                         <a href="{{  Storage::url($item->pedoman_teknis_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -209,7 +209,7 @@
                     <label for="kemudahan_informasi"><strong>Kemudahan Informasi</strong></label>
                     <textarea type="text" name="kemudahan_informasi" id="kemudahan_informasi" class="form-control">{{ $item->kemudahan_informasi }}</textarea>
 
-                    <label for="kemudahan_informasi_file">Upload file pendukung (PDF):</label>
+                    <label for="kemudahan_informasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->kemudahan_informasi_file)
                         <a href="{{  Storage::url($item->kemudahan_informasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -225,7 +225,7 @@
                     <label for="kemudahan_proses"><strong>Kemudahan Proses</strong></label>
                     <textarea type="text" name="kemudahan_proses" id="kemudahan_proses" class="form-control">{{ $item->kemudahan_proses }}</textarea>
 
-                    <label for="kemudahan_proses_file">Upload file pendukung (PDF):</label>
+                    <label for="kemudahan_proses_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->kemudahan_proses_file)
                         <a href="{{  Storage::url($item->kemudahan_proses_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -241,7 +241,7 @@
                     <label for="penyelesaian_pengaduan"><strong>Penyelesaian Pengaduan</strong></label>
                     <textarea type="text" name="penyelesaian_pengaduan" id="penyelesaian_pengaduan" class="form-control">{{ $item->penyelesaian_pengaduan }}</textarea>
 
-                    <label for="penyelesaian_pengaduan_file">Upload file pendukung (PDF):</label>
+                    <label for="penyelesaian_pengaduan_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->penyelesaian_pengaduan_file)
                         <a href="{{  Storage::url($item->penyelesaian_pengaduan_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -257,7 +257,7 @@
                     <label for="online_sistem"><strong>Online Sistem</strong></label>
                     <textarea type="text" name="online_sistem" id="online_sistem" class="form-control">{{ $item->online_sistem }}</textarea>
 
-                    <label for="online_sistem_file">Upload file pendukung (PDF):</label>
+                    <label for="online_sistem_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->online_sistem_file)
                         <a href="{{  Storage::url($item->online_sistem_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -273,7 +273,7 @@
                     <label for="replikasi"><strong>Replikasi</strong></label>
                     <textarea type="text" name="replikasi" id="replikasi" class="form-control">{{ $item->replikasi }}</textarea>
 
-                    <label for="replikasi_file">Upload file pendukung (PDF):</label>
+                    <label for="replikasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->replikasi_file)
                         <a href="{{  Storage::url($item->replikasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -289,7 +289,7 @@
                     <label for="kecepatan_inovasi"><strong>Kecepatan Inovasi*</strong></label>
                     <textarea type="text" name="kecepatan_inovasi" id="kecepatan_inovasi" class="form-control">{{ $item->kecepatan_inovasi }}</textarea>
 
-                    <label for="kecepatan_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="kecepatan_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->kecepatan_inovasi_file)
                         <a href="{{  Storage::url($item->kecepatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -305,7 +305,7 @@
                     <label for="kemanfaatan_inovasi"><strong>Kemanfaatan Inovasi*</strong></label>
                     <textarea type="text" name="kemanfaatan_inovasi" id="kemanfaatan_inovasi" class="form-control">{{ $item->kemanfaatan_inovasi }}</textarea>
 
-                    <label for="kemanfaatan_inovasi_file">Upload file pendukung (PDF):</label>
+                    <label for="kemanfaatan_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->kemanfaatan_inovasi_file)
                         <a href="{{  Storage::url($item->kemanfaatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -321,7 +321,7 @@
                     <label for="monitoring_evaluasi"><strong>Monitoring dan Evaluasi Inovasi Daerah*</strong></label>
                     <textarea type="text" name="monitoring_evaluasi" id="monitoring_evaluasi" class="form-control">{{ $item->monitoring_evaluasi }}</textarea>
 
-                    <label for="monitoring_evaluasi_file">Upload file pendukung (PDF):</label>
+                    <label for="monitoring_evaluasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->monitoring_evaluasi_file)
                         <a href="{{  Storage::url($item->monitoring_evaluasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -334,7 +334,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="kualitas_inovasi"><strong>Kualitas Inovasi Daerah, Upload Thumbnail Video*:</strong></label>
+                    <label for="kualitas_inovasi"><strong>Kualitas Inovasi Daerah, Upload Thumbnail Video*: </strong><i>(maks: 3MB)</i></label>
                     
                     @if($item->kualitas_inovasi)
                         <a href="{{  Storage::url($item->kualitas_inovasi)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -345,16 +345,16 @@
                     <input class="form-control" id="kualitas_inovasi" name="kualitas_inovasi" type="file">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                     <br>
-                    <label for="kualitas_inovasi_file"><strong>Upload video Inovasi (max 8 mb):</strong></label>
+                    <label for="kualitas_inovasi_file"><strong>Upload Link video Inovasi:</strong></label>
                     
                     @if($item->kualitas_inovasi_file)
-                        <a href="{{  Storage::url($item->kualitas_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video sebelumnya</a>
+                        <a href="{{ $item->kualitas_inovasi_file }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file sebelumnya</small>
+                    <small class="text-muted">tidak ada file</small>
                     @endif
-                    <input class="form-control" id="kualitas_inovasi_file" name="kualitas_inovasi_file" type="file">
-                    <small class="text-muted">Kosongkan jika tidak ingin mengubah video sebelumnya</small>
+                    <input type="text" class="form-control" name="kualitas_inovasi_file" placeholder="Link Youtube Video" value="{{ $item->kualitas_inovasi_file }}">
+                    <small class="text-muted">Kosongkan jika tidak ingin mengubah video</small>
                 </div>
 
 

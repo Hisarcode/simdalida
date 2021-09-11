@@ -1,4 +1,5 @@
 @extends('layouts.landing')
+@section('description', 'Simdalida Sanggau - Maju dan Terdepan')
 
 @section('content')
 <!-- Hero Slider -->
@@ -57,7 +58,7 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <div class="icon"><i class="fa fa-pencil"></i></div>
+                                <div class="icon"><i class="fa fa-tag"></i></div>
                                 <input type="text" name="subject" placeholder="Subjek" required autocomplete="off">
                             </div>
                         </div>
@@ -200,7 +201,7 @@
                         <p style="color: antiquewhite">{{ \Illuminate\Support\Str::limit($video->about_content, 350, $end='...') }}</p>
                     </div>
                     <div class="section-top mt-3">
-                        <a href="{{ route('video') }}"><button class="btn btn-success">Lihat
+                        <a href="{{ route('video-inovasi') }}"><button class="btn btn-success">Lihat
                                 Video Inovasi</button></a>
                     </div>
 
@@ -235,8 +236,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Perangkat Daerah</th>
-                                    <th>Nama Inovasi Daerah</th>
+                                    <th>Nama Inovasi</th>
+                                    <th>Inovator</th>
                                     <th>Bentuk Inovasi</th>
                                     <th>Tipe inovasi</th>
                                     <th>Lihat Detail</th>
@@ -250,8 +251,8 @@
                                 @forelse ($infographic as $profile)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $profile->user->name }}</td>
                                     <td>{{ $profile->innovation_proposal->name }}</td>
+                                    <td>{{ $profile->user->name }}</td>
                                     <td>{{ $profile->innovation_proposal->innovation_formats }}</td>
                                     <td>{{ $profile->innovation_proposal->innovation_type }}</td>
                                     <td>
