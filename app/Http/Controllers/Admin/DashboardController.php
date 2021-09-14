@@ -118,7 +118,7 @@ class DashboardController extends Controller
                     $a = $quartal_iteration;
                     $current_year =  \Carbon\Carbon::now('Asia/Jakarta')->year;
 
-                    $innovation_report = InnovationReport::where('innovation_proposals_id', $innovation_proposal->id)->where('report_year', $current_year)->where('quartal', $quartal_iteration)->get();
+                    $innovation_report = InnovationReport::where('innovation_proposals_id', $innovation_proposal->id)->where('report_year', $current_year)->where('quartal', $quartal_iteration)->where('status', 'KIRIM')->get();
 
 
                     $notification = collect();

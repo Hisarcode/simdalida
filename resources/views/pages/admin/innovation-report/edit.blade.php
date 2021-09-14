@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Edit Data Inovasi {{ $item->name }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit laporan Inovasi {{ $item->name }}, triwulan ke-{{ $item->quartal }}</h1>
     </div>
 
     @if ($errors->any())
@@ -29,7 +29,7 @@
                     <label for="name"><strong>Nama Inovasi</strong></label>
                     <input type="text" class="form-control" name="name" placeholder="Nama Inonasi"
                         value="{{ $item->innovation_proposal->name }}" readonly>
-                    <label for="innovation_sk_file"><strong>Upload SK Bupati</strong></label>
+                    <label for="innovation_sk_file"><strong>Upload SK Bupati</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
                     
                     @if($item->innovation_sk_file)
                     <a href="{{  Storage::url($item->innovation_sk_file)  }}" target="_blank"
@@ -75,6 +75,19 @@
                     <div class="invalid-feedback">
                         {{$errors->first('innovation_step')}}
                     </div>
+                    <br>
+                    <label for="tahapan_sk_bupati"><strong>Upload SK Bupati untuk tahapan inovasi</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
+                    
+                    @if($item->tahapan_sk_bupati)
+                    <a href="{{  Storage::url($item->tahapan_sk_bupati)  }}" target="_blank"
+                        class="btn btn-warning">Klik Disini untuk membuka file</a>
+                    <br>
+                    @else
+                    (Tidak ada file)
+                    @endif
+                    <br>
+                    <input id="tahapan_sk_bupati" name="tahapan_sk_bupati" type="file"><br>
+                    <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
 
                 </div>
 
@@ -154,7 +167,7 @@
                 <div class="form-group">
                     <label for="time_innovation_implement"><strong>Waktu Pelaksanaan Inovasi Daerah*</strong></label>
                     <input type="date" class="form-control" name="time_innovation_implement" 
-                    value="{{ $item->time_innovation_implement }}" required>
+                    value="{{ $item->time_innovation_implement }}">
                 </div>
               
                 <div class="form-group">

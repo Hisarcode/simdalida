@@ -92,13 +92,13 @@
 
                 <div class="form-group">
                     <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi*</strong></label>
-                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="time" value="{{ old('start_innovation_trial') }}"> sampai tanggal
-                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="time" value="{{ old('end_innovation_trial') }}"> 
+                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="time" value="{{ old('start_innovation_trial') }}" required> sampai tanggal
+                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="time" value="{{ old('end_innovation_trial') }}" required> 
                 </div>
 
                 <div class="form-group">
                     <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan*</strong></label>
-                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
+                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}" required>
                 </div>
 
                 <div class="form-group">

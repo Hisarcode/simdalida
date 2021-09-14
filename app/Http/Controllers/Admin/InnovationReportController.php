@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InnovationReport;
 use App\Models\InnovationProposal;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 
 class InnovationReportController extends Controller
@@ -64,34 +65,50 @@ class InnovationReportController extends Controller
         ]);
     }
 
-    public function store0(Request $request)
+    public function postCreate0(Request $request)
     {
         $innovation_proposals_id = $request->get('innovation_proposals_id');
 
+        return Redirect::route('innovation-report.store0', $innovation_proposals_id);
+    }
 
-        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->max('quartal');
 
-        if (empty($get_quartal)) {
-            $quartal_next = 1;
-        } else if ($get_quartal == 1) {
-            $quartal_next = 2;
-        } else if ($get_quartal == 2) {
-            $quartal_next = 3;
-        } else if ($get_quartal == 3) {
-            $quartal_next = 4;
-        } else if ($get_quartal == 4) {
-            $quartal_next = '';
+    public function store0($id)
+    {
+        $innovation_proposals_id = $id;
+
+
+        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->where('status', 'KIRIM')->max('quartal');
+
+        $cek_status =  InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->latest()->first()->status;
+
+        if ($cek_status == 'DRAFT') {
+            return redirect()
+                ->route('innovation-report.index')
+                ->with('alert', 'Anda Harus menyelesaikan laporan sebelumnya yang di draft!');
+        } else {
+            if (empty($get_quartal)) {
+                $quartal_next = 1;
+            } else if ($get_quartal == 1) {
+                $quartal_next = 2;
+            } else if ($get_quartal == 2) {
+                $quartal_next = 3;
+            } else if ($get_quartal == 3) {
+                $quartal_next = 4;
+            } else if ($get_quartal == 4) {
+                $quartal_next = '';
+            }
+
+            $innovation = InnovationProposal::find($innovation_proposals_id);
+
+            $item = InnovationProposal::where('id', $innovation_proposals_id)->first();
+
+            return view('pages.admin.innovation-report.create', [
+                'innovation' => $innovation,
+                'quartal_next' => $quartal_next,
+                'item' => $item
+            ]);
         }
-
-        $innovation = InnovationProposal::find($innovation_proposals_id);
-
-        $item = InnovationProposal::where('id', $innovation_proposals_id)->first();
-
-        return view('pages.admin.innovation-report.create', [
-            'innovation' => $innovation,
-            'quartal_next' => $quartal_next,
-            'item' => $item
-        ]);
     }
 
     /**
@@ -125,6 +142,14 @@ class InnovationReportController extends Controller
                     "achievement_result_problem" => "required",
                     "innovation_strategy" => "required",
                     "video_innovation" => "required",
+                    "innovation_sk_file" => "mimes:doc,docx,pdf|max:5120",
+                    "tahapan_sk_bupati" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_innovation_file" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_innovation_file" => "required_if:complain_innovation_total,<>,0",
+                    "complain_improvement_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_goal_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "benefit_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_result_level_file" => "mimes:doc,docx,pdf|max:5120",
                     'quartal' => [
                         Rule::unique('innovation_reports')->where(function ($query) use ($request) {
                             return $query->where('report_year', $request->get('report_year'))
@@ -136,6 +161,7 @@ class InnovationReportController extends Controller
                 [
                     "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
                     "problem.required" => "field kendala pelaksanaan inovasi daerah harus diisi!",
+                    "time_innovation_implement.required" => "field waktu pelaksanaan inovasi daerah harus diisi!",
                     "solution.required" => "field solusi terhadap masalah harus diisi!",
                     "improvement.required" => "field tindaklanjut terhadap masalah harus diisi!",
                     "complain_innovation_total.required" => "field jumlah pengaduan inovasi daerah harus diisi!",
@@ -147,23 +173,61 @@ class InnovationReportController extends Controller
                     "achievement_result_problem.required" => "field Kendala Pencapaian Hasil Inovasi Daerah harus diisi!",
                     "innovation_strategy.required" => "field strategi inovasi Daerah harus diisi!",
                     "video_innovation.required" => "field video inovasi Daerah harus diisi!",
+                    "innovation_sk_file.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "innovation_sk_file.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "tahapan_sk_bupati.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf/docx!",
+                    "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf/docx!",
+                    "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "achievement_goal_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "benefit_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "benefit_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "achievement_result_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_result_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                 ]
             )->validate();
         } elseif ($request->get('save_action') == 'DRAFT') {
-            $validation = \Validator::make($request->all(), [
-                "users_id" => "required",
+            $validation = \Validator::make(
+                $request->all(),
+                [
+                    "users_id" => "required",
+                    "innovation_sk_file" => "mimes:doc,docx,pdf|max:5120",
+                    "tahapan_sk_bupati" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_innovation_file" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_improvement_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_goal_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "benefit_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_result_level_file" => "mimes:doc,docx,pdf|max:5120",
 
-                'quartal' => [
-                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
-                        return $query->where('report_year', $request->get('report_year'))
-                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
-                            ->where('quartal', $request->get('quartal'));
-                    }),
+                    'quartal' => [
+                        Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                            return $query->where('report_year', $request->get('report_year'))
+                                ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                                ->where('quartal', $request->get('quartal'));
+                        }),
+                    ]
                 ],
                 [
-                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
+                    "innovation_sk_file.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "innovation_sk_file.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "tahapan_sk_bupati.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf/docx!",
+                    "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf/docx!",
+                    "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "achievement_goal_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "benefit_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "benefit_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "achievement_result_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_result_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                 ]
-            ])->validate();
+            )->validate();
         }
 
 
@@ -194,6 +258,11 @@ class InnovationReportController extends Controller
         if ($request->file('innovation_sk_file')) {
             $sk = $request->file('innovation_sk_file')->store('laporan/SKinovasi', 'public');
             $report->innovation_sk_file = $sk;
+        }
+
+        if ($request->file('tahapan_sk_bupati')) {
+            $sk2 = $request->file('tahapan_sk_bupati')->store('laporan/SKTahapaninovasi', 'public');
+            $report->tahapan_sk_bupati = $sk2;
         }
 
         if ($request->file('complain_innovation_file')) {
@@ -308,6 +377,13 @@ class InnovationReportController extends Controller
                     "achievement_result_problem" => "required",
                     "innovation_strategy" => "required",
                     "video_innovation" => "required",
+                    "innovation_sk_file" => "mimes:doc,docx,pdf|max:5120",
+                    "tahapan_sk_bupati" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_innovation_file" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_improvement_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_goal_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "benefit_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_result_level_file" => "mimes:doc,docx,pdf|max:5120",
                     'quartal' => [
                         Rule::unique('innovation_reports')->where(function ($query) use ($request) {
                             return $query->where('report_year', $request->get('report_year'))
@@ -319,6 +395,7 @@ class InnovationReportController extends Controller
                 [
                     "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
                     "problem.required" => "field kendala pelaksanaan inovasi daerah harus diisi!",
+                    "time_innovation_implement.required" => "field waktu pelaksanaan inovasi daerah harus diisi!",
                     "solution.required" => "field solusi terhadap masalah harus diisi!",
                     "improvement.required" => "field tindaklanjut terhadap masalah harus diisi!",
                     "complain_innovation_total.required" => "field jumlah pengaduan inovasi daerah harus diisi!",
@@ -330,22 +407,59 @@ class InnovationReportController extends Controller
                     "achievement_result_problem.required" => "field Kendala Pencapaian Hasil Inovasi Daerah harus diisi!",
                     "innovation_strategy.required" => "field strategi inovasi Daerah harus diisi!",
                     "video_innovation.required" => "field video inovasi Daerah harus diisi!",
+                    "innovation_sk_file.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "innovation_sk_file.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "tahapan_sk_bupati.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf/docx!",
+                    "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf/docx!",
+                    "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "achievement_goal_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "benefit_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "benefit_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "achievement_result_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_result_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                 ]
             )->validate();
         } elseif ($request->get('save_action') == 'DRAFT') {
-            $validation = \Validator::make($request->all(), [
-
-                'quartal' => [
-                    Rule::unique('innovation_reports')->where(function ($query) use ($request) {
-                        return $query->where('report_year', $request->get('report_year'))
-                            ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
-                            ->where('quartal', $request->get('quartal'));
-                    }),
+            $validation = \Validator::make(
+                $request->all(),
+                [
+                    "innovation_sk_file" => "mimes:doc,docx,pdf|max:5120",
+                    "tahapan_sk_bupati" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_innovation_file" => "mimes:doc,docx,pdf|max:5120",
+                    "complain_improvement_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_goal_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "benefit_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    "achievement_result_level_file" => "mimes:doc,docx,pdf|max:5120",
+                    'quartal' => [
+                        Rule::unique('innovation_reports')->where(function ($query) use ($request) {
+                            return $query->where('report_year', $request->get('report_year'))
+                                ->where('innovation_proposals_id', $request->get('innovation_proposals_id'))
+                                ->where('quartal', $request->get('quartal'));
+                        }),
+                    ]
                 ],
                 [
-                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya"
+                    "quartal.unique" => "Laporan inovasi pada triwulan ini telah ada, silahkan edit pada menu Laporan Inovasi Untuk merubahnya",
+                    "innovation_sk_file.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "innovation_sk_file.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "tahapan_sk_bupati.mimes" => "format file SK Bupati harus pdf/docx!",
+                    "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf/docx!",
+                    "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf/docx!",
+                    "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "achievement_goal_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "benefit_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "benefit_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
+                    "achievement_result_level_file.mimes" => "format file pendukung harus pdf/docx!",
+                    "achievement_result_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                 ]
-            ])->validate();
+            )->validate();
         }
 
         $report->name = $request->get('name');
@@ -373,6 +487,14 @@ class InnovationReportController extends Controller
             }
             $sk = $request->file('innovation_sk_file')->store('laporan/SKinovasi', 'public');
             $report->innovation_sk_file = $sk;
+        }
+
+        if ($request->file('tahapan_sk_bupati')) {
+            if ($report->tahapan_sk_bupati && file_exists(storage_path('app/public/' . $report->tahapan_sk_bupati))) {
+                \Storage::delete('public/' . $report->tahapan_sk_bupati);
+            }
+            $sk2 = $request->file('tahapan_sk_bupati')->store('laporan/SKTahapaninovasi', 'public');
+            $report->tahapan_sk_bupati = $sk2;
         }
 
         if ($request->file('complain_innovation_file')) {
@@ -442,6 +564,7 @@ class InnovationReportController extends Controller
     {
         $item = InnovationReport::findOrFail($id);
         \Storage::delete('public/' . $item->innovation_sk_file); //utk hapus file di storage agar tidk penuh
+        \Storage::delete('public/' . $item->tahapan_sk_bupati);
         \Storage::delete('public/' . $item->complain_innovation_file);
         \Storage::delete('public/' . $item->complain_improvement_file);
         \Storage::delete('public/' . $item->achievement_goal_level_file);
