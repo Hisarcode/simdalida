@@ -127,14 +127,14 @@
         </div>
 
 
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
             <input type="text" class="form-control" name="complain_innovation_total"
                 value="{{ old('complain_innovation_total') }}" autocomplete="off" id="mySelect" onchange="myFunction()">
 
-            <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="complain_innovation_file"></label>
-        </div> --}}
+        </div>
 
         <div class="form-group">
             <label for="complain_improvement_total"><b>Jumlah pengaduan/saran yg sudah
@@ -142,7 +142,7 @@
             <input type="text" class="form-control" name="complain_improvement_total"
                 value="{{ old('complain_improvement_total') }}" autocomplete="off">
 
-            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="complain_improvement_file" ></label>
         </div>
 
@@ -151,7 +151,7 @@
             <input type="text" class="form-control" name="achievement_goal_level" value="{{ old('achievement_goal_level') }}"
                 autocomplete="off">
 
-            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="achievement_goal_level_file"></label>
         </div>
 
@@ -166,7 +166,7 @@
             <input type="text" class="form-control" name="benefit_level" 
                 value="{{ old('benefit_level') }}" autocomplete="off">
 
-            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="benefit_level_file"></label>
         </div>
 
@@ -175,7 +175,7 @@
             <input type="text" class="form-control" name="achievement_result_level" value="{{ old('achievement_result_level') }}" 
                 autocomplete="off">
 
-            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: <i>(maks: 5MB|PDF, docx)</i> <br> </b><input type="file"
+            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: <i>(maks: 5MB|PDF)</i> <br> </b><input type="file"
                     name="achievement_result_level_file"></label>
         </div>
 
@@ -195,46 +195,6 @@
             <label for="video_innovation"><b>Video Inovasi Daerah (Link Youtube)*</b></label>
             <input type="text" class="form-control" name="video_innovation" value="{{ old('video_innovation') }}" autocomplete="off">
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
-                    <select class="form-control" id="advice" name="complain_innovation_total">
-                        <option value="" disabled="disabled" selected="selected">..</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                      </select>
-              
-                      <div id="blank">
-                        <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
-                            name="complain_innovation_file"></label>
-                      </div>
-    
-           
-            </div>
-        </div>
-      
-    
-
 
         <button class="btn btn-primary" name="save_action" value="KIRIM"
             onclick="return confirm('Yakin ingin mengirim laporan? Silahkan Cek kelengkapan data yang wajib diisi. Jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
@@ -266,15 +226,7 @@
     });
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-  $('#advice').on('change.blank', function() {
-    $("#blank").toggle($(this).val() != '0');
-  }).trigger('change.blank');
-});
-</script>
 
 
 @endpush

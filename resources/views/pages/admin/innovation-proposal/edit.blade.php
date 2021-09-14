@@ -197,7 +197,7 @@
                     <label for="budget"><strong>Anggaran Inovasi Daerah, jika ada</strong></label>
                     <textarea type="text" name="budget" id="budget" class="form-control">{{ $item->budget }}</textarea>
 
-                    <label for="budget_file">file anggaran: <i>(maks: 5MB|PDF, docx)</i> </label>
+                    <label for="budget_file">file anggaran: <i>(maks: 5MB|PDF)</i> </label>
                     <br>
                     @if($item->budget_file)
                         <a href="{{  Storage::url($item->budget_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
@@ -214,7 +214,7 @@
                 <div class="form-group">
                     <label for="profil_bisnis"> <strong>Lampiran Profil Bisnis, jika ada</strong></label>
                     <textarea type="text" name="profil_bisnis" id="profil_bisnis" class="form-control">{{ $item->profil_bisnis }}</textarea>
-                    <label for="profil_bisnis_file">Lampiran Profil Bisnis: <i>(maks: 5MB|PDF, docx)</i> </label>
+                    <label for="profil_bisnis_file">Lampiran Profil Bisnis: <i>(maks: 5MB|PDF)</i> </label>
                     <br>
                     @if($item->profil_bisnis_file)
                     <a href="{{  Storage::url($item->profil_bisnis_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>

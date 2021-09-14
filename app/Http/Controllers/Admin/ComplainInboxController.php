@@ -64,10 +64,10 @@ class ComplainInboxController extends Controller
         \Validator::make(
             $request->all(),
             [
-                "bukti_tl" => "required|mimes:doc,pdf,docx|max:5240",
+                "bukti_tl" => "required|mimes:pdf|max:5240",
             ],
             [
-                "bukti_tl.mimes" => "type file harus PDF/docx!",
+                "bukti_tl.mimes" => "type file harus PDF!",
             ]
         )->validate();
         $complain->is_improvement = 'sudah';
