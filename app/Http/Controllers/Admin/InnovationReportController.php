@@ -40,11 +40,16 @@ class InnovationReportController extends Controller
      */
     public function create0()
     {
+        $current_year =  \Carbon\Carbon::now('Asia/Jakarta')->year;
         $innovations = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '<>', '["Tahap Inisiatif"]')->get();
 
         foreach ($innovations as $innovation) {
-            $report = InnovationReport::where('innovation_proposals_id', $innovation->id)->max('quartal');
-            if ($report == 4) {
+
+            $max_quartal_report = InnovationReport::where([
+                'innovation_proposals_id' => $innovation->id,
+                'report_year' => $current_year,
+            ])->max('quartal');
+            if ($max_quartal_report == 4) {
                 $innovation->completed_quartal = '1';
             } else {
                 $innovation->completed_quartal = '0';
@@ -75,10 +80,10 @@ class InnovationReportController extends Controller
 
     public function store0($id)
     {
+        $current_year =  \Carbon\Carbon::now('Asia/Jakarta')->year;
         $innovation_proposals_id = $id;
 
-
-        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->where('status', 'KIRIM')->max('quartal');
+        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->where('status', 'KIRIM')->where('report_year', $current_year)->max('quartal');
 
         $cek_status =  InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->latest()->first()->status;
 
