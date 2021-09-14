@@ -66,6 +66,8 @@ class InnovationProposalController extends Controller
                 "innovation_goal" => "required",
                 "innovation_benefit" => "required",
                 "innovation_result" => "required",
+                "budget_file" => "mimes:pdf|max:5120",
+                "profil_bisnis_file" => "mimes:pdf|max:5120"
             ],
             [
                 "innovation_concern.required" => "Urusan Inovasi Daerah Harus Diisi!",
@@ -73,6 +75,10 @@ class InnovationProposalController extends Controller
                 "innovation_goal.required" => "Tujuan Inovasi Harus Diisi!",
                 "innovation_benefit.required" => "Manfaat Inovasi Harus Diisi!",
                 "innovation_result.required" => "Hasil Inovasi Harus Diisi!",
+                "budget_file.mimes" => "format file anggaran harus pdf!",
+                "budget_file.max" => "ukuran file anggaran tidak boleh lebih dari 5MB!",
+                "profil_bisnis_file.mimes" => "format file profil bisnis harus pdf!",
+                "profil_bisnis_file.max" => "ukuran file profil bisnis tidak boleh lebih dari 5MB!",
             ]
         )->validate();
 
@@ -107,7 +113,7 @@ class InnovationProposalController extends Controller
 
         $proposal->save();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Created successfully!');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Proposal Berhasil Dibuat!');
     }
 
     /**
@@ -195,6 +201,8 @@ class InnovationProposalController extends Controller
                 "innovation_goal" => "required",
                 "innovation_benefit" => "required",
                 "innovation_result" => "required",
+                "budget_file" => "mimes:pdf|max:5120",
+                "profil_bisnis_file" => "mimes:pdf|max:5120"
             ],
             [
                 "innovation_concern.required" => "Urusan Inovasi Daerah Harus Diisi!",
@@ -202,6 +210,10 @@ class InnovationProposalController extends Controller
                 "innovation_goal.required" => "Tujuan Inovasi Harus Diisi!",
                 "innovation_benefit.required" => "Manfaat Inovasi Harus Diisi!",
                 "innovation_result.required" => "Hasil Inovasi Harus Diisi!",
+                "budget_file.mimes" => "format file anggaran harus pdf1",
+                "budget_file.max" => "ukuran file anggaran tidak boleh lebih dari 5MB!",
+                "profil_bisnis_file.mimes" => "format file profil bisnis harus pdf!",
+                "profil_bisnis_file.max" => "ukuran file profil bisnis tidak boleh lebih dari 5MB!",
             ]
         )->validate();
 
@@ -239,7 +251,7 @@ class InnovationProposalController extends Controller
         }
         $proposal->save();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Data successfully updated');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Data Proposal Berhasil diUpdate');
     }
 
     /**
@@ -265,7 +277,7 @@ class InnovationProposalController extends Controller
         $pengaduan = Complain::where('purpose_innovation', $id); //hapus pengaduan yg berkaitan dgn user
         $pengaduan->delete();
 
-        return redirect()->route('innovation-proposal.index')->with('status', 'Deleted successfully!');
+        return redirect()->route('innovation-proposal.index')->with('status', 'Proposal berhasil dihapus!');
     }
 
     public function actionedit(Request $request, $id)

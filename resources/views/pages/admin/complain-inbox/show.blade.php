@@ -62,10 +62,14 @@
                     <th>Deskripsi Aduan</th>
                     <td>{{ $item->description }}</td>
                 </tr>   
+                @if ($item->bukti_tl)
                 <tr>
                     <th>Bukti Penyelesaian Pengaduan</th>
                     <td><a href="{{  Storage::url($item->bukti_tl)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a></td>
                 </tr>
+                @else
+                @endif
+           
             </table>
 
             <a href="{{ route('complain-inbox.index') }}" class="btn btn-primary">Kembali </a>

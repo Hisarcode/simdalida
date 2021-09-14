@@ -31,6 +31,10 @@
             <input type="text" class="form-control" name="innovation_proposals_id" value="{{ $innovation->name }}"
                 readonly>
             <input type="hidden" name="innovation_proposals_id" value="{{ $innovation->id }}" readonly>
+            <div class="form-group">
+                <label for="innovation_sk_file"> <b>Upload SK Bupati (bukti pendukung):</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file" name="innovation_sk_file"
+                        placeholder="SK bupati"></label>
+            </div>
         </div>
 
         <div class="form-group">
@@ -38,10 +42,6 @@
             <input type="text" class="form-control" name="quartal" value="{{ $quartal_next }}" readonly>
         </div>
 
-        <div class="form-group">
-            <label for="innovation_sk_file"> <b>Upload SK Bupati:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file" name="innovation_sk_file"
-                    placeholder="SK bupati"></label>
-        </div>
 
         <div class="form-group">
             <label><strong><b>Tahapan Inovasi* :</b></strong></label><br>
@@ -51,6 +51,10 @@
                 Coba</label>
             <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan"    {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
                 Penerapan</label>
+                <div class="form-group">
+                    <label for="tahapan_sk_bupati"> <b>Upload SK Bupati (bukti pendukung untuk tahapan inovasi):</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file" name="tahapan_sk_bupati"
+                            placeholder="SK bupati"></label>
+                </div>
         </div>
 
         <div class="form-group">
@@ -100,7 +104,7 @@
         <div class="form-group">
             <label for="time_innovation_implement"><b>Waktu Inovasi Daerah Diterapkan*</b></label>
             <input type="date" class="form-control" name="time_innovation_implement" placeholder="time"
-                value="{{ old('time_innovation_implement') }}" required>
+                value="{{ old('time_innovation_implement') }}">
         </div>
 
         <div class="form-group">
@@ -126,9 +130,9 @@
         <div class="form-group">
             <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
             <input type="text" class="form-control" name="complain_innovation_total"
-                value="{{ old('complain_innovation_total') }}" autocomplete="off">
+                value="{{ old('complain_innovation_total') }}" autocomplete="off" id="mySelect" onchange="myFunction()">
 
-            <label for="complain_innovation_file"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="complain_innovation_file"></label>
         </div>
 
@@ -138,7 +142,7 @@
             <input type="text" class="form-control" name="complain_improvement_total"
                 value="{{ old('complain_improvement_total') }}" autocomplete="off">
 
-            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="complain_improvement_file" ></label>
         </div>
 
@@ -147,7 +151,7 @@
             <input type="text" class="form-control" name="achievement_goal_level" value="{{ old('achievement_goal_level') }}"
                 autocomplete="off">
 
-            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="achievement_goal_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="achievement_goal_level_file"></label>
         </div>
 
@@ -162,7 +166,7 @@
             <input type="text" class="form-control" name="benefit_level" 
                 value="{{ old('benefit_level') }}" autocomplete="off">
 
-            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+            <label for="benefit_level_file"> <b>Upload dokumen pendukung:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
                     name="benefit_level_file"></label>
         </div>
 
@@ -171,7 +175,7 @@
             <input type="text" class="form-control" name="achievement_result_level" value="{{ old('achievement_result_level') }}" 
                 autocomplete="off">
 
-            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: <i>(maks: 5MB|PDF, docx)</i> <br> </b><input type="file"
+            <label for="achievement_result_level_file"> <b>Upload dokumen pendukung: <i>(maks: 5MB|PDF)</i> <br> </b><input type="file"
                     name="achievement_result_level_file"></label>
         </div>
 
@@ -191,7 +195,6 @@
             <label for="video_innovation"><b>Video Inovasi Daerah (Link Youtube)*</b></label>
             <input type="text" class="form-control" name="video_innovation" value="{{ old('video_innovation') }}" autocomplete="off">
         </div>
-
 
         <button class="btn btn-primary" name="save_action" value="KIRIM"
             onclick="return confirm('Yakin ingin mengirim laporan? Silahkan Cek kelengkapan data yang wajib diisi. Jika sudah terkirim maka tidak dapat dirubah lagi !');">Kirim
@@ -222,4 +225,8 @@
         });
     });
 </script>
+
+
+
+
 @endpush

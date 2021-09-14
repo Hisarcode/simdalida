@@ -53,13 +53,32 @@ class InnovationProfileController extends Controller
         $validation = \Validator::make(
             $request->all(),
             [
-                "kualitas_inovasi" => "required",
+                "kualitas_inovasi" => "required|mimes:jpeg,png,jpg,svg|max:3072",
                 "monitoring_evaluasi" => "required",
                 "kemanfaatan_inovasi" => "required",
                 "kecepatan_inovasi" => "required",
                 "ketersediaan_sdm" => "required",
                 "regulasi_inovasi" => "required",
                 "kualitas_inovasi_file" => "required",
+                "regulasi_inovasi_file" => "mimes:pdf|max:5120",
+                "ketersediaan_sdm_file" => "mimes:pdf|max:5120",
+                "dukungan_anggaran_file" => "mimes:pdf|max:5120",
+                "penggunaan_it_file" => "mimes:pdf|max:5120",
+                "bimtek_inovasi_file" => "mimes:pdf|max:5120",
+                "program_rkpd_file" => "mimes:pdf|max:5120",
+                "keterlibatan_aktor_file" => "mimes:pdf|max:5120",
+                "pelaksana_inovasi_file" => "mimes:pdf|max:5120",
+                "jejaring_inovasi_file" => "mimes:pdf|max:5120",
+                "sosialisasi_inovasi_file" => "mimes:pdf|max:5120",
+                "pedoman_teknis_file" => "mimes:pdf|max:5120",
+                "kemudahan_informasi_file" => "mimes:pdf|max:5120",
+                "kemudahan_proses_file" => "mimes:pdf|max:5120",
+                "penyelesaian_pengaduan_file" => "mimes:pdf|max:5120",
+                "online_sistem_file" => "mimes:pdf|max:5120",
+                "replikasi_file" => "mimes:pdf|max:5120",
+                "kecepatan_inovasi_file" => "mimes:pdf|max:5120",
+                "kemanfaatan_inovasi_file" => "mimes:pdf|max:5120",
+                "monitoring_inovasi_file" => "mimes:pdf|max:5120",
                 "users_id" => "required",
                 "innovation_proposals_id" => [
                     "required",
@@ -68,7 +87,10 @@ class InnovationProfileController extends Controller
             ],
             [
                 "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah dibuat!",
-                "kualitas_inovasi_file.required" => "Link Video Inovasi belum dimasukkan!"
+                "kualitas_inovasi_file.required" => "Link Video Inovasi belum dimasukkan!",
+                "kualitas_inovasi.required" => "Thumbnail Video belum dimasukkan!",
+                "kualitas_inovasi.mimes" => "Format Thumbnail Video harus jpeg,png,jpg,svg!",
+                "kualitas_inovasi.max" => "Ukuran file Thumbnail Video tidak boleh lebih dari 3MB!",
             ]
         )->validate();
 
@@ -243,15 +265,43 @@ class InnovationProfileController extends Controller
     {
         $profile = InnovationProfile::findOrFail($id);
 
-        \Validator::make($request->all(), [
-            "monitoring_evaluasi" => "required",
-            "kemanfaatan_inovasi" => "required",
-            "kecepatan_inovasi" => "required",
-            "ketersediaan_sdm" => "required",
-            "regulasi_inovasi" => "required",
-            "kualitas_inovasi_file" => "required",
-
-        ])->validate();
+        $validation = \Validator::make(
+            $request->all(),
+            [
+                "kualitas_inovasi" => "mimes:jpeg,png,jpg,svg|max:3072",
+                "monitoring_evaluasi" => "required",
+                "kemanfaatan_inovasi" => "required",
+                "kecepatan_inovasi" => "required",
+                "ketersediaan_sdm" => "required",
+                "regulasi_inovasi" => "required",
+                "kualitas_inovasi_file" => "required",
+                "regulasi_inovasi_file" => "mimes:pdf|max:5120",
+                "ketersediaan_sdm_file" => "mimes:pdf|max:5120",
+                "dukungan_anggaran_file" => "mimes:pdf|max:5120",
+                "penggunaan_it_file" => "mimes:pdf|max:5120",
+                "bimtek_inovasi_file" => "mimes:pdf|max:5120",
+                "program_rkpd_file" => "mimes:pdf|max:5120",
+                "keterlibatan_aktor_file" => "mimes:pdf|max:5120",
+                "pelaksana_inovasi_file" => "mimes:pdf|max:5120",
+                "jejaring_inovasi_file" => "mimes:pdf|max:5120",
+                "sosialisasi_inovasi_file" => "mimes:pdf|max:5120",
+                "pedoman_teknis_file" => "mimes:pdf|max:5120",
+                "kemudahan_informasi_file" => "mimes:pdf|max:5120",
+                "kemudahan_proses_file" => "mimes:pdf|max:5120",
+                "penyelesaian_pengaduan_file" => "mimes:pdf|max:5120",
+                "online_sistem_file" => "mimes:pdf|max:5120",
+                "replikasi_file" => "mimes:pdf|max:5120",
+                "kecepatan_inovasi_file" => "mimes:pdf|max:5120",
+                "kemanfaatan_inovasi_file" => "mimes:pdf|max:5120",
+                "monitoring_inovasi_file" => "mimes:pdf|max:5120",
+            ],
+            [
+                "innovation_proposals_id.unique" => "Profil Inovasi tersebut sudah dibuat!",
+                "kualitas_inovasi_file.required" => "Link Video Inovasi belum dimasukkan!",
+                "kualitas_inovasi.mimes" => "Format Thumbnail Video harus jpeg,png,jpg,svg!",
+                "kualitas_inovasi.max" => "Ukuran file Thumbnail Video tidak boleh lebih dari 3MB!",
+            ]
+        )->validate();
 
         $profile->regulasi_inovasi = $request->get('regulasi_inovasi');
         $profile->ketersediaan_sdm = $request->get('ketersediaan_sdm');
