@@ -40,11 +40,16 @@ class InnovationReportController extends Controller
      */
     public function create0()
     {
+        $current_year =  \Carbon\Carbon::now('Asia/Jakarta')->year;
         $innovations = InnovationProposal::where('users_id', Auth::user()->id)->where('status', 'SUDAH')->where('innovation_step', '<>', '["Tahap Inisiatif"]')->get();
 
         foreach ($innovations as $innovation) {
-            $report = InnovationReport::where('innovation_proposals_id', $innovation->id)->max('quartal');
-            if ($report == 4) {
+
+            $max_quartal_report = InnovationReport::where([
+                'innovation_proposals_id' => $innovation->id,
+                'report_year' => $current_year,
+            ])->max('quartal');
+            if ($max_quartal_report == 4) {
                 $innovation->completed_quartal = '1';
             } else {
                 $innovation->completed_quartal = '0';
@@ -72,21 +77,14 @@ class InnovationReportController extends Controller
         return Redirect::route('innovation-report.store0', $innovation_proposals_id);
     }
 
-
     public function store0($id)
     {
+        $current_year =  \Carbon\Carbon::now('Asia/Jakarta')->year;
         $innovation_proposals_id = $id;
 
+        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->where('status', 'KIRIM')->where('report_year', $current_year)->max('quartal');
 
-        $get_quartal = InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->where('status', 'KIRIM')->max('quartal');
-
-        $cek_status =  InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->latest()->first()->status;
-
-        if ($cek_status == 'DRAFT') {
-            return redirect()
-                ->route('innovation-report.index')
-                ->with('alert', 'Anda Harus menyelesaikan laporan sebelumnya yang di draft!');
-        } else {
+        if (empty($get_quartal)) {
             if (empty($get_quartal)) {
                 $quartal_next = 1;
             } else if ($get_quartal == 1) {
@@ -108,6 +106,36 @@ class InnovationReportController extends Controller
                 'quartal_next' => $quartal_next,
                 'item' => $item
             ]);
+        } else {
+            $cek_status =  InnovationReport::where('innovation_proposals_id', $innovation_proposals_id)->latest()->first()->status;
+
+            if ($cek_status == 'DRAFT') {
+                return redirect()
+                    ->route('innovation-report.index')
+                    ->with('alert', 'Anda Harus menyelesaikan laporan sebelumnya yang di draft!');
+            } else if ($cek_status == 'KIRIM') {
+                if (empty($get_quartal)) {
+                    $quartal_next = 1;
+                } else if ($get_quartal == 1) {
+                    $quartal_next = 2;
+                } else if ($get_quartal == 2) {
+                    $quartal_next = 3;
+                } else if ($get_quartal == 3) {
+                    $quartal_next = 4;
+                } else if ($get_quartal == 4) {
+                    $quartal_next = '';
+                }
+
+                $innovation = InnovationProposal::find($innovation_proposals_id);
+
+                $item = InnovationProposal::where('id', $innovation_proposals_id)->first();
+
+                return view('pages.admin.innovation-report.create', [
+                    'innovation' => $innovation,
+                    'quartal_next' => $quartal_next,
+                    'item' => $item
+                ]);
+            }
         }
     }
 
