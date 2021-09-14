@@ -18,7 +18,7 @@
         </ul>
     </div>
     @endif
-
+    <strong>*Indikator Wajib Diisi</strong>
     <div class="card shadow">
         <div class="card-body">
             <form action="{{ route('innovation-proposal.update', $item->id) }}" method="POST" enctype="multipart/form-data">
@@ -26,12 +26,12 @@
                 @csrf
                 
                 <div class="form-group">
-                    <label for="name"><strong>Nama Inovasi</strong></label>
-                    <input type="text" class="form-control" name="name" placeholder="Nama Inonasi" value="{{ $item->name }}">
+                    <label for="name"><strong>Nama Inovasi*</strong></label>
+                    <input type="text" class="form-control" name="name" placeholder="Nama Inonasi" value="{{ $item->name }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label><strong>Tahapan Inovasi</strong></label><br>
+                    <label><strong>Tahapan Inovasi*</strong></label><br>
                    
                     <label for="Tahap Inisiatif"> <input 
                         type="radio"
@@ -64,7 +64,7 @@
                 </div>  
 
                 <div class="form-group">
-                    <label><strong>Inisiator Inovasi </strong></label><br>
+                    <label><strong>Inisiator Inovasi* </strong></label><br>
                    
                     <label for="Kepala Daerah"> <input 
                         type="radio"
@@ -112,7 +112,7 @@
                 </div>  
 
                 <div class="form-group">
-                    <label for="innovation_type"><strong>Jenis Inovasi Daerah</strong></label>
+                    <label for="innovation_type"><strong>Jenis Inovasi Daerah*</strong></label>
                     <br>
                     <label>
                         <input {{$item->innovation_type == "Digital" ? "checked" : ""}} value="Digital" type="radio" id="innovation_type" name="innovation_type"> Digital
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_formats"><strong>Bentuk Inovasi Daerah</strong></label>
+                    <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
                     <br>
                     <label>
                         <input {{$item->innovation_formats == "Kelola Pemerintah" ? "checked" : ""}} value="Kelola Pemerintah" type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Tata Kelola Pemerintah Daerah
@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="is_covid"><strong>COVID 19 atau Non COVID 19</strong></label>
+                    <label for="is_covid"><strong>COVID 19 atau Non COVID 19*</strong></label>
                     <br>
                     <label>
                         <input {{$item->is_covid == "covid" ? "checked" : ""}} value="covid" type="radio" id="is_covid" name="is_covid"> Covid 19
@@ -150,54 +150,54 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_concern"><strong>Urusan Inovasi Daerah</strong></label>
+                    <label for="innovation_concern"><strong>Urusan Inovasi Daerah*</strong></label>
                     <textarea type="text" name="innovation_concern" id="innovation_concern" class="form-control"
-                    placeholder="Input Urusan Inovasi">{{ $item->innovation_concern }}</textarea>
+                    placeholder="" required>{{ $item->innovation_concern }}</textarea>
                     <div class="invalid-feedback">
                       {{$errors->first('innovation_concern')}}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi</strong></label>
-                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="start_innovation_trial" value="{{ $item->start_innovation_trial }}"> sampai tanggal
-                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="end_innovation_trial" value="{{ $item->end_innovation_trial }}">
+                    <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi*</strong></label>
+                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="start_innovation_trial" required value="{{ $item->start_innovation_trial }}"> sampai tanggal
+                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="end_innovation_trial" required value="{{ $item->end_innovation_trial }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan</strong></label>
-                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time_innovation_implement" value="{{ $item->time_innovation_implement }}">
+                    <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan*</strong></label>
+                    <input type="date" class="form-control" required name="time_innovation_implement" placeholder="time_innovation_implement" value="{{ $item->time_innovation_implement }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah</strong><i> min 300 kata</i></label>
+                    <label for="innovation_design"><strong>Rancang Bangun Inovasi Daerah*</strong><i> min 300 kata</i></label>
                     <textarea type="text" name="innovation_design" id="innovation_design" class="form-control"
-                    placeholder="Rancang Bangun Inovasi" minlength="300">{{ $item->innovation_design }}</textarea>
+                    placeholder="" required minlength="300">{{ $item->innovation_design }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_goal"><strong>Tujuan Inovasi Daerah</strong></label>
+                    <label for="innovation_goal"><strong>Tujuan Inovasi Daerah*</strong></label>
                     <textarea type="text" name="innovation_goal" id="innovation_goal" class="form-control"
-                    placeholder="Tujuan Inovasi">{{ $item->innovation_goal }}</textarea>
+                    placeholder="" required>{{ $item->innovation_goal }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_benefit"><strong>Manfaat Inovasi Daerah</strong></label>
+                    <label for="innovation_benefit"><strong>Manfaat Inovasi Daerah*</strong></label>
                     <textarea type="text" name="innovation_benefit" id="innovation_benefit" class="form-control"
-                    placeholder="Manfaat Inovasi">{{ $item->innovation_benefit }}</textarea>
+                    placeholder="" required>{{ $item->innovation_benefit }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="innovation_result"><strong>Hasil Inovasi Daerah</strong></label>
+                    <label for="innovation_result"><strong>Hasil Inovasi Daerah*</strong></label>
                     <textarea type="text" name="innovation_result" id="innovation_result" class="form-control"
-                    placeholder="Hasil Inovasi">{{ $item->innovation_result }}</textarea>
+                    placeholder="" required>{{ $item->innovation_result }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="budget"><strong>Anggaran Inovasi Daerah, jika ada</strong></label>
-                    <input type="text" class="form-control" name="budget" placeholder="Anggaran Inovasi Daerah" value="{{ $item->budget }}">
+                    <textarea type="text" name="budget" id="budget" class="form-control">{{ $item->budget }}</textarea>
 
-                    <label for="budget_file">file anggaran: <i>(maks: 5MB|PDF, docx)</i> </label>
+                    <label for="budget_file">file anggaran: <i>(maks: 5MB|PDF)</i> </label>
                     <br>
                     @if($item->budget_file)
                         <a href="{{  Storage::url($item->budget_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>
@@ -213,9 +213,8 @@
 
                 <div class="form-group">
                     <label for="profil_bisnis"> <strong>Lampiran Profil Bisnis, jika ada</strong></label>
-                    <input type="text" class="form-control" name="profil_bisnis" placeholder="Lampiran Profil Bisnis" value="{{ $item->profil_bisnis }}">
-                
-                    <label for="profil_bisnis_file">Lampiran Profil Bisnis: <i>(maks: 5MB|PDF, docx)</i> </label>
+                    <textarea type="text" name="profil_bisnis" id="profil_bisnis" class="form-control">{{ $item->profil_bisnis }}</textarea>
+                    <label for="profil_bisnis_file">Lampiran Profil Bisnis: <i>(maks: 5MB|PDF)</i> </label>
                     <br>
                     @if($item->profil_bisnis_file)
                     <a href="{{  Storage::url($item->profil_bisnis_file)  }}" target="_blank" class="btn btn-warning">Klik Disini untuk membuka file</a>

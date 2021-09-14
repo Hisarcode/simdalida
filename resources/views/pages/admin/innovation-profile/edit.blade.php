@@ -41,7 +41,8 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="regulasi_inovasi_file" name="regulasi_inovasi_file" type="file">
+                    <input id="regulasi_inovasi_file" name="regulasi_inovasi_file" type="file">
+                    <br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -57,7 +58,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="ketersediaan_sdm_file" name="ketersediaan_sdm_file" type="file">
+                    <input id="ketersediaan_sdm_file" name="ketersediaan_sdm_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -65,7 +66,7 @@
                     <label for="dukungan_anggaran"><strong>Dukungan Anngaran</strong></label>
                     <textarea type="text" name="dukungan_anggaran" id="dukungan_anggaran" class="form-control">{{ $item->dukungan_anggaran }}</textarea>
 
-                    <label for="dukungan_anggaran_file">Upload file SK (PDF): <i>(maks: 5MB)</i> <br></label>
+                    <label for="dukungan_anggaran_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
                     
                     @if($item->dukungan_anggaran_file)
                         <a href="{{  Storage::url($item->dukungan_anggaran_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
@@ -73,7 +74,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="dukungan_anggaran_file" name="dukungan_anggaran_file" type="file">
+                    <input id="dukungan_anggaran_file" name="dukungan_anggaran_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -89,7 +90,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="penggunaan_it_file" name="penggunaan_it_file" type="file">
+                    <input id="penggunaan_it_file" name="penggunaan_it_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -105,7 +106,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="bimtek_inovasi_file" name="bimtek_inovasi_file" type="file">
+                    <input id="bimtek_inovasi_file" name="bimtek_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -121,7 +122,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="program_rkpd_file" name="program_rkpd_file" type="file">
+                    <input  id="program_rkpd_file" name="program_rkpd_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -137,7 +138,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="keterlibatan_aktor_file" name="keterlibatan_aktor_file" type="file">
+                    <input id="keterlibatan_aktor_file" name="keterlibatan_aktor_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -153,7 +154,7 @@
                     @else 
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="pelaksana_inovasi_file" name="pelaksana_inovasi_file" type="file">
+                    <input id="pelaksana_inovasi_file" name="pelaksana_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -161,15 +162,16 @@
                     <label for="jejaring_inovasi"><strong>Jejaring Inovasi Daerah</strong></label>
                     <textarea type="text" name="jejaring_inovasi" id="jejaring_inovasi" class="form-control">{{ $item->jejaring_inovasi }}</textarea>
 
-                    <label for="jejaring_inovasi_file">Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br></label>
+                    <label for="jejaring_inovasi_file">Upload file SK (PDF): <i>(maks: 5MB)</i> <br></label>
                     
-                    @if($item->pelaksana_inovasi_file)
+                    @if($item->jejaring_inovasi_file)
                         <a href="{{  Storage::url($item->jejaring_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="jejaring_inovasi_file" name="jejaring_inovasi_file" type="file">
+                    <input id="jejaring_inovasi_file" name="jejaring_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -183,9 +185,10 @@
                         <a href="{{  Storage::url($item->sosialisasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="sosialisasi_inovasi_file" name="sosialisasi_inovasi_file" type="file">
+                    <input  id="sosialisasi_inovasi_file" name="sosialisasi_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -199,9 +202,11 @@
                         <a href="{{  Storage::url($item->pedoman_teknis_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="pedoman_teknis_file" name="pedoman_teknis_file" type="file">
+                    <input  id="pedoman_teknis_file" name="pedoman_teknis_file" type="file">
+                    <br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -215,9 +220,10 @@
                         <a href="{{  Storage::url($item->kemudahan_informasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="kemudahan_informasi_file" name="kemudahan_informasi_file" type="file">
+                    <input  id="kemudahan_informasi_file" name="kemudahan_informasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -231,9 +237,10 @@
                         <a href="{{  Storage::url($item->kemudahan_proses_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="kemudahan_proses_file" name="kemudahan_proses_file" type="file">
+                    <input  id="kemudahan_proses_file" name="kemudahan_proses_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -247,9 +254,10 @@
                         <a href="{{  Storage::url($item->penyelesaian_pengaduan_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="penyelesaian_pengaduan_file" name="penyelesaian_pengaduan_file" type="file">
+                    <input  id="penyelesaian_pengaduan_file" name="penyelesaian_pengaduan_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -263,9 +271,10 @@
                         <a href="{{  Storage::url($item->online_sistem_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="online_sistem_file" name="online_sistem_file" type="file">
+                    <input id="online_sistem_file" name="online_sistem_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -279,9 +288,10 @@
                         <a href="{{  Storage::url($item->replikasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="replikasi_file" name="replikasi_file" type="file">
+                    <input  id="replikasi_file" name="replikasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -295,9 +305,10 @@
                         <a href="{{  Storage::url($item->kecepatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="kecepatan_inovasi_file" name="kecepatan_inovasi_file" type="file">
+                    <input id="kecepatan_inovasi_file" name="kecepatan_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -311,9 +322,10 @@
                         <a href="{{  Storage::url($item->kemanfaatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="kemanfaatan_inovasi_file" name="kemanfaatan_inovasi_file" type="file">
+                    <input id="kemanfaatan_inovasi_file" name="kemanfaatan_inovasi_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -327,9 +339,11 @@
                         <a href="{{  Storage::url($item->monitoring_evaluasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
-                    <input class="form-control" id="monitoring_evaluasi_file" name="monitoring_evaluasi_file" type="file">
+                    <input  id="monitoring_evaluasi_file" name="monitoring_evaluasi_file" type="file">
+                    <br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file sebelumnya</small>
                 </div>
 
@@ -340,6 +354,7 @@
                         <a href="{{  Storage::url($item->kualitas_inovasi)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file sebelumnya</a>
                       <br>
                     @else 
+                    <br>
                     <small class="text-muted">tidak ada file sebelumnya</small>
                     @endif
                     <input class="form-control" id="kualitas_inovasi" name="kualitas_inovasi" type="file">

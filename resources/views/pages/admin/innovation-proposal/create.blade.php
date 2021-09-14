@@ -92,13 +92,13 @@
 
                 <div class="form-group">
                     <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi*</strong></label>
-                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="time" value="{{ old('start_innovation_trial') }}"> sampai tanggal
-                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="time" value="{{ old('end_innovation_trial') }}"> 
+                    <input type="date" class="form-control" name="start_innovation_trial" placeholder="time" value="{{ old('start_innovation_trial') }}" required> sampai tanggal
+                    <input type="date" class="form-control" name="end_innovation_trial" placeholder="time" value="{{ old('end_innovation_trial') }}" required> 
                 </div>
 
                 <div class="form-group">
                     <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan*</strong></label>
-                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}">
+                    <input type="date" class="form-control" name="time_innovation_implement" placeholder="time" value="{{ old('time_innovation_implement') }}" required>
                 </div>
 
                 <div class="form-group">
@@ -126,7 +126,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="budget"><strong>Isikan anggaran, jika diperlukan</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
+                    <label for="budget"><strong>Isikan anggaran, jika diperlukan</strong> <i>(maks: 5MB|PDF)</i> <br></label>
                     <textarea type="text" name="budget" id="budget" class="form-control" placeholder="Isikan anggaran"
                     autocomplete="off">{{ old('budget') }}</textarea>
 
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="profil_bisnis"><strong>Isikan Profil Bisnis, jika ada</strong> <i>(maks: 5MB|PDF, docx)</i> <br></label>
+                    <label for="profil_bisnis"><strong>Isikan Profil Bisnis, jika ada</strong> <i>(maks: 5MB|PDF)</i> <br></label>
                     <textarea type="text" name="profil_bisnis" id="profil_bisnis" class="form-control" placeholder="Isikan Profil Bisnis"
                     autocomplete="off">{{ old('profil_bisnis') }}</textarea>
 

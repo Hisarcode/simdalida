@@ -42,7 +42,7 @@
                         <a href="{{  Storage::url($item->regulasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif
                     </td>
                 </tr>
@@ -53,7 +53,7 @@
                         <a href="{{  Storage::url($item->ketersediaan_sdm_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif</td>
                 </tr>
                 <tr>
@@ -63,7 +63,7 @@
                         <a href="{{  Storage::url($item->dukungan_anggaran_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif</td>
                 </tr>
                 <tr>
@@ -73,7 +73,7 @@
                         <a href="{{  Storage::url($item->penggunaan_it_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@
                         <a href="{{  Storage::url($item->bimtek_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif</td>
                 </tr>
                 <tr>
@@ -93,7 +93,7 @@
                         <a href="{{  Storage::url($item->program_rkpd_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif
                     </td>
                 </tr>
@@ -104,7 +104,7 @@
                         <a href="{{  Storage::url($item->keterlibatan_aktor_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -114,17 +114,17 @@
                         <a href="{{  Storage::url($item->pelaksana_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
                     <th>Jejaring Inovasi</th>
                     <td>{{ $item->jejaring_inovasi}} <br>
-                        @if($item->pelaksana_inovasi_file)
+                        @if($item->jejaring_inovasi_file)
                         <a href="{{  Storage::url($item->jejaring_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -134,7 +134,7 @@
                         <a href="{{  Storage::url($item->sosialisasi_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -144,7 +144,7 @@
                         <a href="{{  Storage::url($item->pedoman_teknis_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -154,7 +154,7 @@
                         <a href="{{  Storage::url($item->kemudahan_informasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -164,7 +164,7 @@
                         <a href="{{  Storage::url($item->kemudahan_proses_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -174,7 +174,7 @@
                         <a href="{{  Storage::url($item->penyelesaian_pengaduan_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -184,7 +184,7 @@
                         <a href="{{  Storage::url($item->online_sistem_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -194,7 +194,7 @@
                         <a href="{{  Storage::url($item->replikasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -204,7 +204,7 @@
                         <a href="{{  Storage::url($item->kecepatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -214,7 +214,7 @@
                         <a href="{{  Storage::url($item->kemanfaatan_inovasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif</td>
                 </tr>
                 <tr>
@@ -224,7 +224,7 @@
                         <a href="{{  Storage::url($item->monitoring_evaluasi_file)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat file</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif </td>
                 </tr>
                 <tr>
@@ -233,7 +233,7 @@
                         <a href="{{  Storage::url($item->kualitas_inovasi)  }}" target="_blank" class="btn btn-sm btn-warning">Klik disini untuk melihat thumbnail</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif
                         <br>
                     
@@ -241,7 +241,7 @@
                     <a href="{{ $item->kualitas_inovasi_file }}" target="_blank" class="btn btn-sm btn-warning">Klik Disini untuk melihat video</a>
                       <br>
                     @else 
-                    <small class="text-muted">tidak ada file</small>
+                    <small class="text-muted">---</small>
                     @endif
                 </td>
                 </tr>

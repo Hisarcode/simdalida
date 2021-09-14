@@ -65,7 +65,7 @@
                             <textarea type="text" name="dukungan_anggaran" id="dukungan_anggaran" class="form-control"
                             placeholder=" "
                             autocomplete="off">{{ old('dukungan_anggaran') }}</textarea>
-                            <label for="dukungan_anggaran_file"> Upload file SK (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="dukungan_anggaran_file"></label> 
+                            <label for="dukungan_anggaran_file"> Upload file pendukung (PDF):  <i>(maks: 5MB)</i> <br><input type="file" name="dukungan_anggaran_file"></label> 
                         </div>
                 </div>
 
@@ -125,7 +125,7 @@
                             <textarea type="text" name="jejaring_inovasi" id="jejaring_inovasi" class="form-control"
                             placeholder=" " 
                             autocomplete="off">{{ old('jejaring_inovasi') }}</textarea>
-                            <label for="jejaring_inovasi_file"> Upload file pendukung (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="jejaring_inovasi_file"></label> 
+                            <label for="jejaring_inovasi_file"> Upload file SK (PDF): <i>(maks: 5MB)</i> <br> <input type="file" name="jejaring_inovasi_file"></label> 
                         </div>
                 </div>
 
