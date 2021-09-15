@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <th>Waktu Inovasi Daerah Diterapkan</th>
-                    <td>{{ \Carbon\Carbon::parse($item->time_innovation_implement)->format('d, M-Y') }}</td>
+                    <td>{{ $item->time_innovation_implement }}</td>
                 </tr>
                 <tr>
                     <th>Permasalahan/kendala yang dihadapi <br>dalam pelaksanaan inovasi daerah</th>

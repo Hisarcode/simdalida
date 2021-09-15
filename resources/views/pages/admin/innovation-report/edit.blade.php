@@ -60,17 +60,17 @@
                     <label for="Tahap Inisiatif"> <input type="radio"
                             {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}}
                             name="innovation_step[]" {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
-                            id="Tahap Inisiatif" value="Tahap Inisiatif"> Tahap Inisiatif</label>
+                            id="Tahap Inisiatif" value="Tahap Inisiatif" onclick="javascript: return false;"> Tahap Inisiatif</label>
 
                     <label for="Tahap Uji Coba"> <input type="radio"
                             {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}}
                             name="innovation_step[]" {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
-                            id="Tahap Uji Coba" value="Tahap Uji Coba"> Tahap Uji Coba</label>
+                            id="Tahap Uji Coba" value="Tahap Uji Coba" onclick="javascript: return false;""> Tahap Uji Coba</label>
 
                     <label for="Tahap Penerapan"> <input type="radio"
                             {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}}
                             name="innovation_step[]" {{$errors->first('innovation_step') ? "is-invalid" : "" }}"
-                            id="Tahap Penerapan" value="Tahap Penerapan"> Tahap Penerapan</label>
+                            id="Tahap Penerapan" value="Tahap Penerapan" onclick="javascript: return false;"> Tahap Penerapan</label>
 
                     <div class="invalid-feedback">
                         {{$errors->first('innovation_step')}}
@@ -98,31 +98,31 @@
                             {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Kepala Daerah"
-                            value="Kepala Daerah"> Kepala Daerah</label>
+                            value="Kepala Daerah" onclick="javascript: return false;"> Kepala Daerah</label>
                     <br>
                     <label for="Anggota DPRD"> <input type="radio"
                             {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Anggota DPRD"
-                            value="Anggota DPRD"> Anggota DPRD</label>
+                            value="Anggota DPRD" onclick="javascript: return false;"> Anggota DPRD</label>
                     <br>
                     <label for="ASN"> <input type="radio"
                             {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
-                            {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="ASN" value="ASN">
+                            {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="ASN" value="ASN" onclick="javascript: return false;">
                         ASN</label>
                     <br>
                     <label for="Perangkat Daerah"> <input type="radio"
                             {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Perangkat Daerah"
-                            value="Perangkat Daerah"> Perangkat Daerah</label>
+                            value="Perangkat Daerah" onclick="javascript: return false;"> Perangkat Daerah</label>
                     <br>
                     <label for="Anggota Masyarakat"> <input type="radio"
                             {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}}
                             name="innovation_initiator[]"
                             {{$errors->first('innovation_initiator') ? "is-invalid" : "" }}" id="Anggota Masyarakat"
-                            value="Anggota Masyarakat"> Anggota Masyarakat</label>
+                            value="Anggota Masyarakat" onclick="javascript: return false;"> Anggota Masyarakat</label>
 
                     <div class="invalid-feedback">
                         {{$errors->first('innovation_initiator')}}
@@ -134,11 +134,11 @@
                     <br>
                     <label>
                         <input {{$item->innovation_type == "Digital" ? "checked" : ""}} value="Digital" type="radio"
-                            id="innovation_type" name="innovation_type"> Digital
+                            id="innovation_type" name="innovation_type" onclick="javascript: return false;"> Digital
                     </label>
                     <label>
                         <input {{$item->innovation_type == "non-Digital" ? "checked" : ""}} value="non-Digital"
-                            type="radio" id="innovation_type" name="innovation_type"> Non-Digital
+                            type="radio" id="innovation_type" name="innovation_type" onclick="javascript: return false;"> Non-Digital
                     </label>
                 </div>
 
@@ -147,27 +147,29 @@
                     <br>
                     <label>
                         <input {{$item->innovation_formats == "Kelola Pemerintah" ? "checked" : ""}}
-                            value="Kelola Pemerintah" type="radio" id="innovation_formats" name="innovation_formats">
+                            value="Kelola Pemerintah" type="radio" id="innovation_formats" name="innovation_formats" onclick="javascript: return false;">
                         Inovasi Tata Kelola Pemerintah Daerah
                     </label>
                     <br>
                     <label>
                         <input {{$item->innovation_formats == "Pelayanan Publik" ? "checked" : ""}}
-                            value="Pelayanan Publik" type="radio" id="innovation_formats" name="innovation_formats">
+                            value="Pelayanan Publik" type="radio" id="innovation_formats" name="innovation_formats" onclick="javascript: return false;">
                         Inovasi Pelayanan Publik
                     </label>
                     <br>
                     <label>
                         <input {{$item->innovation_formats == "Bentuk Lainnya" ? "checked" : ""}} value="Bentuk Lainnya"
-                            type="radio" id="innovation_formats" name="innovation_formats"> Inovasi Bentuk Lainnya
+                            type="radio" id="innovation_formats" name="innovation_formats" onclick="javascript: return false;"> Inovasi Bentuk Lainnya
                         sesuai bidang urusan pemerintah daerah
                     </label>
                 </div>
 
-                <div class="form-group">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
                     <label for="time_innovation_implement"><strong>Waktu Pelaksanaan Inovasi Daerah*</strong></label>
                     <input type="date" class="form-control" name="time_innovation_implement" 
                     value="{{ $item->time_innovation_implement }}">
+                </div>
                 </div>
               
                 <div class="form-group">
@@ -190,12 +192,13 @@
                    >{{ $item->improvement }}</textarea>
                 </div>
 
-                <div class="form-group">
+            
+                    <div class="form-group">
                     <label for="complain_innovation_total"><strong>Jumlah pengaduan/saran terkait
                             inovasi*</strong></label>
-                    <input type="text" class="form-control" name="complain_innovation_total" 
-                        value="{{ $item->complain_innovation_total }}">
-                    <label for="complain_innovation_file">Upload Dokumen rekapitulasi pengaduan <i>(maks: 5MB|PDF)</i> <br> </label>
+                    <input type="number" class="form-control" name="complain_innovation_total" 
+                        value="{{ $item->complain_innovation_total }}" min="0">
+                    <label for="complain_innovation_file"><strong>Upload Dokumen rekapitulasi pengaduan</strong> <i>(maks: 5MB|PDF)</i> <br> </label>
                     <br>
                     @if($item->complain_innovation_file)
                     <a href="{{  Storage::url($item->complain_innovation_file)  }}" target="_blank"
@@ -208,31 +211,32 @@
                     <input id="complain_innovation_file" name="complain_innovation_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
                 </div>
-
-                <div class="form-group">
+                
+                    <div class="form-group">
                     <label for="complain_improvement_total"><strong>Jumlah pengaduan/saran yang sudah
                             ditindaklanjuti*</strong></label>
-                    <input type="text" class="form-control" name="complain_improvement_total"
-                     value="{{ $item->complain_improvement_total }}">
-                    <label for="complain_improvement_file">Upload dokumen penyelesaian pengaduan* <i>(maks: 5MB|PDF)</i> <br> </label>
+                    <input type="number" class="form-control" name="complain_improvement_total"
+                     value="{{ $item->complain_improvement_total }}" min="0">
+                    <label for="complain_improvement_file"><strong>Upload dokumen penyelesaian pengaduan</strong> <i>(maks: 5MB|PDF)</i> <br> </label>
                     <br>
-                    @if($item->complaint_improvement_file)
-                    <a href="{{  Storage::url($item->complaint_improvement_file)  }}" target="_blank"
+                    @if($item->complain_improvement_file)
+                    <a href="{{  Storage::url($item->complain_improvement_file)  }}" target="_blank"
                         class="btn btn-warning">Klik Disini untuk membuka file</a>
                     <br>
                     @else
                     Tidak ada file
                     @endif
                     <br>
-                    <input id="complaint_improvement_file" name="complaint_improvement_file" type="file"><br>
+                    <input id="complain_improvement_file" name="complain_improvement_file" type="file"><br>
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah file</small>
                 </div>
+            
 
                 <div class="form-group">
                     <label for="achievement_goal_level"><strong>Tingkat capaian tujuan inovasi daerah*</strong></label>
                     <input type="text" class="form-control" name="achievement_goal_level" 
                         value="{{ $item->achievement_goal_level }}">
-                    <label for="achievement_goal_level_file">Upload dokumen pendukung <i>(maks: 5MB|PDF)</i> <br> </label>
+                    <label for="achievement_goal_level_file"><strong>Upload dokumen pendukung</strong> <i>(maks: 5MB|PDF)</i> <br> </label>
                     <br>
                     @if($item->achievement_goal_level_file)
                     <a href="{{  Storage::url($item->achievement_goal_level_file)  }}" target="_blank"
@@ -257,7 +261,7 @@
                     <label for="benefit_level"><strong>Tingkat Kemanfaatan inovasi daerah*</strong></label>
                     <input type="text" class="form-control" name="benefit_level"
                         value="{{ $item->benefit_level }}">
-                    <label for="benefit_level_file">Upload dokumen pendukung <i>(maks: 5MB|PDF)</i> <br> </label>
+                    <label for="benefit_level_file"><strong>Upload dokumen pendukung</strong> <i>(maks: 5MB|PDF)</i> <br> </label>
                     <br>
                     @if($item->benefit_level_file)
                     <a href="{{  Storage::url($item->benefit_level_file)  }}" target="_blank"
@@ -275,7 +279,7 @@
                     <label for="achievement_result_level"><strong>Tingkat Capaian Hasil Inovasi Daerah*</strong></label>
                     <input type="text" class="form-control" name="achievement_result_level"
                         value="{{ $item->achievement_result_level }}">
-                    <label for="achievement_result_level_file">Upload dokumen pendukung <i>(maks: 5MB|PDF)</i> <br> </label>
+                    <label for="achievement_result_level_file"><strong>Upload dokumen pendukung</strong> <i>(maks: 5MB|PDF)</i> <br> </label>
                     <br>
                     @if($item->achievement_result_level_file)
                     <a href="{{  Storage::url($item->achievement_result_level_file)  }}" target="_blank"
@@ -328,3 +332,8 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
+
+@push('addon-script')
+
+
+@endpush

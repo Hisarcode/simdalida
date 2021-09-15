@@ -41,7 +41,7 @@ class CarouselController extends Controller
         $validation = \Validator::make($request->all(), [
             "title" => "required",
             "description" => "required",
-            "carousel_image" => "required|image",
+            "carousel_image" => "required|mimes:jpeg,png,jpg,svg|max:3072",
         ])->validate();
 
         $carousel = new Carousel();
@@ -98,6 +98,7 @@ class CarouselController extends Controller
         \Validator::make($request->all(), [
             "title" => "required",
             "description" => "required",
+            "carousel_image" => "mimes:jpeg,png,jpg,svg|max:3072",
         ]);
         $carousel->title = $request->get('title');
         $carousel->description = $request->get('description');
@@ -124,6 +125,8 @@ class CarouselController extends Controller
     public function destroy($id)
     {
         $item = Carousel::findOrfail($id);
+
+        \Storage::delete('public' . $item->carousel_image);
         $item->delete();
 
         return redirect()->route('carousel.index');

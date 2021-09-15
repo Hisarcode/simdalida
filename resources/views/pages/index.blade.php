@@ -95,9 +95,9 @@
                     <div class="col-lg-7 col-md-8 col-12">
                         <div class="welcome-text">
                             <div class="hero-text">
-                                <h1>{{ $item->title }}</h1>
+                                <h1 style="color:white">{{ $item->title }}</h1>
                                 <div class="p-text">
-                                    <p>{{ $item->description }}</p>
+                                    <p style="color: white">{{ $item->description }}</p>
                                 </div>
                             </div>
                         </div>

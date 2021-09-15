@@ -402,7 +402,7 @@
                 <td>
                   <table class="soapbox">
                     <tr>
-                      <td class="soapbox-title">Menanggapi pertanyaan kamu terkait : "{{ $subject }}"</td>
+                      <td class="soapbox-title">Reset Password Akun Simdalida</td>
                     </tr>
                   </table>
                   <table class="body">
@@ -413,8 +413,9 @@
                         <table class="body-text">
                           <tr>
                             <td class="body-text-cell">
-                             {{ $reply }}
-                            </td>
+                               Akun Anda dengan username {{ $username }} berhasil direset passwordnya. <br>
+                               Password baru anda : 12345678
+                              </td>
                           </tr>
                         </table>
                         <div>

@@ -65,7 +65,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
-            "nik.digits_between" => "NIP harus 18 digit, NIK harus 16 digit !"
+            "nik.digits_between" => "NIP harus 18 digit, NIK harus 16 digit !",
+            "nik.numeric" => "NIK/NIP harus berupa number!"
         ]);
     }
 
