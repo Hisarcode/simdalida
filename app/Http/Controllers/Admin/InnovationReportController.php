@@ -25,7 +25,7 @@ class InnovationReportController extends Controller
             $report = InnovationReport::where('status', 'KIRIM')->orderBy('id', 'DESC')->get();
         } else if (Auth::user()->roles == 'OPERATOR') {
             $report = InnovationReport::where('users_id', Auth::user()->id)
-                ->orderBy('innovation_proposals_id', 'DESC')
+                ->orderBy('id', 'DESC')
                 ->orderBy('quartal', 'DESC')
                 ->get();
         }
@@ -173,8 +173,9 @@ class InnovationReportController extends Controller
                     "innovation_sk_file" => "mimes:pdf|max:5120",
                     "tahapan_sk_bupati" => "mimes:pdf|max:5120",
                     "complain_innovation_file" => "mimes:pdf|max:5120",
-                    // "complain_innovation_file" => "required_if:complain_innovation_total,<>,0",
+                    "complain_innovation_file" => "required_unless:complain_innovation_total,0",
                     "complain_improvement_file" => "mimes:pdf|max:5120",
+                    "complain_improvement_file" => "required_unless:complain_improvement_total,0",
                     "achievement_goal_level_file" => "mimes:pdf|max:5120",
                     "benefit_level_file" => "mimes:pdf|max:5120",
                     "achievement_result_level_file" => "mimes:pdf|max:5120",
@@ -207,8 +208,10 @@ class InnovationReportController extends Controller
                     "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
                     "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf!",
                     "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.required_unless" => "file rekapitulasi pengaduan harus dimasukkan!",
                     "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf!",
                     "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.required_unless" => "file rekapitulasi penyelesaian pengaduan harus masukkan!",
                     "achievement_goal_level_file.mimes" => "format file pendukung harus pdf!",
                     "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                     "benefit_level_file.mimes" => "format file pendukung harus pdf!",
@@ -409,6 +412,8 @@ class InnovationReportController extends Controller
                     "tahapan_sk_bupati" => "mimes:pdf|max:5120",
                     "complain_innovation_file" => "mimes:pdf|max:5120",
                     "complain_improvement_file" => "mimes:pdf|max:5120",
+                    "complain_innovation_file" => "required_unless:complain_innovation_total,0",
+                    "complain_improvement_file" => "required_unless:complain_improvement_total,0",
                     "achievement_goal_level_file" => "mimes:pdf|max:5120",
                     "benefit_level_file" => "mimes:pdf|max:5120",
                     "achievement_result_level_file" => "mimes:pdf|max:5120",
@@ -441,8 +446,10 @@ class InnovationReportController extends Controller
                     "tahapan_sk_bupati.max" => "ukuran file SK Bupati tidak boleh lebih dari 5MB!",
                     "complain_innovation_file.mimes" => "format file rekapitulasi pengaduan harus pdf!",
                     "complain_innovation_file.max" => "ukuran file rekapitulasi pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_innovation_file.required_unless" => "file rekapitulasi pengaduan harus dimasukkan!",
                     "complain_improvement_file.mimes" => "format file penyelesaian pengaduan harus pdf!",
                     "complain_improvement_file.max" => "ukuran file penyelesaian pengaduan tidak boleh lebih dari 5MB!",
+                    "complain_improvement_file.required_unless" => "file penyelesaian pengaduan harus dimasukkan!",
                     "achievement_goal_level_file.mimes" => "format file pendukung harus pdf!",
                     "achievement_goal_level_file.max" => "ukuran file pendukung tidak boleh lebih dari 5MB!",
                     "benefit_level_file.mimes" => "format file pendukung harus pdf!",

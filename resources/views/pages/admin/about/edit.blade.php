@@ -66,11 +66,11 @@
                 </div>
                 <div class="form-group">
 
-                    <label for="about_image">Upload Gambar About</label>
+                    <label for="about_image">Upload Gambar About (maks 3MB|jpeg,png,jpg,svg)</label>
                     <br>
                     @if($item->about_image)
-                    <img src="{{ Storage::url($item->about_image) }}" class="img-fluid mb-3" height="80%"
-                        width="80%"></img>
+                    <img src="{{ Storage::url($item->about_image) }}" class="img-fluid mb-3" height="50%"
+                        width="50%"></img>
                     <br>
                     @else
                     Tidak ada file
@@ -80,7 +80,6 @@
                     <div class="form-group">
                         <input type="file" class="form-control-file" name="about_image" id="about_image"
                             placeholder="Gambar Carousel">
-                        <small class="text-muted">Gambar about wajib diisi</small><br>
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
 
                     </div>

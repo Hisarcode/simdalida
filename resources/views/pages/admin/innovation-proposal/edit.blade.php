@@ -158,15 +158,19 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
                     <label for="start_innovation_trial"><strong>Waktu Uji Coba Inovasi*</strong></label>
                     <input type="date" class="form-control" name="start_innovation_trial" placeholder="start_innovation_trial" required value="{{ $item->start_innovation_trial }}"> sampai tanggal
                     <input type="date" class="form-control" name="end_innovation_trial" placeholder="end_innovation_trial" required value="{{ $item->end_innovation_trial }}">
                 </div>
+                </div>
 
-                <div class="form-group">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
                     <label for="time_innovation_implement"><strong>Waktu Inovasi Daerah Diterapkan*</strong></label>
                     <input type="date" class="form-control" required name="time_innovation_implement" placeholder="time_innovation_implement" value="{{ $item->time_innovation_implement }}">
+                </div>
                 </div>
 
                 <div class="form-group">

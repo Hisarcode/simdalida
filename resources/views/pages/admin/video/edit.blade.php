@@ -26,7 +26,7 @@
                 @csrf
                 <div class="form-group">
 
-                    <label for="thumbnail">Upload Thumbnail Video</label>
+                    <label for="thumbnail">Upload Thumbnail Video (maks 3MB|jpeg,png,jpg,svg)</label>
                     <br>
                     @if($item->thumbnail)
                     <img src="{{ Storage::url($item->thumbnail) }}" class="img-fluid mb-3" height="40%"></img>

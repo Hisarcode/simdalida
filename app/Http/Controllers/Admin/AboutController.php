@@ -89,6 +89,7 @@ class AboutController extends Controller
             "youtube" => "required",
             "whatsapp" => "required",
             "about_content" => "required",
+            "about_image" => "mimes:jpeg,png,jpg,svg|max:3072"
         ])->validate();
 
         $about->phone = $request->get('phone');
