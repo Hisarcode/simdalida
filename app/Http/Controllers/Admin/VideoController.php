@@ -83,6 +83,7 @@ class VideoController extends Controller
 
         \Validator::make($request->all(), [
             "video" => "required",
+            "thumbnail" => "mimes:jpeg,png,jpg,svg|max:3072"
         ])->validate();
 
         $about->video = $request->get('video');

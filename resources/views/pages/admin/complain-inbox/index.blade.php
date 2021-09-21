@@ -42,6 +42,7 @@
                         ?>
                         @forelse ($complains as $complain)
                         @if (Auth::user()->roles === 'SUPERADMIN' || Auth::user()->roles === 'ADMIN')
+                        @if ($complain->innovation_complain)
                         <tr>
                             <td>{{ $i++ }}</td>
                             @if($complain->innovation_complain == null)
@@ -91,6 +92,7 @@
                                 @endif
                             </td>
                         </tr>
+                        @endif
                         @elseif ($complain->innovation_complain->users_id == Auth::user()->id)
                         <tr>
                             <td>{{ $j++ }}</td>

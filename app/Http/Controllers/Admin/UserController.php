@@ -123,7 +123,7 @@ class UserController extends Controller
 
         Mail::send('pages.admin.user.mailuser', $data, function ($message) use ($email) {
             $message->to($email, 'Bapak ibu')->subject('Akses halaman operator Simdalida');
-            $message->from('simdalida@gmail.com', 'Admin Simdalida');
+            $message->from(env('MAIL_USERNAME'), 'Admin Simdalida');
         });
         return redirect()->route('user.index')->with('status', 'Updated successfully!');
     }
@@ -159,8 +159,20 @@ class UserController extends Controller
     public function resetpassword($id)
     {
         $item = User::findOrFail($id);
+        $email = User::where('id', $id)->first()->email;
+        $name = User::where('id', $id)->first()->name;
+        $username = User::where('id', $id)->first()->username;
+
         $item->password = Hash::make("12345678");
         $item->update();
+
+        $data = array('name' => $name, 'username' => $username);
+
+        Mail::send('pages.admin.user.resetpassword', $data, function ($message) use ($email) {
+            $message->to($email, 'Bapak ibu')->subject('Reset Password Akun Simdalida');
+            $message->from(env('MAIL_USERNAME'), 'Admin Simdalida');
+        });
+
         return redirect()->route('user.index')->with('status', 'Password successfully reset!');
     }
 }

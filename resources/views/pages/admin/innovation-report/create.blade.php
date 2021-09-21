@@ -45,11 +45,11 @@
 
         <div class="form-group">
             <label><strong><b>Tahapan Inovasi* :</b></strong></label><br>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif"    {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
+            <label><input type="radio" name="innovation_step[]" value="Tahap Inisiatif"    {{in_array("Tahap Inisiatif", json_decode($item->innovation_step)) ? "checked" : ""}} onclick="javascript: return false;"> Tahap
                 Inisiatif</label>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba"    {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap Uji
+            <label><input type="radio" name="innovation_step[]" value="Tahap Uji Coba"    {{in_array("Tahap Uji Coba", json_decode($item->innovation_step)) ? "checked" : ""}} onclick="javascript: return false;"> Tahap Uji
                 Coba</label>
-            <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan"    {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}}> Tahap
+            <label><input type="radio" name="innovation_step[]" value="Tahap Penerapan"    {{in_array("Tahap Penerapan", json_decode($item->innovation_step)) ? "checked" : ""}} onclick="javascript: return false;"> Tahap
                 Penerapan</label>
                 <div class="form-group">
                     <label for="tahapan_sk_bupati"> <b>Upload SK Bupati (bukti pendukung untuk tahapan inovasi):</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file" name="tahapan_sk_bupati"
@@ -59,14 +59,14 @@
 
         <div class="form-group">
             <label><strong><b>Inisiator Inovasi Daerah* :</b></strong></label><br>
-            <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah"  {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Kepala
+            <label><input type="radio" name="innovation_initiator[]" value="Kepala Daerah"  {{in_array("Kepala Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}} onclick="javascript: return false;"> Kepala
                 Daerah</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Anggota
+            <label><input type="radio" name="innovation_initiator[]" value="Anggota DPRD" {{in_array("Anggota DPRD", json_decode($item->innovation_initiator)) ? "checked" : ""}} onclick="javascript: return false;"> Anggota
                 DPRD</label>
-            <label><input type="radio" name="innovation_initiator[]" value="ASN" {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}}> ASN</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah" {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Perangkat
+            <label><input type="radio" name="innovation_initiator[]" value="ASN" {{in_array("ASN", json_decode($item->innovation_initiator)) ? "checked" : ""}} onclick="javascript: return false;"> ASN</label>
+            <label><input type="radio" name="innovation_initiator[]" value="Perangkat Daerah" {{in_array("Perangkat Daerah", json_decode($item->innovation_initiator)) ? "checked" : ""}} onclick="javascript: return false;"> Perangkat
                 Daerah</label>
-            <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat" {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}}> Anggota
+            <label><input type="radio" name="innovation_initiator[]" value="Anggota Masyarakat" {{in_array("Anggota Masyarakat", json_decode($item->innovation_initiator)) ? "checked" : ""}} onclick="javascript: return false;"> Anggota
                 Masyarakat</label>
         </div>
 
@@ -74,10 +74,10 @@
             <label for="innovation_type"><b>Jenis Inovasi Daerah*</b></label>
             <br>
             <label>
-                <input type="radio" name="innovation_type" id="innovation_type" value="Digital" {{($item->innovation_type == "Digital")? "checked" : ""}}> Digital
+                <input type="radio" name="innovation_type" id="innovation_type" value="Digital" {{($item->innovation_type == "Digital")? "checked" : ""}} onclick="javascript: return false;"> Digital
             </label>
             <label>
-                <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" {{($item->innovation_type == "non-Digital")? "checked" : ""}}>
+                <input type="radio" name="innovation_type" id="innovation_type" value="non-Digital" {{($item->innovation_type == "non-Digital")? "checked" : ""}} onclick="javascript: return false;">
                 Non-Digital
             </label>
         </div>
@@ -86,26 +86,29 @@
             <label for="innovation_formats"><strong>Bentuk Inovasi Daerah*</strong></label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" {{($item->innovation_formats == "Kelola Pemerintah")? "checked" : ""}}>
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Kelola Pemerintah" {{($item->innovation_formats == "Kelola Pemerintah")? "checked" : ""}} onclick="javascript: return false;">
                 Inovasi Tata Kelola Pemerintah Daerah
             </label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" {{($item->innovation_formats == "Pelayanan Publik") ? "checked" : ""}} >
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Pelayanan Publik" {{($item->innovation_formats == "Pelayanan Publik") ? "checked" : ""}} onclick="javascript: return false;" >
                 Inovasi Pelayanan Publik
             </label>
             <br>
             <label>
-                <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" {{($item->innovation_formats == "Bentuk Lainnya") ? "checked" : ""}}>
+                <input type="radio" name="innovation_formats" id="innovation_formats" value="Bentuk Lainnya" {{($item->innovation_formats == "Bentuk Lainnya") ? "checked" : ""}} onclick="javascript: return false;">
                 Inovasi Bentuk Lainnya sesuai bidang urusan pemerintah daerah
             </label>
         </div>
 
-        <div class="form-group">
-            <label for="time_innovation_implement"><b>Waktu Inovasi Daerah Diterapkan*</b></label>
-            <input type="date" class="form-control" name="time_innovation_implement" placeholder="time"
-                value="{{ old('time_innovation_implement') }}">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="time_innovation_implement"><b>Waktu Inovasi Daerah Diterapkan*</b></label>
+                <input type="date" class="form-control" name="time_innovation_implement" placeholder="time"
+                    value="{{ old('time_innovation_implement') }}">
+            </div>
         </div>
+     
 
         <div class="form-group">
             <label for="problem"><b>Permasalahan/kendala yg dihadapi*</b></label>
@@ -126,25 +129,26 @@
                 autocomplete="off">{{ old('improvement') }}</textarea>
         </div>
 
+            <div class="form-group">
+                <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
+                <input type="number" class="form-control" name="complain_innovation_total"
+                value="{{ old('complain_innovation_total') }}" autocomplete="off" min="0">
+    
+                        <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+                            name="complain_innovation_file"></label>
+                
+            </div>
 
-        <div class="form-group">
-            <label for="complain_innovation_total"><b>Jumlah pengaduan/saran terkait inovasi*</b></label>
-            <input type="text" class="form-control" name="complain_innovation_total"
-                value="{{ old('complain_innovation_total') }}" autocomplete="off" id="mySelect" onchange="myFunction()">
-
-            <label for="complain_innovation_file" id="demo"> <b>Upload dokumen rekapitulasi pengaduan:* </b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
-                    name="complain_innovation_file"></label>
-        </div>
-
-        <div class="form-group">
-            <label for="complain_improvement_total"><b>Jumlah pengaduan/saran yg sudah
-                    ditindaklanjuti*</b></label>
-            <input type="text" class="form-control" name="complain_improvement_total"
-                value="{{ old('complain_improvement_total') }}" autocomplete="off">
-
-            <label for="complain_improvement_file"> <b>Upload dokumen penyelesaian pengaduan*:</b> <i>(maks: 5MB|PDF)</i> <br> <input type="file"
-                    name="complain_improvement_file" ></label>
-        </div>
+            <div class="form-group">
+                <label for="complain_improvement_total"><b>Jumlah pengaduan/saran yg sudah ditindaklanjuti*</b></label>
+                <input type="number" class="form-control" name="complain_improvement_total"
+                value="{{ old('complain_improvement_total') }}" autocomplete="off" min="0">
+                 
+                        <label for="complain_improvement_file" id="demo"> <b>Upload dokumen penyelesaian pengaduan:* </b> <i>(maks: 5MB|PDF, docx)</i> <br> <input type="file"
+                            name="complain_improvement_file"></label>
+                      
+            </div>
+        
 
         <div class="form-group">
             <label for="achievement_goal_level"><b>Tingkat Capaian Tujuan Inovasi Daerah*</b></label>
@@ -225,8 +229,5 @@
         });
     });
 </script>
-
-
-
 
 @endpush
